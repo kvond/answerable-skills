@@ -28,3 +28,7 @@ token*
 # documents whose only other copy is on a district account with a clock on it.
 !docs/tpt/originals/*.docx
 !docs/tpt/originals/*.xlsx
+
+# Audit outputs are records, not working output. The *_inventory_*.csv rule above
+# is for scratch inventories; these are kept deliberately. (2026-08-29)
+!audits/*.csv
