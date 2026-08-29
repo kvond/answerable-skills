@@ -1,0 +1,23 @@
+# Never commit artifacts — Drive is their source of truth
+*.pptx
+*.gslides
+*.gdoc
+*.gsheet
+*.docx
+*.xlsx
+*.zip
+
+# Local working output
+deck_work/
+*_inventory_*.csv
+*.bak
+
+# Credentials — never commit
+*.json
+!package.json
+credentials*
+token*
+.env
+
+# OS noise
+.DS_Store
