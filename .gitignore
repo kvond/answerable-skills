@@ -15,6 +15,7 @@ deck_work/
 # Credentials — never commit
 *.json
 !package.json
+!pipeline_invariants.json
 credentials*
 token*
 .env

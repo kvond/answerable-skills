@@ -1,0 +1,99 @@
+{
+  "_comment": "Single source of truth = the MANIFEST 'Invariants that must NEVER drift' section. This file is the machine-checkable mirror pipeline_lint.py reads. Update a rule HERE (and the MANIFEST prose), then the linter enforces conformance across all surfaces. | Scope: feedback pipeline only (A/B/B1/B2/C). VT deck build governs its own colors; only the tier LABELS the pipeline parses are checked.",
+  "surfaces": {
+    "SYSTEM_ONBOARDING_PROMPT.md": "1-2lALwwCqN5AWdTaLDElXYHAOUECGfN-h0vloNUoA1I",
+    "Grading-Rules-Reference-for-September.md": "1zbvkA6DPOncSyUhmreprgBXgY-7_uxlpk7WRKTQJwTw",
+    "01-feedback-system-master-spec.md": "1JPJ126pZvU6vj0VrWIXLW0EvydAHlGLJ",
+    "08-workflow-b-SKILL.md": "1L6DWvFQL4sEI8ErydrSYyc7vO_SSD1V3",
+    "15-workflow-b1-SKILL.md": "1mzMzxP9pOs57p0IqXz9uoFfCv8g28x-b",
+    "11-workflow-b2-SKILL.md": "1ap5hxyS2mSyp9HCYCeIWjpMjxKz93CJK",
+    "workflow-c-SKILL.md": "1FsftJ01J2f0uWu1rer7QOoBgWSkhvg87",
+    "aspect_grader_spec.md": "1HbP8w0PYf0WaalEroHGHenyQglEOyxp7",
+    "lesson-router-SKILL.md": "1ezJ69yZ2U-Ehs883AHO_5D54lLhhMy4z",
+    "KICKOFF_SCAN.md": "1fay594ItPgsqc8cjCOR5U9d0LpuGhsUW",
+    "PREFLIGHT.md": "1LXfh1v-KqZdtUyZyknHTNxgpNRoueQZC"
+  },
+  "blocklist": [
+    {
+      "id": "wfb-docx-delivery",
+      "pattern": "output is (a )?formatted Word",
+      "note": "Workflow B delivery = Composio Gmail drafts, not .docx"
+    },
+    {
+      "id": "wfb-no-composio",
+      "pattern": "[Nn][Oo] Composio Gmail",
+      "note": "delivery routes through Composio Gmail drafts"
+    },
+    {
+      "id": "wfb-your-answer",
+      "pattern": "\"Your answer:\"",
+      "note": "retired rewrite-email format"
+    },
+    {
+      "id": "wfb-copypaste-doc",
+      "pattern": "copy \u2192 paste[^\\n]{0,30}new Doc",
+      "note": "retired rewrite-email format"
+    },
+    {
+      "id": "wfb-5-directions",
+      "pattern": "5 (targeted )?rewrite directions",
+      "note": "retired; email is the lesson-constant 5-slide question block"
+    },
+    {
+      "id": "wfb-1-challenge",
+      "pattern": "1 challenge question",
+      "note": "retired; Mastery-tier + What-If carry the stretch"
+    },
+    {
+      "id": "wfb-diff-old",
+      "pattern": "tier[- ]drop \\+ scaffold|per-slide[^\\n]{0,30}scaffold",
+      "note": "differentiation is now tier-steer-only; question block constant"
+    },
+    {
+      "id": "b1-threshold-15",
+      "pattern": "ADDRESSED_WORD_THRESHOLD\\s*=\\s*15|15[- ]word threshold",
+      "note": "threshold lowered to 8 (2026-07-06)"
+    },
+    {
+      "id": "dead-dashboard-25-26-a",
+      "pattern": "1W0s8YjcIt7h8ezICAF6SndTj97PiMcfjpXrmVmV8cBA",
+      "note": "DEAD 25-26 dashboard (404). Activate 26-27 dashboard + update refs"
+    },
+    {
+      "id": "dead-dashboard-25-26-b",
+      "pattern": "1FMWx8ueSgcJVAXc5IzuR9F1Wb5JG92LM-Bj7rMiZAwE",
+      "note": "DEAD 25-26 dashboard (404). Activate 26-27 dashboard + update refs"
+    },
+    {
+      "id": "stale-wfa-v2-script",
+      "pattern": "1wEP9On3ZksWgEvKOXxYrLvygU9vZFOm6",
+      "note": "stale Workflow A 'v2' script ID; canonical extract_and_grade = 1Qwb6..."
+    }
+  ],
+  "required": [
+    {
+      "id": "wfb-composio-drafts",
+      "pattern": "GMAIL_CREATE_EMAIL_DRAFT",
+      "applies_to": [
+        "08-workflow-b-SKILL.md"
+      ],
+      "note": "delivery = Composio Gmail drafts"
+    },
+    {
+      "id": "wfb-lint-gate",
+      "pattern": "workflow_b_lint",
+      "applies_to": [
+        "08-workflow-b-SKILL.md"
+      ],
+      "note": "Step 4.5 fidelity gate present"
+    },
+    {
+      "id": "wfb-tier-labels",
+      "pattern": "Getting Started.*Working On It.*Mastery",
+      "applies_to": [
+        "08-workflow-b-SKILL.md"
+      ],
+      "note": "exact 3-tier labels"
+    }
+  ]
+}
