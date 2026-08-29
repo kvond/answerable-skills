@@ -1,0 +1,168 @@
+---
+name: formative-pipeline-v2
+description: The v2 formative pipeline that replaces Workflow A→B1→B2→C. From one annotated deck per student, produce a printable Conceptual Growth Report (student) plus a class summary and agency coding (teacher); gradebook is completion-only and proficiency lives only in the report. Carries the student revision-coaching prompt (speaker notes), the teacher batch prompt, the integrity gate (first-answer copied→flag, AI→auto-fail), the Growth Report standards (deeply positive, 9th-grade readable, no coding vocabulary to students), and cross-unit rollups. Applies to Biology, Anatomy & Physiology, and Forensics. Triggers: "formative pipeline", "v2 pipeline", "run the growth reports", "batch the decks", "growth report run", teacher batch over annotated decks.
+---
+
+# Formative Pipeline v2 — Answerable growth-report flow (SKILL)
+
+**Status:** authored 2026-08-07. Consolidated spec for the pipeline that **replaces
+Workflow A→B1→B2→C**. Judgment layer lives here; `.py` stays dumb (deterministic
+extraction only). Applies to **Biology, Anatomy & Physiology, and Forensics** (Forensics
+keeps its case-first opener). Resolves the v2 PENDING INPUTS in the MANIFEST.
+
+**One line:** from one annotated deck per student, produce one **printable Growth Report**
+(student) and one **research/class output** (teacher) — grading is completion-only, and the
+student's proficiency lives only in the report.
+
+---
+
+## The three outputs
+
+1. **One artifact — the annotated deck.** Students answer on the slides. Each response slide
+   has two stacked, labeled areas: **"Your first answer"** and **"Your revised answer."** The
+   revision-coaching prompt lives in that slide's **speaker notes**.
+2. **One summary — the Conceptual Growth Report.** Per student, printable, handed back.
+3. **One research output.** Class summary (proficiency spread, misconceptions, next
+   instructional contrast) + agency coding + the cross-unit rollups.
+
+---
+
+## Student flow (in class + one day later)
+
+1. In class, the student writes the **first answer** on the response slide.
+2. They open the slide's **speaker notes**, copy the **revision-coaching prompt** (below) into
+   their own AI, and use the feedback to think again — the prompt is built so the AI will
+   **not** write the answer for them.
+3. **The next A/B class**, they write the **revised answer** in the second area on the same
+   slide. Both answers stay visible — seeing their own thinking change is the point, and they
+   are told this.
+4. The deck is submitted (Chrome-extension Drive upload, as now). No separate doc, no email.
+
+### Revision-coaching prompt — goes verbatim in each response slide's speaker notes
+
+```
+Copy everything between the lines into your AI, and paste your first answer where it says
+[YOUR FIRST ANSWER]. The AI will NOT give you the answer — it will help you see your own
+thinking so you can improve it yourself.
+-----
+I am a high school student. Below is a science question and my first answer. Do NOT rewrite my
+answer and do NOT give me the answer. Instead:
+1. Tell me one thing I got right, and quote my own words back to me.
+2. Ask me two questions that make me look again at one idea I might have wrong or left out.
+3. Name one distinction or example worth thinking about.
+Keep it short and in plain language, then stop so I can write my own revised answer.
+
+QUESTION: [the slide's question]
+[YOUR FIRST ANSWER]:
+-----
+Now write your revised answer in "Your revised answer" on the slide — in your own words.
+```
+
+---
+
+## Teacher batch (over the folder of submitted decks)
+
+Model routing: **Haiku** for deterministic extraction, **Sonnet** for report + coding judgment.
+Class membership from the **Dashboard** (source of truth), never from filename/folder.
+
+1. **Extract** — reuse the deployed deterministic extractor to pull, per response slide, the
+   first answer and the revised answer. No new judgment here.
+2. **Integrity gate (first answer only)** — see below. Sets each first answer to
+   `clean | flag-copied | fail-ai`, visible to the teacher.
+3. **Growth Report** — generate one per student from the two answers, under the report
+   standards below. Deeply positive, plain, no coding vocabulary.
+4. **Agency coding** — code the answers into `Coding Master` (research rail; technical
+   vocabulary allowed here only). Codebook per `16-agency-scan-SKILL.md`, refined:
+   presence codes **ENG / EPI / AUT + DEC + CAND**; two axes recorded beside the presence
+   code and **never gating it** — capability/warrant (practical / interpretive / epistemic)
+   and generativity (does the idea open a distinction, a shared misconception, or a testable
+   case — by what it opens, not by correctness); provenance (student / AI / prompt / peer).
+   Verbatim excerpt only; SELF_CHECK before writing; append-only.
+5. **Class summary** — proficiency spread, recurring misconceptions, the next instructional
+   contrast to teach.
+6. **Completion CSV** — the only thing that reaches Schoology (below).
+7. **Cross-unit rollups** — update the accumulation layer and regenerate the two rollups.
+
+---
+
+## Integrity gate
+
+- Runs on the **first answer only** — written in class, should be the student's own. The
+  **revision is exempt**: students are told to run the coaching prompt through their AI, so
+  "AI" in the revision is the design, not a violation.
+- **Copied first answer → flag** for teacher review. **AI-authored first answer → auto-fail.**
+- **Flags stay visible to the teacher.** Automated AI-detection misfires (ESL and atypical
+  writers especially), so the teacher can see a flagged case and, if it is a false positive,
+  restore that student's authentic feedback. Because the gradebook is completion-only, a wrong
+  flag costs a cycle's feedback, not a grade.
+- Rationale: authentic feedback requires authentic work — an AI-written first answer can only
+  yield a hollow report, so failing it protects the feedback loop, not a score.
+
+---
+
+## Growth Report standards (student-facing) — every report, no exceptions
+
+**Structure (first-person, plain headers):**
+- *Where my thinking started* — their initial idea, in plain terms.
+- *How my thinking changed* — the distinction or correction between first and revised answer.
+- *Evidence from my final answer* — a verbatim quote of their own words carrying the change.
+- *Current understanding* — proficiency bars with **plain labels** (e.g. Proficient /
+  Almost there / Developing — final wording TBD by Katherine).
+- *My next step* — one forward, doable move, framed as an invitation.
+- *What I understand now that I didn't before* — **left blank for the student to complete.**
+- *An idea worth chasing* (when present) — names a generative idea, even at low proficiency,
+  and invites them to bring it to class.
+
+**Rules:**
+- **Deeply positive AND true.** Every affirming line anchored to something they actually did
+  (verbatim quote or named move). Proficiency is a position on a path, never a deficit. No
+  generic or unearned praise — teenagers read that as fake and it buries the next step.
+- **Understandable by them.** Written for a striving 9th-grader; plain, without dumbing down
+  the science.
+- **No coding vocabulary reaches the student.** No NGSS codes, no "epistemic," "warrant,"
+  "agency," or proficiency jargon. That vocabulary lives ONLY on the research/teacher rail
+  (two-rail split).
+- **Print-friendly** — the teacher prints and hands it back.
+
+---
+
+## Cross-unit rollups
+
+An accumulation layer keyed by **student × cycle** (fed by the per-cycle reports + the
+append-only `Coding Master`, re-collecting nothing) produces:
+- **Student year-arc** — "how your thinking has grown across the year," under the same
+  positive + readable rules; a longitudinal companion to the per-cycle report.
+- **Course-level trend** (teacher) — recurring misconceptions, and agency + capability moving
+  across the 20 cycles / four marking periods.
+
+---
+
+## Gradebook = completion only [HARD]
+
+- Schoology records **completion**: both answer areas filled = done. Never quality.
+- Completion CSV reuses the repurposed Workflow A completion logic; header `DRAFT.<Lesson>`
+  (or `Notes.<Lesson>` per the existing gradebook column), one row per student.
+- All proficiency/growth lives in the Growth Report, never the gradebook.
+
+---
+
+## Invariants that must not drift
+
+- **Two-rail split** — technical/coding vocabulary never appears in a student report; only on
+  the research rail.
+- **Presence, not quality, for the agency codes** — the capability and generativity axes sit
+  beside the presence code and never gate it (a wrong-but-original move still codes as
+  origination).
+- **Integrity on the first answer only; revision exempt; flags visible.**
+- **Append-only `Coding Master`; never write to `Before Class`** (formula view).
+- **Pseudonymize at transcript/rollup export** for anything feeding the book.
+- **Completion-only gradebook**; proficiency never posts to Schoology.
+- **On-demand only** — batch runs when Katherine runs it, never at session start.
+
+---
+
+## Staging (do not skip)
+
+Build and validate this flow on **one real cycle** before retiring the old scripts. Until
+then, `01/08/11/15`, `PIPELINE_CHECKLIST`, and `KICKOFF_SCAN` keep a "superseded by v2"
+pointer but are not deleted, so there is no mid-year gap in grade-posting.
