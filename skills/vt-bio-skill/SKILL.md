@@ -84,6 +84,12 @@ Reference build: **`Cycle 02 — Ecosystems & Feeding Relationships (VT deck)`**
   See section 14. The old deck is a content source only.
 - Get the specifications and the scripts from Drive at run time. Do not write them
   again from memory.
+  [Superseded 2026-08-29 by Katherine's decision: the scripts are canonical in the
+  GitHub repo `kvond/answerable-skills`, folder `scripts/`. Pull that at run time.
+  Drive still holds copies and they are no longer authoritative. Her reasons: she
+  reorganises Drive for readability, which breaks every path and ID recorded in this
+  file, and a clone needs no Drive account signed in on the machine doing the work.
+  See the correction block in §7.1a.]
 - Check the deck before and after every pass. Compare the slide count, the slide
   order, the slide size, and the text of each shape. You must be able to name the
   reason for each difference.
@@ -689,6 +695,32 @@ The tuple names differ across the two files in both cases:
 
 ### 7.1a Each script exists twice in Drive (found 2026-08-18)
 
+[Correction, 2026-08-29. Every claim in this section was tested against Drive today
+and most of it no longer holds. What is actually there:
+
+- `1SEe_chKL1lQ2anjoj0QoDNGkfKXBzvDS` resolves, and is `scripts (Do NOT Delete)` — but
+  it is owned by **kvond12@gmail.com** and sits at that account's My Drive root, not
+  Red Clay's. That is why it is invisible to any session authenticated as the school
+  account.
+- The entire second row is gone. `1AbfjWXx8zBVq8EgEDeIG2Mgvx41CyE1h`,
+  `165XV8l9Wj6A8agYVJn30UzUYaUDH6f0L` and `1-TenYZr2BDsASCKu7hXC_0dID3VZqu6Z` all
+  return "not found". No folder named `19_Bio_Pipeline v2 (do not delete)` exists at
+  My Drive root. One with that name exists inside
+  `06 TPT/TEACHERS PAY TEACHERS (Shared)/CLAUDE SKILL FILES/`, and it holds no `.py`
+  files at all.
+- So there were not four copies of the exclusion list. There was one. The MD5
+  verification recorded above is describing files that no longer both exist.
+- `deck_link_check.py` was in neither scripts folder. It was at
+  `06 TPT/TEACHERS PAY TEACHERS (Shared)/CLAUDE SKILL FILES/deck_link_check.py` — a
+  third location this file never names. It is now in the repo at `scripts/`.
+
+The sync discipline this section is built on therefore has nothing left to
+synchronise, and the "four places, verify four MD5s" instruction should not be
+followed. Git replaces it: an edit to the exclusion list is one commit touching both
+`extract_and_grade.py` and `deck_lint.py`, and the diff shows whether the second file
+was actually changed. That is the durable fix the challenge note below asked for.]
+
+
 There are two folders named `scripts (Do NOT Delete)`, and each holds a copy of
 both scripts. That makes the exclusion list live in **four** places, not two.
 
@@ -1071,6 +1103,10 @@ customer.
 7. Run `validate.py out.pptx --original src.pptx`.
 8. Run `deck_link_check.py out.pptx`.
 9. Run `deck_lint.py`. It is in Drive at `1-TenYZr2BDsASCKu7hXC_0dID3VZqu6Z`.
+   [Corrected 2026-08-29: that ID does not resolve, and neither does the
+   `1PR5_74XiG4…` ID given below for `deck_link_check.py`. Both scripts now live in
+   `kvond/answerable-skills` at `scripts/deck_lint.py` and `scripts/deck_link_check.py`.
+   Run them from a clone. `deck_lint.py` needs no network; `deck_link_check.py` does.]
    (The 2026-08-17 note here called the older `1eh8cG3J…` ID dead. It is not dead:
    it is a byte-identical duplicate in a second `scripts (Do NOT Delete)` folder.
    See §7.1a, corrected 2026-08-18.) `deck_link_check.py`
