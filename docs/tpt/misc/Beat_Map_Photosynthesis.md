@@ -1,4 +1,23 @@
 # Beat Map — Photosynthesis Unit
+
+> **SUPERSEDED — do not build from this file.** It runs on the retired
+> **Five Beats** framework, whose six units were Whole Object · Silent Marking ·
+> Contrast Set · Pattern Break · Mechanism/Internals · Return to Whole.
+>
+> The current vocabulary is the **5 core questions** — Critical Aspect question,
+> Contrast Set, Build a Rule, Pattern Break, 3-Tier Question — plus the **four
+> conditional slide types**: Continuity question, Stock-and-flow model,
+> Compensatory pair, Conflict case. See `skills/vt-deck-authoring/SKILL.md`.
+>
+> Only Contrast Set and Pattern Break carry over. There is no Critical Aspect
+> question, no Build a Rule and no 3-Tier Question here, and Whole Object,
+> Silent Marking, Mechanism and Return to Whole have no current counterpart —
+> which is why this was not renamed into the current vocabulary. Doing so would
+> assert an equivalence that does not hold.
+>
+> [Left for a decision: retire, archive, or rewrite onto the 5 core questions.
+> A rewrite is a redesign, not a rename. Banner added 2026-08-29.]
+
 **Framework:** Five Beats + Variation Theory | **Spigot (★):** Sunlight (Stage 1 master control)
 **Packet pages:** p.25 (overview/chloroplast) · p.26 (two stages) · p.27 (chemosynthesis + summary) · p.28 (visual diagram) · p.29 (concept map)
 

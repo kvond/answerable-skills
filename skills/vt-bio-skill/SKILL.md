@@ -1,6 +1,6 @@
 ---
 name: vt-bio-skill
-description: Finish an Answerable BIOLOGY VT cycle deck to the shipping standard. Covers the 5 core questions and their order, response slides with the revision prompt in the speaker notes, the Concept Bank slide, how to complete a deck that has slide types missing, organization and clarity of the content slides, images, icons, the marker strings the teacher prompts match on, the links slide, /copy distribution, and the checks before delivery. Use it when you build, repair, reorder, retitle, or complete a Biology cycle deck, when you add response slides, a Concept Bank, or writing boxes, when you convert an old Biology lecture deck to VT structure, or when you ask whether a Biology deck is ready to ship. Forensics and Anatomy & Physiology have their own sibling skills - use this file for Biology only. Triggers - "VT deck", "biology deck", "finish the deck", "deck finishing", "rebuild cycle NN", "is this deck ready", "run it through the VT directions".
+description: Finish an Answerable BIOLOGY VT cycle deck to the shipping standard. Covers the 5 core questions and their order, the four conditional slide types, the teacher note slide and its seven declarations, response slides with the revision prompt in the speaker notes, the What if slide, the Concept Bank slide, how to complete a deck that has slide types missing, organization and clarity of the content slides, images, icons, the marker strings the teacher prompts match on, the links slide, /copy distribution, and the checks before delivery. Use it when you build, repair, reorder, retitle, or complete a Biology cycle deck, when you add response slides, a teacher note, a Concept Bank, or writing boxes, when you convert an old Biology lecture deck to VT structure, or when you ask whether a Biology deck is ready to ship. Forensics and Anatomy & Physiology have their own sibling skills - use this file for Biology only. Triggers - "VT deck", "biology deck", "finish the deck", "deck finishing", "rebuild cycle NN", "is this deck ready", "run it through the VT directions".
 ---
 
 # vt-bio-skill — VT Deck Finishing, Biology
@@ -45,6 +45,18 @@ carrying fewer cycles than the product is deliberate (§9.3a). It added **§3c**
 which documents the marker fault the
 Concept Bank build surfaced — an ellipsis broke the linter while the grader kept
 working — and makes reading the `markers present:` line a standing check.
+
+Revised 2026-08-29, by Katherine's direction. The conditional slide types are now
+**four**, not two — the compensatory pair and the conflict case join the Continuity
+question and the Stock-and-flow model as moves 8 and 9 (see §1). This revision
+added **§2.0a, the teacher note slide**, one slide rather than speaker notes,
+carrying seven declarations, its absence a hard failure. It made the **What if
+individual and written** without exception and gave it its two constraints (§2.2).
+It made the Concept Bank ask the student **how two terms connect**, because
+co-presence is the precondition and not the achievement (§3b). It added the
+delivery checks that follow, and marked which of them are advisory rather than
+hard (§11). The word forbidden by §1 was removed from §1 itself, which had been
+the last place in this file it appeared.
 
 This skill stands for every cycle until Katherine changes it.
 
@@ -100,9 +112,9 @@ Reference build: **`Cycle 02 — Ecosystems & Feeding Relationships (VT deck)`**
 
 ## 1. Words to use
 
-The term is **5 core questions**. Do not use the word "beat" anywhere. Do not use
-it in a deck, in the manual, in sales copy, or in this file. A slide has a
-**slide type**.
+The term is **5 core questions**. A slide has a **slide type**. Use no other
+vocabulary for either — not in a deck, not in the manual, not in sales copy, not
+in this file.
 
 ### The 5 core questions
 
@@ -115,17 +127,44 @@ Use this order, one time for each critical aspect.
 5. **3-Tier Question.** Getting Started, Working On It, and Mastery. Add a word
    bank. Offer the word bank as "use any, modify any, or use none".
 
-### The 2 conditional slide types
+### The 4 conditional slide types
 
-Use these two slide types only when the content needs them.
+Use these four slide types only when the content needs them. They are moves 6
+through 9; the 5 core questions are moves 1 through 5.
 
-- **Continuity question.** The question that has no answer to look up.
-- **Stock-and-flow model.** Use it only when the aspect turns on a quantity that
-  fills and drains.
+- **6. Continuity question.** The question that has no answer to look up.
+- **7. Stock-and-flow model.** Use it only when the aspect turns on a quantity
+  that fills and drains.
+- **8. Compensatory pair.** Two aspects vary inversely while the outcome is held
+  invariant, so neither aspect alone predicts it. *Sea turtle and elephant: a
+  hundred eggs with almost no survival, one calf with high survival, both
+  populations steady.*
+- **9. Conflict case.** One case in which one aspect points one way and a second
+  points the other, so the case cannot be resolved from either alone. *Legless
+  snakes.*
 
-Cycle 02 has both types on Critical Aspect 1 and neither type on Critical Aspect 2.
-That is correct. Do not force a conditional slide type onto an aspect that does
-not need it.
+Cycle 02 has the Continuity question and the Stock-and-flow model on Critical
+Aspect 1 and neither type on Critical Aspect 2. That is correct. Do not force a
+conditional slide type onto an aspect that does not need it.
+
+**Moves 7, 8 and 9 are the coordination structures, and they are not the same kind
+of object.** Stock-and-flow is a representation and can be *added* to any cycle
+whose content accumulates. A compensatory pair is a case set and a conflict case is
+a single case, and both have to be *found* in the content. Neither can be
+manufactured, and a manufactured one teaches a relationship that is not there.
+Diagnosing whether a cycle can carry one is `vt-fusion-retrofit`, not this file.
+
+**Every coordination structure is read by a What if.** The What if does not create
+coordination; it tests whether coordination happened, which makes it evidence
+rather than an occasion. Moves 8 and 9 may run as group work; the What if may not.
+In Biology this costs nothing to enforce, because §3 already puts a What if in
+every deck — a cycle that gains a coordination structure gains the occasion for a
+slide it already had. See §2.2 and §3.
+
+[Left open, and not resolved here: whether the What if is a tenth move or a
+required companion to whichever coordination structure a cycle carries. This file
+treats it as a companion, which is why it sits in the end-of-deck order in §2.2
+rather than in the list above.]
 
 ---
 
@@ -150,6 +189,56 @@ a fixed order: the block for each critical aspect, and the end of the deck.
   matching Khan Academy lesson set (deep link to the unit). Both also appear on
   the links slide per §8.
 
+### 2.0a The teacher note slide (added 2026-08-29)
+
+**One slide. Not speaker notes.** Speaker notes are invisible to the person this
+is written for, and scattered notes cannot be removed as a unit. One slide can be
+deleted in a single action and the deck still runs. It sits in the front
+teacher-facing block, immediately after the Teacher Prep slide.
+
+It carries a marker string in its title, so `deck_lint.py` can require it and a
+teacher can find every instance. **Its absence is a hard failure. The deck does
+not ship without it.**
+
+**Seven declarations. A note carrying six is missing one.**
+
+1. The **critical aspect** this cycle teaches, in plain words.
+2. What is held **invariant** across the examples, and the sentence saying the
+   examples differ in one dimension on purpose.
+3. **What breaks if you substitute an example.**
+4. **Position in the sequence** — what this cycle assumes has already been
+   discerned, and what later cycle depends on it.
+5. **The slide-type map** — which slide types appear here, and which conditional
+   ones were deliberately left out, and why.
+6. **Which simultaneity this cycle works on** — synchronic (two aspects in the
+   same case in the same moment, which is fusion in the strict sense) or
+   diachronic (things met at different times brought together, which is what the
+   Concept Bank does), or both.
+7. **The visibility rung** — what this cycle asks students to expose, and to
+   whom, written as a decision: *"visibility: written and private, building toward
+   unattributed read-aloud."* The rungs are: 1 written and seen only by the
+   teacher; 2 written and shown to one assigned partner; 3 the teacher reads a
+   wrong but productive answer aloud, unattributed, and uses it; 4 a student owns
+   an answer aloud by private invitation; 5 public simultaneous commitment, the
+   vote.
+
+Both simultaneity terms appear here with a one-line gloss because this slide is
+teacher-facing. **Neither appears on any slide a student reads.** The standing rule
+against coding vocabulary to students holds.
+
+[Why the rung is declared and not merely chosen. A room at rung 1 or 2 shows quiet
+students writing, which reads as low engagement against every walkthrough rubric in
+use, and is the correct instruction for that room at that time. Declared, the
+absence becomes a stated design decision, and an observer can argue with a
+decision. She cannot argue with an absence, because an absence looks like a
+failure. One line, and it is what makes the ladder survivable in a building.]
+
+[The marker string: the recommendation, when Katherine sets it, is a fixed kicker
+`TEACHER NOTE` on the model of `CONCEPT BANK` in §3b, registered in the §7 table
+and added to the §7.1 diagnostic-count exclusion list in both scripts in one pass —
+the slide asks the student nothing and must not be counted. Not built until she
+says the token.]
+
 ### 2.1 The block for each critical aspect
 
 1. Critical Aspect question
@@ -163,22 +252,42 @@ a fixed order: the block for each critical aspect, and the end of the deck.
 9. **Response slide** for that aspect. See section 3.
 10. Activity for that aspect
 
+[Moves 8 and 9 — the compensatory pair and the conflict case — are not in this
+block. They coordinate two aspects, so they cannot sit inside the block for one of
+them. They belong at the end of the deck, immediately above the What if that reads
+them, in the §2.2 order.]
+
 ### 2.2 The end of the deck
 
-1. What if. This is a response slide. It has boxes and a prompt.
-2. Optional challenge. It is harder and not required. It needs a writing box.
-3. Relates to me. The student writes the relevance. It needs a writing box.
-4. **Concept Bank.** One slide, or two where the cycle carries more than fourteen
+1. Compensatory pair, or conflict case (conditional — moves 8 and 9, §1). Only
+   where the content already holds one. It may run as group work.
+2. What if. This is a response slide. It has boxes and a prompt. **Individual and
+   written, with no exception.** Moves 8 and 9 may be group work; a group product
+   says nothing about who coordinated, so a group What if is an empty diagnosis.
+   Where the deck carries a coordination structure above it, this slide reads it —
+   the structure is the occasion and the What if is the evidence. The slide is
+   required in every Biology deck either way (§3).
+3. Optional challenge. It is harder and not required. It needs a writing box.
+4. Relates to me. The student writes the relevance. It needs a writing box.
+5. **Concept Bank.** One slide, or two where the cycle carries more than fourteen
    terms. The printed terms of the cycle, with an empty writing box for each
    definition. The student fills it across Day 1 and Day 2 and reads it on revision
    day before rewriting. See section 3b.
-5. **Day 3 divider. This is the rewrite slide.**
-6. Closing checklist — **only when no earlier slide already carries the
+6. **Day 3 divider. This is the rewrite slide.**
+7. Closing checklist — **only when no earlier slide already carries the
    Think → Write → Submit information.** If the Day 3 divider (or any other slide)
    already states it, do not ship a second slide repeating it; delete the
    duplicate, never the divider. (Rule added 2026-08-17.)
-7. Activity and resource links
-8. Image credits
+8. Activity and resource links
+9. Image credits
+
+**Two constraints on the What if question itself.** Name what changes and what is
+held, or the student does not know how far to go or at what scale — an
+unconstrained counterfactual is the polar bear question in another costume. And in
+Biology, hold the mechanism fixed and vary the condition. "What if snakes had kept
+their legs?" hands a student reaching for purpose an easy answer; "what if the
+ancestral population had lived in open ground rather than in burrows" makes the
+same coordination demand with no invitation to teleology.
 
 ### 2.3 The rule for Day 3
 
@@ -295,6 +404,34 @@ Printing the terms is the job of the slide. A student asked to list the terms of
 cycle misses the terms they did not notice. A student given the terms can see which
 cells are still empty, and an empty cell is itself the instruction to go back.
 
+**The slide must also ask the student to state how two of the terms connect
+(added 2026-08-29).** This is a requirement, not an enhancement. The Concept Bank
+is diachronic simultaneity as a built artifact, and *co-presence is the
+precondition, not the achievement*: a page that only lists the terms has achieved
+co-presence and left the relating to chance. A page that asks for a relation does
+the work. Same absence of testing pressure either way — the whole difference is in
+the demand.
+
+[This is also why review sheets and cumulative tests do not do this job. They
+attempt diachronic simultaneity and reach only co-presence, because filling a blank
+exercises retrieval, and retrieval leaves a sequence a sequence. A Concept Bank
+that only lists is a review sheet with a teal kicker.]
+
+The relating demand rides in the instruction line below, so the grid is untouched
+and §13.3's two columns and seven rows stand.
+
+[Open, and it needs Katherine, because two standing rules collide here. §3 says
+every slide that asks the student to think needs a box to write in, and a question
+with no box is a defect. §13.3 fixes this slide's geometry, and a full grid is
+already the densest slide in the deck. So the relating sentence has no box of its
+own. Two ways out. **Recommended:** the student writes the relating sentence at the
+top of the Day 3 rewrite, where a box already exists and where she is already
+reading this slide — the Concept Bank asks, the rewrite slide holds the answer, and
+nothing moves below the divider that was not already there. **The alternative:**
+one short writing box under the grid, which costs the two source links their
+position and makes the densest slide denser. Built as recommended until she says
+otherwise.]
+
 **Where the terms come from.** Take every term in the 3-Tier word banks of every
 critical aspect in the deck. Add any term that a Contrast Set, a Build a Rule
 sentence, or a Pattern Break requires the student to hold. Remove duplicates. Take
@@ -334,8 +471,11 @@ Critical Aspect 2 terms without reading past the Critical Aspect 1 ones.]
 **Instruction line.** Use these words, 12pt plain `111111`:
 
 ```
-Fill each box as you meet the term on Day 1 and Day 2. Use your own words, not a copied definition. On revision day, read this slide before you rewrite anything.
+Fill each box as you meet the term on Day 1 and Day 2. Use your own words, not a copied definition. On revision day, read this slide before you rewrite anything, then start your rewrite with one sentence saying how two of these terms connect.
 ```
+
+(The last clause was added 2026-08-29 and is required. A Concept Bank whose
+instruction line stops at "read this slide" only lists.)
 
 **The definition cell.** Fill `F2F6F9`, border `CCCCCC` — the same writing box as
 section 3. Copy the box from a slide that already has one. Do not build a new box.
@@ -530,7 +670,12 @@ response slide uses the Mastery question that already exists, so you write nothi
 new.
 
 **Write these, and mark them.** Critical Aspect questions, Build a Rule sentences,
-activities, Relates to me, and optional challenges.
+activities, Relates to me, optional challenges, and **the teacher note slide**
+(§2.0a). The note is bracketed like everything else in this list, and for a
+sharper reason: five of its seven declarations are design intent, and design
+intent is Katherine's. Draft what the deck itself shows — the critical aspect, the
+invariant, the slide-type map — and mark the rest for her. A guessed visibility
+rung is worse than a missing one, because it reads as a decision that was made.
 
 Write them from the content of the deck. Do not use knowledge from outside the
 deck. The rule in a Build a Rule slide must be the rule that the Contrast Set of
@@ -839,14 +984,16 @@ never regenerate either script in order to make it.
 student-facing, unscored slide type goes on this list in both files, in the same
 pass, before the type ships in any deck.
 
-[Challenge, before you spend the edit: the docstring of `extract_and_grade.py`
-calls it *Workflow A — Completion Grading on Annotated Slides*, and writes its
-per-student JSON as "Workflow B input". Section 10 of this file retires
-Workflow A to B1 to B2 to C for the customer product, and the v2 formative pipeline
-replaces that chain for your own courses as well. Confirm this script is still the
-live grader before editing it. If v2 reads the decks by a different route, the
-tuple that matters is the one in `deck_lint.py` alone, and the sync rule this
-section is built on no longer has a second half.]
+[Answered 2026-08-29, by Katherine's direction. Student feedback now runs through
+a **prompt, not a script**. `extract_and_grade.py` is no longer the live grader, so
+the sync rule this section is built on has **no second half**. The tuple that
+matters is the one in `deck_lint.py` alone, and the edit below is a one-file edit,
+not a two-file one. `"concept bank"` was added to `STANDING_REFLECTION` in
+`deck_lint.py` that day; the diagnostic count did not move, which is what this
+section predicted — the exclusion is defensive, not a repair.
+
+Treat the two-script language remaining in this section as history. Do not go
+editing `extract_and_grade.py` to satisfy it.]
 
 ---
 
@@ -1115,6 +1262,28 @@ customer.
    Known ignorable warning: lint expects "Working On It" in `#EFDF85`, but §13.2
    correctly specifies body black `111111` — the reference build agrees. That
    warning fires on every deck including Cycle 02 and is not a defect.
+
+**Checks added 2026-08-29.**
+
+- **The teacher note slide is present** and carries all seven declarations, §2.0a.
+  Six is a fail. The two that go missing most often are which simultaneity the
+  cycle works on and the visibility rung.
+- **The What if is individual and written.** Not group work, whatever the
+  coordination structure above it did, and its question names what changes and
+  what is held.
+- **The Concept Bank asks for a relation**, not only for definitions. §3b.
+- **Every conditional slide type present has a stated reason** in the teacher
+  note's slide-type map, and every one left out has a reason too.
+- **Every Critical Aspect question carries a difference in its own text** — a
+  comparison, a choice between named alternatives, or a stated change condition.
+  A question that names the aspect and waits for the Contrast Set on the next
+  slide is structurally the polar bear question and the room will go quiet before
+  the contrast arrives. This is mechanically checkable.
+
+[Only the teacher note slide's presence is a hard failure. The other four are
+advisory: they are reported and they do not stop a deck shipping. Most decks will
+not carry a coordination structure the first time this runs, and that is not yet a
+defect. A linter that fails every deck gets ignored inside a week.]
 
 **Concept Bank checks (added 2026-08-18).** Confirm that the slide is present,
 that it sits immediately before the Day 3 divider, that every definition cell is

@@ -238,10 +238,10 @@ Use bold colored label text matching the swatch. The current spec in slide_layou
 
 ## Continuation Question slide -- special rules [2026-08-06]
 
-Standing beat, one per lesson, placed at the end of the deck (after the last 3-Tier Concept Question, before the Relates to Me slide below). Generative -- there is no answer key, and it is never scored for completion.
+Standing slide type, one per lesson, placed at the end of the deck (after the last 3-Tier Concept Question, before the Relates to Me slide below). Generative -- there is no answer key, and it is never scored for completion.
 
 Format:
-- Breadcrumb header (9pt bold teal): **`Continuation question:`** -- verbatim, and by itself (no trailing `Critical aspect:` segment -- this beat spans the whole lesson, not one aspect)
+- Breadcrumb header (9pt bold teal): **`Continuation question:`** -- verbatim, and by itself (no trailing `Critical aspect:` segment -- this slide type spans the whole lesson, not one aspect)
 - The question itself (14pt bold black): frames the phenomenon this lesson opened and points it toward next lesson's topic. Per the storyline-arc rule (VT_Lesson_Rebuild_Spec.md §7), the NEXT lesson's Bellringer should open by echoing this question.
 - Generous writing space below (`#F2F6F9` fill, `#CCCCCC` border)
 - Collaboration reminder at the bottom, exact wording as elsewhere
@@ -250,7 +250,7 @@ Format:
 
 ## Relates to Me slide -- special rules [2026-08-06]
 
-Standing beat, every lesson, placed last -- after the Continuation Question slide. Self-generated utility value (Hulleman & Harackiewicz 2009; Canning & Harackiewicz 2015, "teach it, don't preach it") -- the connection has to come from the student, never be supplied by the slide.
+Standing slide type, every lesson, placed last -- after the Continuation Question slide. Self-generated utility value (Hulleman & Harackiewicz 2009; Canning & Harackiewicz 2015, "teach it, don't preach it") -- the connection has to come from the student, never be supplied by the slide.
 
 Format:
 - Breadcrumb header (9pt bold teal): **`Relates to me:`** -- verbatim

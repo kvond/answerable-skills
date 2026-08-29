@@ -1,6 +1,6 @@
 ---
 name: vt-fusion-retrofit
-description: Diagnose an existing VT cycle deck for coordination work and propose a fusion slide for Katherine to accept or reject. Reads the deck, names the critical aspects it finds, judges whether those aspects can vary simultaneously and by what structure (stock-and-flow, compensatory pair, conflict case, or none), drafts one candidate slide, and stops. Never inserts a slide without approval. Also drafts the teacher note slide for the cycle. Use when adding a fusion device to an existing deck, when auditing whether a cycle reaches coordination, or when building the fusion table across the arc. This skill does not build new decks — that is vt-deck-authoring. It does not finish decks to shipping standard — that is vt-bio-skill. Triggers - "fusion retrofit", "does this cycle fuse", "add a fusion slide", "fusion table", "coordination audit".
+description: Diagnose an existing VT cycle deck for coordination work and propose a fusion slide for Katherine to accept or reject. Reads the deck, names the critical aspects it finds, judges whether those aspects can vary simultaneously and by what structure (stock-and-flow, compensatory pair, conflict case, or none), drafts one candidate slide plus its companion what-if, and stops. Never inserts a slide without approval. Diagnoses rather than inserts because a representation can be added to any cycle that accumulates while a case set has to be found in the content. Also drafts the teacher note slide for the cycle, with its seven declarations including which simultaneity the cycle works on and the visibility rung. Use when adding a fusion device to an existing deck, when auditing whether a cycle reaches coordination, when assigning visibility, or when building the fusion table across the arc. This skill does not build new decks — that is vt-deck-authoring. It does not finish decks to shipping standard — that is vt-bio-skill. Triggers - "fusion retrofit", "does this cycle fuse", "add a fusion slide", "fusion table", "coordination audit".
 ---
 
 # vt-fusion-retrofit
@@ -42,6 +42,16 @@ These are **not the same kind of object**, and the difference decides what can b
 retrofitted. A representation can be *added* to any cycle whose content
 accumulates. A case structure has to be *found* in the content and cannot be
 manufactured.
+
+**That distinction is the whole reason this skill diagnoses instead of inserting.**
+If all three were representations, a rule could place them and a batch job could
+run. Two of the three are not. A compensatory pair proposed into content that
+holds no compensatory relationship, or a conflict case assembled out of two
+examples that do not actually pull against each other, teaches a relationship that
+is not there — and it teaches it with the authority of a slide. Carry this
+distinction into every judgment below: for move 7 ask *does this content
+accumulate*, and for moves 8 and 9 ask *is this already in the content*, which is
+a different question with a different failure mode.
 
 ### 2a. One representation
 
@@ -92,7 +102,18 @@ The compensatory pair and the conflict case are **occasions** for coordination.
 The what-if is **evidence** of it, and it is visible in what she writes rather
 than inferable from a score.
 
-Two constraints:
+**So it is not an alternative to the three structures. It is a required companion
+to whichever one the cycle carries.** Whenever this skill proposes a coordination
+structure, it proposes the what-if in the same breath, and a proposal that arrives
+without one is incomplete. A cycle that gets a conflict case and no what-if has
+been given an occasion nobody will read.
+
+[Open, and left open here: whether the what-if is a tenth move in its own right or
+a companion to moves 7, 8 and 9. It is treated as a companion throughout this
+file, on the grounds that it tests coordination rather than creating it. Katherine
+has not settled it.]
+
+Three constraints:
 
 - **Specify what changes and what is held.** "What if there were no decomposers?"
   leaves the student not knowing how far to go or at what scale. Moore-Anderson's
@@ -118,12 +139,22 @@ Two constraints:
 2. For each aspect, and for the pair of aspects if the cycle has two, judge:
    can these vary at the same time in a real case?
 3. If yes, name which of the three structures fits, and say why the other two do
-   not.
+   not. Say which kind of object you are proposing while you do it — a
+   representation you are *adding* because the content accumulates, or a case set
+   you are *reporting* because it is already in the content. If you cannot point
+   at the cases in the deck or in the phenomenon, you are manufacturing, and the
+   answer is "none".
 4. If no, say so plainly and give the reason. Do not manufacture a device.
 5. Draft **one** candidate slide, cloned from the matching template slide type,
    never built by hand. Design tokens per `vt-bio-skill` §13.
-6. Draft the teacher note slide (section 5).
-7. **Stop.** Present both to Katherine. Insert nothing.
+6. Draft the **companion what-if** for that structure — individual, written,
+   naming what changes and what is held, mechanism fixed and condition varied
+   (section 2c). It travels with the proposal, not after it.
+7. Assign **visibility**: the ceiling for each move the proposal touches, and the
+   rung this cycle actually operates at. Moves 8 and 9 may be group work; the
+   what-if may not.
+8. Draft the teacher note slide (section 5), all seven declarations.
+9. **Stop.** Present all of it to Katherine. Insert nothing.
 
 ---
 
@@ -159,11 +190,35 @@ Contents:
 - **Position in the sequence** — what this cycle assumes has already been
   discerned, and what later cycle depends on it.
 - **The slide-type map** — which slide types appear here, and which conditional
-  ones were deliberately left out.
+  ones were deliberately left out, and why.
 - **Which simultaneity this cycle is working on** — synchronic, diachronic, or
   both.
-- **Visibility** — what this cycle asks students to expose, and to whom. Written
-  and private, to a partner, read aloud unattributed, owned aloud, or voted.
+- **The visibility rung** — what this cycle asks students to expose, and to whom.
+  Name a rung on the ladder, and name what it is building toward: rung 1 written
+  and seen only by the teacher, rung 2 written and shown to one assigned partner,
+  rung 3 the teacher reads a wrong but productive answer aloud unattributed and
+  uses it, rung 4 a student owns an answer aloud by private invitation, rung 5
+  public simultaneous commitment — the vote. Write it the way a decision is
+  written: *"visibility: written and private, building toward unattributed
+  read-aloud."*
+
+That is the whole list, and it is seven items. A note carrying six is missing one.
+
+**What this skill drafts for the visibility line.** State the rung, and state the
+per-move ceiling for the moves this cycle carries. The proposed coordination
+structure sits at group; the what-if sits at written and individual; move 4 sits
+at written and private, because the student's own rule breaks there. A cycle's
+declared rung is the ceiling it operates *at*, which may be below what the moves
+would bear.
+
+[Why the rung is declared rather than simply chosen. A room at rung 1 or 2 shows
+quiet students writing, which reads as low engagement against every walkthrough
+rubric in use, and is the correct instruction for that room at that time. Written
+into the note, that absence stops being an absence and becomes a stated design
+decision. An observer can disagree with a decision. She cannot disagree with an
+absence, because an absence looks like a failure. The declaration is the whole
+mechanism — it costs one line and it is what makes the ladder survivable
+institutionally.]
 
 [Visibility and complexity are two scales on different clocks and should not be
 locked together. A hands-up vote is *low* complexity — a forced binary — sitting
@@ -200,6 +255,11 @@ of this run. Capture the reason at the moment of the decision, not afterward.
 One row: cycle, critical aspects, synchronic device or none, reason for none,
 diachronic device present, NGSS codes.
 
+[The canonical row is the one above. If Katherine wants the what-if audited across
+the arc — and the argument for it is that a required companion missing from half
+the cycles is exactly the kind of thing a table exists to surface — it is one more
+column, not a redesign. Not added unilaterally.]
+
 The table across all 20 cycles is what makes a coverage hole visible, and it is
 what a teacher needs to plan across weeks. A teacher cannot engineer diachronic
 simultaneity without seeing the weeks at once — the same argument made for
@@ -209,3 +269,8 @@ students, applied to the person planning the year.
 without a fusion device, because the content carries no compensatory relationship
 and no genuine conflict case, is a design decision. The table distinguishes the
 two; it does not resolve them for you.]
+
+[Open, and it is the reason the NGSS column is in the row at all: one standard is
+suspected uncovered across the arc. Which one has not been named. Name it and it
+can be checked directly against the table rather than argued about — until then
+the column collects evidence for a question nobody has asked yet.]

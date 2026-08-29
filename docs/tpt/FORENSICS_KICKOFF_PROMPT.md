@@ -44,7 +44,7 @@ Read, in this order, before planning anything:
 5. `Teacher Pay Teachers/CLAUDE SKILL FILES/Cowork prompts for TPT docs/How_to_Teach_a_VT_Cycle.md`
 6. `Teacher Pay Teachers/CLAUDE SKILL FILES/19_Bio_Pipeline v2 (do not delete)/formative-pipeline-v2_SKILL.md`
 
-Those files, not this one, define the deck standard, the beat structure, the marker
+Those files, not this one, define the deck standard, the slide-type sequence, the marker
 strings the teacher prompts match on, and the grading pipeline. This file only says what
 is *different* for Forensics.
 
@@ -108,14 +108,22 @@ Two defects in Anatomy you should **not** reproduce in Forensics:
 
 ## 5. What is different for Forensics
 
-### 5a. The case-and-vote beat — new, and required in every cycle
+### 5a. The case-and-vote slide type — new, and required in every cycle
 
-The Variation Theory beat structure stays as the Biology and Anatomy skill files define
-it: five core beats, plus the two conditional beats (continuity question, tank-and-fill).
-Forensics adds **one course-specific beat, placed after the bellringer and before the
-first core beat.**
+The Variation Theory slide-type sequence stays as the Biology and Anatomy skill files
+define it: five core questions, plus the four conditional structures — Continuity
+question, Stock-and-flow model, Compensatory pair, Conflict case. Forensics adds **one
+course-specific slide type, placed after the bellringer and before the first core
+question.**
 
-**Beat: The Case.**
+[Resolved 2026-08-29. This file previously said two conditional structures and called
+the stock-and-flow model "tank-and-fill"; both were out of date. The Biology skill file
+now agrees: vt-bio-skill §1 reads "The 4 conditional slide types". Note that this file
+refers above to "the Biology and Anatomy skill files" — there is no Anatomy VT skill file
+in this repo, only vt-bio-skill. Anatomy decks currently have no skill to read this count
+from.]
+
+**Slide type: The Case.**
 
 The slide sets up a real, documented case and asks students to commit to a verdict before
 they have the evidence the cycle is about.
@@ -133,7 +141,7 @@ The slide must carry:
 Speaker notes tell the teacher to take the vote by hands, record the tally on the board,
 and **leave it unresolved.** Do not reveal the outcome here.
 
-**The cycle closes by returning to it.** After the evidence beat, students vote a second
+**The cycle closes by returning to it.** After the evidence slides, students vote a second
 time and write what moved them, or why nothing did. That second write is the cycle's
 strongest piece of formative evidence and should be picked up by the feedback pipeline
 the same way the response slides are.
@@ -173,7 +181,7 @@ reasoning, not the verdict, is the data.
 person. Several forensic units have no defendant — fingerprint classification,
 entomological time-of-death estimation, evidence collection procedure. Forcing a verdict
 onto those cycles produces a fake question and students will feel it. Consider a second
-approved form of the beat for evidence-only cycles: same commitment structure, different
+approved form of the slide type for evidence-only cycles: same commitment structure, different
 question — *Is this enough to identify one person? Yes / No, and why.* Raise this with
 Katherine and get a decision before building any deck.]
 
@@ -222,7 +230,7 @@ Nothing is built from it until it comes back approved.
 **Phase 2 — the build kit.** A `COWORK REFERENCES/` folder for Forensics, modeled on the
 Anatomy one: `vt-forensics-batch-SKILL.md`, `vt-deck-finishing-forensics-SKILL.md`, a
 Forensics `deck_lint.py`, and one reference build deck. The finishing skill must specify
-the case-and-vote beat, its marker strings, and the folder/agenda numbering lock.
+the case-and-vote slide type, its marker strings, and the folder/agenda numbering lock.
 
 **Phase 3 — one deck.** Build a single complete cycle end to end and get it approved
 before batching. Fingerprints is the natural first, since a vendor deck already exists to

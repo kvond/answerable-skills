@@ -12,7 +12,7 @@ Every unit runs each core idea through one **Variation Theory** arc: students co
 - **Plain language.** Questions are written plainly, because tangled wording measures reading, not the concept (Abedi & Lord, 2001).
 - **Clean, not busy, graphics.** Simple visuals keep students' attention on the thinking rather than on decoration.
 - **A simple demo first,** where the content has one — students see the phenomenon before they are asked to name it.
-- **A stock-and-flow (Tank-and-Fill) model,** used only where the content actually has a quantity that accumulates and drains (Meadows, 2008) — never forced onto a unit that doesn't.
+- **A stock-and-flow model,** used only where the content actually has a quantity that accumulates and drains (Meadows, 2008) — never forced onto a unit that doesn't.
 - **Beyond-the-frame questions** that push students to name a concept's critical aspect in their own words and use it to explain effects on ecology, evolution, or the organism.
 - **Longer and shorter activities embedded for long and short days,** so a deck flexes to a full block or a 45-minute period without rebuilding the lesson.
 
