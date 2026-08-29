@@ -22,3 +22,9 @@ token*
 
 # OS noise
 .DS_Store
+
+# Rescued governing documents from the Red Clay school drive (2026-08-29).
+# The blanket artifact rules above stay — these are scoped exceptions for
+# documents whose only other copy is on a district account with a clock on it.
+!docs/tpt/originals/*.docx
+!docs/tpt/originals/*.xlsx
