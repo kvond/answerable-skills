@@ -39,16 +39,31 @@ const body = [
       ["The superseded inventory prompt", "prompts/ in the repository", "It is the record of what the current job prompt replaced."],
       ["The stale skill copies and their warning", "archive/ in the repository", "Kept as the record that they were stale, not as working files."],
       ["The book project instructions", "docs/book-project/ in the repository", "Decisions & Citations and the Finishing Map were already in reference/, identical."],
-      ["render_reading.py and check_consistency.py", "skills/manuscript-ops/scripts/", "See below. This is the one that mattered."],
+      ["render_reading.py and check_consistency.py", "skills/manuscript-ops/ — the only copy now", "See below. This is the one that mattered."],
       ["The TPT local copy", "Already covered", "docs/tpt-drive-snapshot holds the Drive folder it mirrors. The deck archive is the Aug 17 build, superseded by the 24 swept decks."],
       ["The zip archives", "Left on the Desktop", "About 110 MB of opaque build archives. See below."],
     ]
   ),
 
   h2("The one that mattered"),
-  p("The manuscript-ops skill names scripts/render_reading.py and scripts/check_consistency.py in four separate places — twice in its description of what it does, twice as commands to run. Neither script was in the repository. Both existed only in ~/Desktop/Claude/Projects."),
-  p("So a live skill has been documenting two capabilities it could not perform, and the only copies of the scripts were sitting unbacked-up on a desktop. Both are now in skills/manuscript-ops/scripts/ alongside the sample chapter, which makes the skill folder self-contained."),
-  p("One caveat worth checking: your Answerable-Teaching repository also has a scripts/ folder, and the skill's paths are relative. If a copy of these two lives there as well, the two copies can drift. Worth a look next time you are in that repo.", { soft: true }),
+  p("The manuscript-ops skill names scripts/render_reading.py and scripts/check_consistency.py in four separate places — twice in its description of what it does, twice as commands to run. Neither script was in the repository. A live skill had been documenting two capabilities it could not perform."),
+  p("Searching for them turned up three copies, not one:"),
+  table(
+    [{ t: "Where", w: 4200 }, { t: "What it was", w: 5880 }],
+    [
+      ["~/Desktop/Claude/Projects/…/SKILLS/", "The working copy. Unbacked-up, and the reason this was worth finding."],
+      ["~/code/katherine-ops/plugins/…/", "Inside the retired plugin folder, which had been merged into the repository but not removed."],
+      ["~/code/answerable-skills/skills/manuscript-ops/", "Added on 30 August from the Desktop copy."],
+    ],
+    { code: [0] }
+  ),
+  p("All three were byte-identical, so nothing had drifted yet — which is luck rather than design, and the reason to consolidate now rather than after a divergence."),
+  p("The repository is now the only copy. The other two were deleted, each checked against the repository file first. sample_chapter.md moved from scripts/ to tests/, matching where katherine-ops kept it; the SKILL.md names neither path, so a fixture did not belong beside the scripts."),
+  h3("What is left of katherine-ops"),
+  p("23 of its 29 files already matched the repository. The six that did not are plugin scaffolding — marketplace.json, plugin.json, .mcp.json and the READMEs — which is what makes it an installable plugin rather than a folder of skills. Those are preserved in archive/katherine-ops-plugin-scaffolding/."),
+  p("The folder itself is still at ~/code/katherine-ops. It now holds nothing the repository lacks, so it can be deleted — but retiring a git repository is a decision rather than a cleanup, so it was left alone.", { soft: true }),
+  h3("The copy that could not be checked"),
+  p("Your Answerable-Teaching repository has its own scripts/ folder and is not cloned on this machine, so whether a fourth copy lives there could not be verified from here. If it does, that is the one that will drift, because nothing above touched it.", { soft: true }),
 
   h2("The zip archives, and why they were left"),
   p("Four zips in VT_v2_deck_build come to about 100 MB, and a fifth holds the v1 pipeline workspace. They are compressed snapshots of deck builds that have since been superseded twice — once by the v3 relinked decks, and again by the 24 decks swept on 29 August."),
@@ -57,6 +72,7 @@ const body = [
 
   h2("What this means for the Desktop folder"),
   p("Everything in ~/Desktop/Claude except the zip archives is now either in the repository or verifiably duplicated by something that is. The folder is no longer the only copy of anything."),
+  p("Eight stale files were deleted from it — the four in the book project's SKILLS folder, and the four skill copies in AT_docs/3_SKILLS_desktop that a README beside them had correctly flagged as stale. Each was compared against its repository copy before deletion, and the check was written to refuse rather than proceed on a mismatch."),
   p("That was the risk worth closing. What to do with the folder itself is yours — it can be deleted, or left as a working scratch space now that nothing depends on it."),
 ];
 
