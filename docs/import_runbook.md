@@ -21,8 +21,12 @@ this way rather than uploading a new file.
 - Chrome must be signed in as `katherine.vonduyke@redclay.k12.de.us`.
 - Open the Claude side panel from the toolbar icon and **leave it open**. The
   connection drops when it closes.
-- `docs/decks_live_ids.csv` in this repo maps each deck to its live `doc_id` and
-  the name of its import file.
+- `docs/decks_live_ids.csv` in this repo maps each deck to its live `doc_id`,
+  the name of its import file, and `new_slides` - the count to verify against.
+- **The finished files are at `~/deck_work/IMPORT_FINAL/`, not in Drive.** The
+  Drive folder that held them was deleted on 30 August. Copy all 24 into a
+  staging folder in the school My Drive and let it sync before importing;
+  `prompts/import_24_decks.md` gives the full instruction.
 
 ## Per deck
 
