@@ -38,3 +38,8 @@ token*
 # 21 of these files existed nowhere else. The extension rules above would swallow
 # most of them, so this exception is deliberate and must not be narrowed.
 !docs/tpt-drive-snapshot/**
+
+# The book project's own documents. The *.docx rule above would swallow these,
+# and on 30 August it nearly took AnswerableTeachingPrefaceCh5.docx after the
+# only other copy had been deleted from the Desktop. Do not narrow this.
+!docs/book-project/*.docx
