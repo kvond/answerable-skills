@@ -35,7 +35,7 @@ from pptx.util import Emu, Pt
 
 LABEL = "CRITICAL ASPECTS"
 INK = "111111"
-GREY = "6B6B6B"
+GREY = "666666"   # the muted gray of section 13.2; 6B6B6B was mine and drifted
 
 GAP = Emu(91440)            # 0.1in above the block
 FOOT = Emu(91440)           # 0.1in below it
