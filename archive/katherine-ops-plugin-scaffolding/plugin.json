@@ -1,0 +1,9 @@
+{
+  "name": "katherine-ops",
+  "version": "0.1.0",
+  "description": "Katherine von Duyke's working system: the Answerable Teaching book pipeline (Roam graph hygiene, chapter banks, manuscript operations, HEP critique), the teaching pipeline (formative growth reports, activity scout), and the daily operating skills (brief, routing, task distill, writing and learning blocks).",
+  "author": { "name": "Katherine von Duyke, Ph.D." },
+  "license": "MIT",
+  "keywords": ["roam", "manuscript", "teaching", "answerable-teaching", "cowork"],
+  "mcpServers": "./.mcp.json"
+}

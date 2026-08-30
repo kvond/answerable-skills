@@ -1,0 +1,11 @@
+{
+  "name": "katherine-ops",
+  "owner": { "name": "Katherine von Duyke, Ph.D." },
+  "plugins": [
+    {
+      "name": "katherine-ops",
+      "source": "./plugins/katherine-ops",
+      "description": "Book, teaching, and daily-operations skills for the Answerable Teaching system."
+    }
+  ]
+}

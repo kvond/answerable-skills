@@ -48,3 +48,12 @@ token*
 # and on 30 August it nearly took AnswerableTeachingPrefaceCh5.docx after the
 # only other copy had been deleted from the Desktop. Do not narrow this.
 !docs/book-project/*.docx
+
+# Scoped exceptions, 30 August 2026. The blanket artifact rules above kept
+# swallowing deliverables whose only other copy was on a Drive that was about
+# to be cleared. Rules are by extension; exceptions are by path.
+!audits/*.docx
+!docs/curriculum/*.docx
+!docs/pipeline-v1-archive/*.docx
+!docs/pipeline-v1-archive/*.xlsx
+!archive/katherine-ops-plugin-scaffolding/*.json
