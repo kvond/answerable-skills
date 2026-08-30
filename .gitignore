@@ -32,3 +32,9 @@ token*
 # Audit outputs are records, not working output. The *_inventory_*.csv rule above
 # is for scratch inventories; these are kept deliberately. (2026-08-29)
 !audits/*.csv
+
+# Full snapshot of the TPT Drive folder (06 TPT/TEACHERS PAY TEACHERS (Shared)),
+# taken 2026-08-30 before flattening it and before removing anything from Drive.
+# 21 of these files existed nowhere else. The extension rules above would swallow
+# most of them, so this exception is deliberate and must not be narrowed.
+!docs/tpt-drive-snapshot/**

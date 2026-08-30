@@ -1,0 +1,320 @@
+---
+name: vt-insert-slides
+description: Build Variation Theory insert slides for Katherine's 9th-grade biology PowerPoint decks. Use this skill whenever the user uploads or references a biology .pptx deck and asks for insert slides, focus slides, VT slides, or a Variation Theory sequence -- even if they only say "add the question slides" or "run the insert workflow." Covers the opening Bellringer + Agenda, Critical Aspects List, and the five-step Critical Aspect -> Contrast Set -> Build a Rule -> Pattern Break -> 3-Tier Concept Question sequence, plus what-if and generative questions. Inserts plain slides between existing content slides without rewriting the originals. Targets 7th-grade reading level, Minimalist White Mode design (4:3 / 7.5x5.625 in slides, teal #028090 accent), and pptxgenjs or python-pptx output.
+---
+
+> **INSERT-ONLY -- READ THIS FIRST.**
+> This skill **inserts** VT slides into the user's existing `.pptx` using **python-pptx**. It does **NOT** rebuild the deck as a new standalone file and does **NOT** rewrite original slides. Originals (and their graphics) are preserved; VT slides go *between* them.
+> If you are authoring slides from scratch in **pptxgenjs** for a deck the user already has, **STOP** -- that is the recurring failure this banner exists to prevent. pptxgenjs is only for a genuinely new standalone deck the user has no source for.
+
+# VT Insert Slides for Biology Decks
+
+## What this skill does
+
+Katherine is a 9th-grade biology teacher. She uploads existing PowerPoint decks (.pptx) and wants plain Variation Theory focus slides inserted between the original content slides. Students write directly on the insert slides -- there are no separate worksheets. This skill handles the whole insert-slide build, end to end.
+
+Do not rewrite original slides. Insert only. If an original slide already has a student question on it, skip the insert at that point -- do not duplicate.
+
+## Who the slides are for -- set the cohort profile FIRST
+
+The audience is NOT fixed. Katherine teaches three cohorts that do not share a
+difficulty level. Before drafting any question text, set the cohort profile (see
+"Cohort profiles" below); it changes reading level, prompt depth, scaffolding, and
+the floor of the Getting Started tier.
+
+- **Default = Biology.** If no cohort is named and you cannot infer it, assume Biology.
+- Biology: 9th-graders with limited reading skills; 7th-grade reading level; conceptualizing
+  is new for this population, so prompts must be narrow, concrete, answerable in 1-2 minutes.
+- For A&P Advanced or Forensics, the 7th-grade floor does NOT apply -- use the matching profile.
+
+## Cohort profiles
+
+One profile per deck, named by Katherine at upload (or inferred from the class:
+Biology -> Biology; Anatomy & Physiology -> A&P Advanced; Forensics -> Forensics).
+If you cannot tell which, ASK before drafting -- do not guess.
+
+The profile changes the PITCH only. Structure is invariant across all profiles: the
+five-step arc, the exact tier labels (Getting Started / Working On It / Mastery), the
+Pattern break / Build a Rule / What-if markers, and the tier colors all stay verbatim,
+so Workflow A still detects and grades the slides. Profiles never touch markers or colors.
+
+### Biology (default)
+- Reading level: 7th grade. Do not exceed it.
+- Prompts narrow, concrete, answerable in 1-2 minutes.
+- Heavy scaffolding: sentence starters, word bank used as a genuine crutch.
+- Getting Started tier floor = recall / identify from lesson memory.
+- Every other rule in this skill was originally written for this profile.
+
+### A&P Advanced (Anatomy & Physiology)
+- Reading level: grade-appropriate for an advanced HS / early-college cohort. Use precise
+  terminology (e.g. CFTR, axoneme, ATP demand, selectively permeable) -- no dumbing down.
+- Prompt depth: mechanism and causal chains. Favor predict-and-justify and
+  structure -> function -> pathology -> clinical-sign reasoning over identification.
+- Light scaffolding: word bank present but pitched with advanced terms; students are not
+  expected to lean on it.
+- Tier floors: Getting Started = APPLY (not recall); Working On It = push on why the simple
+  rule is insufficient; Mastery = integrate mechanism with a clinical / system-level consequence.
+- Reference implementation: the "Cells, Part 1" insert deck (2026-06).
+
+### Forensics
+- The content is not hard, so difficulty must NOT come from vocabulary or denser text. It
+  comes from COGNITIVE DEMAND -- make students reason like investigators, and raise the
+  challenge through DEBATE rather than difficulty.
+- Reading level: moderate. No jargon wall, but no 7th-grade floor either.
+- Lean into the Forensics pedagogy: real case first, student verdict BEFORE instruction,
+  reveal at the end; teach discriminating reasoning, not memorization.
+- Debate-driven question moves (use these to raise challenge):
+  - Competing hypotheses: present 2+ plausible explanations of the SAME evidence; ask which
+    the evidence supports and why.
+  - Verdict revision: "What single piece of evidence would change your verdict, and why?"
+  - Insufficient-evidence calls: let "not enough evidence to decide" be a valid, defensible
+    answer -- reward students who can name what is missing.
+  - Adversarial framing: "How would a defense attorney attack this conclusion?"
+- Getting Started tier floor = commit to a position and justify it (no fence-sitting).
+- Pattern Break and What-if are especially strong here: the case that breaks the obvious
+  verdict; the counterfactual that flips the conclusion.
+- Pig autopsy is excluded from the case-first treatment (standing rule).
+
+## The build sequence
+
+Every insert build follows this order:
+
+1. **Bellringer + Agenda slide** (first slide of the deck)
+2. **Critical Aspects List slide** (second slide)
+3. **Five-step VT sequence**, inserted between the existing content slides wherever a concept needs VT scaffolding:
+   - Critical Aspect slide
+   - Contrast Set slide
+   - **Build a Rule slide** -- student articulates the critical aspect as a sentence ("Finish this sentence as a rule: '___ when _______________.'")
+   - Pattern Break slide
+   - **3-Tier Concept Question slide** -- Getting Started / Working On It / Mastery, with word bank
+4. **What-If slide** -- one per lesson where it fits; outside the main sequence
+5. **Continuation Question slide** (standing, end of deck) -- generative, no answer key; hands the storyline forward to the next lesson (see "Continuation Question slide -- special rules" below)
+6. **Relates to Me slide** (standing, end of deck, every lesson) -- self-generated connection to the student's own life; lists all of that lesson's critical aspects as options (see "Relates to Me slide -- special rules" below)
+
+Skip the All-Questions preview slide. It's been dropped from recent decks.
+
+Both the Continuation Question and Relates to Me slides are non-diagnostic: excluded from Workflow A completion scoring and from `deck_lint.py`'s diagnostic count by their own verbatim markers, the same exclusion mechanism used for teacher-navigation slides. See "Non-diagnostic -- HARD RULE" under each slide type below. [2026-08-06]
+
+### Why this exact sequence matters
+
+The **3-Tier Concept Question slide** is structurally load-bearing for downstream workflows. Its three labels -- `Getting Started`, `Working On It`, `Mastery` -- are what Workflow A (completion grading) pattern-matches on to identify the diagnostic slides in the deck. Keep the labels exact and keep them all on the same slide; otherwise downstream detection breaks.
+
+The **Build a Rule slide** replaces what older drafts called "the Generative Question after Contrast Set" -- it's been promoted to its own dedicated slide type because students need explicit scaffolding to articulate the rule before the pattern break challenges it.
+
+## The five question types
+
+Read `references/question_types.md` for the full type-by-type spec with examples, anti-patterns, and strong-vs-weak question guidance. Short version:
+
+1. **Critical Aspect** -- one narrow question about one feature. Don't reveal the answer.
+2. **Contrast Set** -- two organisms or cases (ideally) differing in the critical aspect, side-by-side layout. Question forces comparison.
+3. **Build a Rule** -- student finishes a rule sentence after the contrast. Format: `"[concept] is useful/works/happens when _______________."` This is the dedicated Generative Question that pushes reasoning from contrast toward the critical aspect.
+4. **Pattern Break** -- an organism/case that breaks the simple rule students just built. Forces rethinking.
+5. **3-Tier Concept Question** -- the closing slide. Three tiered prompts (Getting Started / Working On It / Mastery) on the same critical aspect, plus a word bank with 4-6 single-word terms and 1-2 hint phrases. Students self-select their tier and write.
+
+Plus:
+- **What-If** -- counterfactual, can't be factually wrong. Organism / ecology / evolution flavors. Evolution what-ifs are highest value.
+- **Continuation Question** -- generative, no answer key, one per lesson, hands the storyline forward to the next cycle (VT_Lesson_Rebuild_Spec.md §7). Non-diagnostic.
+- **Relates to Me** -- standing self-generated-connection reflection, every lesson. Non-diagnostic.
+
+## Question quality -- strong vs. weak
+
+**Strong questions** force students to confront exactly where the simple rule breaks down. They reason backward from function/outcome to structure/mechanism. Scenario + "what happens and why" format.
+
+Strong examples:
+- "If a trait has a 50% chance, why might a family still not get half and half?"
+- "Why can a dominant trait still show when the two alleles are not the same?"
+- "The two strands of DNA can unzip and make an exact copy of themselves. What has to be true about the structure of DNA to make that possible?"
+
+**Weak questions** to avoid: recall, restating definitions, vague observation ("What do you notice?", "Circle something important"), fill-in-the-blank stems for THINK-style questions.
+
+## Preferred question stems
+
+Use these stems. Avoid vague stems unless Katherine explicitly asks for them.
+
+- "Which one shows ___?"
+- "What is different about ___?"
+- "How do you know ___?"
+- "Why does that matter?"
+- "What does this tell you about ___?"
+
+## Slide design -- Minimalist White Mode (non-negotiable)
+
+- **Slide dimensions: 7.5 x 5.625 in (4:3)** -- narrow format, smaller than 16:9
+- Background `#FFFFFF`, text `#000000`, Arial only
+- **Accent: teal `#028090`** -- used for breadcrumb headers and section titles
+- **Pattern Break breadcrumb accent: red `#C0392B`** (signals the rule-breaking moment)
+- Muted text `#666666` (captions, helper labels); slide number `#999999`
+- Optional box fills: `#F5F5F5`, `#F2F6F9`, `#FAF9F6`; thin `#CCCCCC` borders
+- **Font sizes (scaled for 4:3 narrow canvas):**
+  - Breadcrumb header (top of slide): 9pt bold teal
+  - Section title: 14pt bold
+  - Main question / body: 11-15pt
+  - Tier labels (Getting Started / Working On It / Mastery): 10pt bold
+  - Tier prompts: 10pt regular
+  - Word bank label: 8pt gray; bracketed terms: 9pt
+  - Collaboration reminder: 9pt gray, bottom of slide
+  - Slide number: 9pt gray, top-left
+- Line spacing 1.15; space after each line/bullet
+- No sub-bullets, no paragraphs
+- Real writing space -- students write on the slide itself
+
+## Every insert slide contains
+
+- **Breadcrumb header top-left**: 9pt bold, teal `#028090` (or red `#C0392B` for Pattern Break). Format: `Critical aspect: [name]` for the standard arc, or `Pattern break  /  Critical aspect: [name]` and `What if?  /  Critical aspect: [name]` for the breakers.
+- Section title (when needed): 14pt bold
+- The critical aspect, named plainly (one aspect only)
+- One question for writing (1-2 prompts max), except 3-Tier Concept Question which carries three tier prompts
+- The collaboration reminder at the bottom, exact wording: **"Think first. Discuss with a partner. Then write."** (9pt gray)
+- Slide number top-left in the corner: 9pt gray
+
+## The Bellringer + Agenda slide (opening)
+
+- Left side: one fun question to get students thinking about the topic. Include writing space. Question should be approachable, not hard.
+- Right side: agenda with two items -- "Today's Topic: [fill in]" and "Lab/Activity: [leave as placeholder]"
+- Teal `#028090` accent on the "Bellringer" and "Today" labels
+- Bellringer block is 10 minutes in class
+
+## Contrast Set slides -- special rules
+
+Side-by-side comparison is required. Two columns, equal weight. Each column gets a teal subtitle (`#028090`, 11pt bold) naming the way of grouping or framing -- e.g., "Way A -- group by where they live" and "Way B -- group by how they're related." Under each subtitle, list the items grouped (organism names, traits, etc.) in plain 11pt black text, with optional sub-labels in bold.
+
+Images are *preferred* but not required. Recent decks use clean text-based contrast sets when the conceptual contrast is symbolic rather than visual (e.g., comparing classification schemes). When organisms differ in visible structure, use side-by-side images with thin `#CCCCCC` borders and small captions (9pt gray). If the original content slide already has the needed image, reference it explicitly rather than duplicating.
+
+End the slide with a bottom-block integration question (12pt bold) -- one or two short prompts that force comparison ("If you knew 'mammal,' what could you predict about a new one? What about 'ocean group'?"). See `references/slide_layouts.md` for layout specs.
+
+## Build a Rule slides -- special rules
+
+Comes right after Contrast Set. The student has seen the two ways of grouping; now they articulate the rule that explains *why one is better*. This is the dedicated Generative Question -- it bridges the contrast to the critical aspect.
+
+Format:
+- Section title (14pt bold teal): "Build a rule from what you just saw"
+- Lead-in (12pt): "Finish this sentence as a rule:"
+- The rule frame (14pt bold), shown in quotes, with a blank to complete:
+  - `"A grouping is useful when _______________________________________."`
+  - `"DNA gives us better groupings than appearance because _______________________________________."`
+
+The rule frame should restate the critical aspect as a sentence with one structural blank. The blank length signals the expected answer length (1-2 lines).
+
+## Pattern Break = the contrast case that breaks the rule
+
+The Pattern Break organism emerges from the contrast set -- it's the one that breaks the too-simple rule students just formed. Don't invent a disconnected example. If the lesson doesn't have a natural pattern-break organism, flag it to Katherine rather than forcing one.
+
+The breadcrumb header on Pattern Break slides switches to red `#C0392B` to signal the rule-breaking moment: `Pattern break  /  Critical aspect: [name]`.
+
+## 3-Tier Concept Question -- the closing slide (load-bearing)
+
+This is the structural signature for the entire pipeline downstream. The slide carries three tiered prompts on the same critical aspect, and students self-select where to attempt. Workflow A detects these slides by pattern-matching on the three tier labels.
+
+**Required exact structure:**
+
+- Breadcrumb header (9pt bold teal): `Critical aspect: [name]`
+- Main question (14pt bold black): the critical aspect restated as a direct question
+- Three tier blocks, each:
+  - Tier label (10pt bold black): `Getting Started`, then `Working On It`, then `Mastery` -- in that exact order, with exact capitalization
+  - Tier prompt (10pt regular): the prompt at that tier's depth
+- Word bank label (8pt gray): `Word bank (use any, modify any, or use none):`
+- Word bank terms (9pt): `[ term ]   [ term ]   [ term ]   [ term ]   [ term ]` -- 4-6 single-word terms in square brackets with spaces, separated by triple spaces
+- Optional hint phrases (9pt, in brackets, lowercase): 1-2 longer bracketed phrases that hint at the mastery answer -- e.g., `[ shared ancestors give shared traits -- appearance does not ]`
+- Collaboration reminder at bottom (9pt gray): `Think first. Discuss with a partner. Then write.`
+
+**Tier prompt scaffolding (writing the three prompts):**
+
+- **Getting Started** -- concrete recall / example identification. Answerable from memory of the lesson. Example: "Name two animals that look alike but DON'T belong in the same group. Why don't they?"
+- **Working On It** -- apply the rule. Asks *why* a simple version of the rule isn't enough. Example: "Why isn't 'looks the same' enough to put two organisms in the same group?"
+- **Mastery** -- explain the critical aspect with mechanism. Asks *what specifically* the rule has to be based on, and pushes for causal reasoning. Example: "If a grouping has to predict things about an organism (like how it raises its young), what specifically does that grouping have to be based on?"
+
+The three prompts must address the *same* critical aspect -- they're scaffolded depths, not three different questions. Tier choice is the student's, not the teacher's; the slide doesn't tell students which to do.
+
+**Why the exact labels matter:** Workflow A (completion grading) detects diagnostic slides by checking whether all three of `Getting Started`, `Working On It`, and `Mastery` appear together on a slide. Renaming, reordering, or splitting these breaks the detection. If you ever want to change the tier names, coordinate with Workflow A first.
+
+## Tier label colors (HARD RULE -- updated 2026-05-27)
+
+On 3-Tier Concept Question slides, tier labels must be **color-coded**, not all black:
+- `Getting Started` -- red `#C0392B`, with a small colored rounded square swatch next to the label
+- `Working On It` -- amber `#D68910`, with a small colored rounded square swatch
+- `Mastery` -- green `#1E8449`, with a small colored rounded square swatch
+
+Use bold colored label text matching the swatch. The current spec in slide_layouts.md incorrectly says all tier labels in black -- ignore that; color-coded is correct.
+
+## Continuation Question slide -- special rules [2026-08-06]
+
+Standing beat, one per lesson, placed at the end of the deck (after the last 3-Tier Concept Question, before the Relates to Me slide below). Generative -- there is no answer key, and it is never scored for completion.
+
+Format:
+- Breadcrumb header (9pt bold teal): **`Continuation question:`** -- verbatim, and by itself (no trailing `Critical aspect:` segment -- this beat spans the whole lesson, not one aspect)
+- The question itself (14pt bold black): frames the phenomenon this lesson opened and points it toward next lesson's topic. Per the storyline-arc rule (VT_Lesson_Rebuild_Spec.md §7), the NEXT lesson's Bellringer should open by echoing this question.
+- Generous writing space below (`#F2F6F9` fill, `#CCCCCC` border)
+- Collaboration reminder at the bottom, exact wording as elsewhere
+
+**Non-diagnostic -- HARD RULE.** The `Continuation question:` marker sits in Workflow A's (`extract_and_grade.py`) `STANDING_REFLECTION_MARKERS` tuple and `deck_lint.py`'s matching `STANDING_REFLECTION` tuple. A slide carrying it is classified `"other"` and excluded from the 0-100 completion score and the diagnostic-slide count, before any other pattern on the slide is even checked. Never reword the marker; never build this slide without it.
+
+## Relates to Me slide -- special rules [2026-08-06]
+
+Standing beat, every lesson, placed last -- after the Continuation Question slide. Self-generated utility value (Hulleman & Harackiewicz 2009; Canning & Harackiewicz 2015, "teach it, don't preach it") -- the connection has to come from the student, never be supplied by the slide.
+
+Format:
+- Breadcrumb header (9pt bold teal): **`Relates to me:`** -- verbatim
+- Lead-in (12pt black): "Pick ONE of this lesson's critical aspects. In your own words, how does it connect to you?" -- keep this OPEN and non-leading. Never substitute "why this matters" framing.
+- All of the lesson's critical aspects listed as options, each prefixed `Critical aspect: [name]` (the same prefix the Critical Aspect slide itself uses -- this repetition is expected; see the non-diagnostic note below)
+- Generous writing space below (`#F2F6F9` fill, `#CCCCCC` border)
+- Collaboration reminder at the bottom
+
+**Non-diagnostic -- HARD RULE.** This slide will legitimately contain the `Critical aspect:` substring multiple times, once per aspect it lists as an option. Left unhandled, that's exactly the phantom-inflation bug pattern that the old navigation slides caused for `pattern_break` before the 2026-07-06 fix. `classify_slide()` in `extract_and_grade.py` (and the mirrored check in `deck_lint.py`) tests the `Relates to me:` marker in `STANDING_REFLECTION_MARKERS` BEFORE it ever looks for `Critical aspect:`, so the repeated list never reaches diagnostic classification. Never remove or reword the `Relates to me:` marker, and never ship this slide without it.
+
+## Writing space -- HARD RULE
+
+Every insert slide that asks a student to write must have a proper writing space box:
+- Fill: `#F5F5F5` (question boxes) or `#F2F6F9` (writing space -- use this to visually distinguish the two)
+- Border: `#CCCCCC`, 0.75pt
+- Size per layout spec (see references/slide_layouts.md)
+
+Do NOT use loose dashed lines or connector shapes as writing space. Always use a filled rectangle with a border.
+
+## Placeholder removal -- HARD RULE
+
+When building insert slides with python-pptx, **always remove all placeholder shapes** from each new blank slide before adding any content. Slide layouts inherit "Click to Add Title" and other placeholder text boxes that show up in PowerPoint. Remove them explicitly:
+
+```python
+def blank_slide(prs):
+    """Add a blank slide with ALL placeholders removed."""
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    # Remove every placeholder shape so "Click to Add Title" never appears
+    for ph in slide.placeholders:
+        sp = ph._element
+        sp.getparent().remove(sp)
+    slide.background.fill.solid()
+    slide.background.fill.fore_color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+    return slide
+```
+
+Hard-wire this into every build script. Never use `prs.slides.add_slide()` without immediately stripping placeholders.
+
+## Workflow
+
+When Katherine uploads a deck:
+
+1. Read the deck to understand the concepts and where VT scaffolding belongs. Look at slide titles and any existing questions.
+2. Identify the critical aspects -- usually one per concept block.
+3. **Draft the insert plan before generating slides**: which concepts get inserts, where in the deck each insert goes, and which organism pairs will anchor the Contrast Sets. **Share this plan with Katherine and pause for review before building anything.** Do not skip this step.
+4. Build the slides. Use python-pptx for inserting into existing decks (with placeholder removal as above). Use pptxgenjs only for standalone new decks. See `references/slide_layouts.md` for the eight slide layouts this skill uses and their exact specs.
+5. Do a visual QA pass -- render to PDF, then to JPEG thumbnails, and scan for overruns, redundancy, missing writing space, placeholder text, font-size drift.
+6. Deliver the updated .pptx to `/mnt/user-data/outputs/` and present it with the `present_files` tool.
+
+## Source of truth -- HARD RULE
+
+The authoritative skill set lives in the **"VT Lesson Skills"** Google Drive folder (id `1en8trGm5GgpxCHbxuMbWzlY5jeJ2T6ce`, account `kvond12`): this file plus `03-vt-insert-slides-question-types.md` and `04-vt-insert-slides-slide-layouts-UPDATED.md`. **At the start of every VT insert task, load all three before building.** Order of precedence: (1) these Drive files, (2) mirrored copies under `/mnt/project/` if a project ships them, (3) `/mnt/skills/`. Do not run a VT insert task from memory -- if the skill files are not in context, fetch them from the Drive folder via Composio first. (Earlier wording pointed only to `/mnt/project/` files 02/03/04; that dead-ends in projects that don't mirror them, which is how a from-scratch rebuild slipped through.)
+
+## What this skill does NOT do
+
+- Full lesson production from CK-12 PDFs
+- Notebook / student packet generation
+- Study guides, lesson plans, student agendas
+- Test item banks, unit assessments
+- Anything that isn't inserting VT slides into an existing deck
+
+If Katherine asks for one of these, tell her it's not part of this workflow.
+
+## Reference files
+
+- `references/question_types.md` -- full spec for each of the five question types (Critical Aspect, Contrast Set, Build a Rule, Pattern Break, 3-Tier Concept Question) plus what-if, with strong/weak examples
+- `references/slide_layouts.md` -- exact layout, spacing, and pptxgenjs patterns for each insert slide type, including the load-bearing 3-Tier Concept Question layout
