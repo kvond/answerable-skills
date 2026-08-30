@@ -2,7 +2,7 @@
 """
 deck_inventory.py — read-only inventory of the VT Biology cycle decks
 =====================================================================
-Job 1 of `01_deck_work_sequence.md`. Walks the cycle folders under
+Job 1 of `deck_work_order_of_operations.md`. Walks the cycle folders under
 `~/deck_work/exports/`, opens every `.pptx`, and writes one CSV row per deck
 plus a readable Markdown summary. It touches nothing: no deck is opened for
 write, no deck is modified, no file outside the two report paths is created.
@@ -146,7 +146,7 @@ CORE_FIVE = ("Critical Aspect question", "Contrast Set", "Build a Rule",
 # ---------------------------------------------------------------------------
 # Advisory 1 — does the move-1 question itself carry a difference?
 # ---------------------------------------------------------------------------
-# Three device families, per `08_nine_moves_attribution.md` "Move 1 — the flag".
+# Three device families, per `nine_thinking_moves_attribution.md` "Move 1 — the flag".
 # These regexes were fitted against the labelled move-1 questions in the
 # reference inventory: 47/49 agreement, the two residuals documented in the
 # run report. A keyword heuristic, deliberately: the verbatim question text is

@@ -20,7 +20,7 @@ Conflict case.
 conditional structures. It does not create coordination, it requires it, so it is
 evidence that fusion happened rather than an occasion for it. That may make it a
 tenth move, or a required companion to whichever fusion structure a cycle
-carries. See `08_nine_moves_attribution.md`.]
+carries. See `nine_thinking_moves_attribution.md`.]
 
 ---
 

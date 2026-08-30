@@ -76,7 +76,7 @@ Moore-Anderson supplies stock-and-flow and the rule that the question must
 contain the variation. The sequence, the repetition unit, the coordination
 structures beyond stock-and-flow, and the whole architecture are von Duyke.
 
-Full attribution table: `08_nine_moves_attribution.md`.
+Full attribution table: `nine_thinking_moves_attribution.md`.
 
 ---
 

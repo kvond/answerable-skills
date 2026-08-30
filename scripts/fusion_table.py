@@ -2,7 +2,7 @@
 """
 fusion_table.py — the fusion table across the arc
 =================================================
-Falls out of job 1 (`deck_inventory.py`) per `01_deck_work_sequence.md`
+Falls out of job 1 (`deck_inventory.py`) per `deck_work_order_of_operations.md`
 §"Fusion table across the arc". One row per CYCLE: cycle, deck, critical
 aspects, coordination structure or none, the reason for none, whether the
 cycle carries a what-if, and its NGSS codes.
@@ -15,7 +15,7 @@ It REPORTS. It does not judge.
    without a fusion device because the content carries no compensatory
    relationship and no genuine conflict case is a design decision, not a gap.
    The table tells you which one you are looking at."
-                                     — 01_deck_work_sequence.md
+                                     — deck_work_order_of_operations.md
 
 So: a "none" in the coordination column is a measurement. The reason column is
 left BLANK wherever the deck does not state a reason. A blank there means
@@ -24,7 +24,7 @@ Deciding whether a "none" is a design decision or a hole is job 3, the fusion
 retrofit, done one deck at a time with the content in view.
 
 The three coordination structures are different kinds of object, which is what
-decides whether one can be retrofitted at all (08_nine_moves_attribution.md):
+decides whether one can be retrofitted at all (nine_thinking_moves_attribution.md):
 
   stock-and-flow model  a REPRESENTATION — can be ADDED to any cycle whose
                         content accumulates

@@ -6,7 +6,7 @@ Run as the LAST gate of every VT deck build.
 
 WHY TWO TIERS
 -------------
-The 2026-08-29 spec (`01_deck_work_sequence.md` job 2, `09_synthesis_sequenced.md`
+The 2026-08-29 spec (`deck_work_order_of_operations.md` job 2, `coordination_judgment_and_the_package.md`
 §12) splits this script's findings in two:
 
   HARD      the deck does not ship.  Exit code 1.

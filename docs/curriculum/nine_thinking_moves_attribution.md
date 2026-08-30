@@ -49,7 +49,7 @@ distribution of judgment.
 | 9 | **Conflict case** | Fusion: opposing pulls in one case, unresolvable from one aspect | von Duyke | Aimed at teleology, biology's central obstacle |
 | 10? | **What-if** | Tests whether coordination happened | Moore-Anderson (form); von Duyke (position) | Evidence rather than occasion. Must be individual and written |
 
-**Visibility per move** — see `10_visibility_ladder.md` §3b. Each move carries a
+**Visibility per move** — see `the_visibility_ladder.md` §3b. Each move carries a
 maximum exposure level appropriate to what it asks. Moves 1 and 2 tolerate the
 most, because a wrong choice between named alternatives is cheap. Move 4 is the
 lowest, because the student's own rule breaks there.

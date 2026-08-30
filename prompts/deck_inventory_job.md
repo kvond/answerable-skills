@@ -1,7 +1,7 @@
 # Claude Code — Job 1: Deck Inventory (read-only)
 
-Rewritten 2026-08-29 against the actual file layout. Supersedes
-`11_claude_code_prompt_inventory.md`.
+Rewritten 2026-08-29 against the actual file layout. Supersedes an earlier
+inventory prompt that was never committed here.
 
 ---
 
