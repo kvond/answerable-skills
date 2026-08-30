@@ -41,3 +41,20 @@ there is no resize request, so a duplicated shape can be moved but not made
 taller. Recreating it loses the shadow the writing boxes carry. Re-importing
 costs nothing today because no deck yet holds native Google work; once one
 does, this stops being true and that deck's `google_native` cell says so.
+
+## Marker totals — added 30 August 2026
+
+`notes`, `draft`, `optional` and `bank_terms` are copied from each deck's own
+`[[MARKER-INVENTORY]]` line, so the register and the deck cannot disagree
+without it showing here. `scripts/embed_markers.py` writes both.
+
+Two facts about that script worth keeping. A student writing box is identified
+by its fill, `F2F6F9`, and nothing else: the drag activities are full of empty
+filled boxes that are drop zones, and Cycle 17 has eleven of them. Counting
+those took its NOTES denominator from 15 to 29, which would have marked every
+student in the class too low with nothing in the report to say why. And the
+BELLRINGER, WHATIF, CONFLICT and OPT blocks name one slide each; only the
+aspect block carries forward, or Cycle 09's seven lab slides inherit WHATIF.
+
+The derivation was validated against Cycles 02 and 03, which were marked by
+hand in August: it finds the same slides, one for one.
