@@ -285,8 +285,10 @@ leaves a sequence a sequence.*
 A student asks why snakes lost their legs. The teacher holds four things at once,
 and resolves them in about two seconds:
 
-- **The content.** Limb loss contradicts the improvement model the student
-  carries. Resolving it takes two aspects held together.
+- **The content.** Limb loss as derived, vestigial pelvic girdles, whether the
+  student's framing implies evolution is goal-directed. Limb loss contradicts the
+  improvement model the student carries. Resolving it takes two aspects held
+  together.
 - **His thinking.** He is holding a contradiction, not missing a fact, and he
   found it himself.
 - **Him, in this room.** He is the boy who does not speak.
@@ -302,6 +304,9 @@ carry judgment is the **worked case** — not a principle stated abstractly, but
 record of a decision, including rejections. Teachers reconstruct the reasoning by
 comparing cases, the same way students discern an aspect by comparing examples
 that vary in one dimension.
+
+A rationale document delivers one aspect at a time. A case is a moment where all
+four are present and the reader must coordinate them to say what she would do.
 
 **The design requirement:** the case must withhold the decision until the reader
 has made her own. Otherwise she recognizes rather than judges, and recognition
