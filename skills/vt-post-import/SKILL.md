@@ -188,6 +188,24 @@ TEXT_BOX with `insertText` and `updateTextStyle` renders correctly in the
 thumbnail. Setting geometry and text styles is safe; setting shape properties
 Google computes is not.
 
+### Check whether the deck already has it, before adding anything
+
+An import that runs *after* the staging folder was refreshed brings the change
+in with it. Adding it again through the API produces two copies stacked a few
+pixels apart, which is what happened to Cycles 11 through 16b on 30 August -
+Claude Code reached them in the minutes between the refresh and the API pass.
+
+Count slide 1's elements against the built file before you write:
+
+    live count == built count   -> the import carried it; add nothing
+    live count == built + 1     -> your own shape is the duplicate; delete it
+
+    fields="slides(objectId,pageElements(objectId))"
+
+Give every shape you create an id of the form `vtCritAspectsNN`, so a
+duplicate can be removed by id with `deleteObject` and nothing of Katherine's
+is ever at risk.
+
 ## When an edit lands after decks are already imported
 
 This is now the standing pattern, and it happened twice in two days:
