@@ -29,6 +29,11 @@ token*
 !docs/tpt/originals/*.docx
 !docs/tpt/originals/*.xlsx
 
+# The live-deck fingerprint. Captured from the 24 live decks on 2026-08-30, not
+# generated from anything in here, so the blanket *.json credential rule would
+# lose it. scripts/live_deck_check.py compares later runs against it.
+!docs/live_baseline.json
+
 # Audit outputs are records, not working output. The *_inventory_*.csv rule above
 # is for scratch inventories; these are kept deliberately. (2026-08-29)
 !audits/*.csv

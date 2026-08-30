@@ -221,3 +221,34 @@ This is now the standing pattern, and it happened twice in two days:
 
 On 30 August, Cycles 02, 03 and 04 were already on the re-import list, so
 they were left to the re-import and Cycles 05 through 10 were edited live.
+
+## The live check, and the state on 30 August
+
+`scripts/live_deck_check.py` reads a live deck through the Slides API and
+checks it against the shipping standard. `deck_lint` cannot do this - it reads
+the built `.pptx` files and is blind to anything done in Google Slides.
+
+`docs/live_baseline.json` is the fingerprint of all 24 decks at the moment they
+came back clean, 30 August 2026: slide count, every font, every font size, and
+how many slides of each type are still detectable. A later run compares against
+it, so a change neither of us anticipated still shows up.
+
+**Calibrate against the builds, not against a reading of the standard.** The
+first version flagged Calibri and 26pt titles and returned 24 failures, every
+one false. Google resolves unstyled runs to Calibri on import, on every deck,
+and the aspect-opening slides are legitimately 24pt and 26pt. A check that
+cries wolf on all 24 teaches its reader to skip it.
+
+### Final state, 30 August 2026
+
+All 24 imported and clean. Cycles 02 and 03 were never re-imported, so they got
+the slide 1 block through the API instead; Cycle 03's slide 1 header was also
+still on Inter from its old layout and was set back to Arial. Cycle 03's live
+file has not had the bottom-group scaling its built file received, so its block
+sits at y=6600000 rather than the built 6547104.
+
+**Still outstanding on all 24, and not this skill's job:** the grading markers
+(`MARKER-INVENTORY`, `NOTES`, `DRAFT`, `OPTIONAL`, `BANK`), which exist in no
+live deck, so the feedback prompts return nothing; the teacher note; and the
+conflict case. All three must now be done without deleting slides - see the
+`google_native` column and the rule above.
