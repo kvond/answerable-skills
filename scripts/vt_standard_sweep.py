@@ -41,6 +41,14 @@ TYPED = [
     ("Build a Rule", lambda t: "Finish this sentence as a rule" in t),
     ("What if", lambda t: "What if?" in t),
     ("Continuity question", lambda t: "Keep going" in t),
+    # Moves 8 and 9, confirmed 2026-08-29. No deck carries one yet - they arrive
+    # with the fusion retrofit, which finds them in the content rather than
+    # inserting them by rule. Detection is here first so the slide index names
+    # them on arrival instead of falling through to the positional rule and
+    # calling a compensatory pair a Contrast Set.
+    ("Compensatory pair", lambda t: "COMPENSATORY PAIR" in t.upper()
+                                    or ("CASE A" in t.upper() and "CASE B" in t.upper())),
+    ("Conflict case", lambda t: "CONFLICT CASE" in t.upper()),
 ]
 
 

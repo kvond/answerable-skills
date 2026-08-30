@@ -91,6 +91,18 @@ biology's central conceptual obstacle.
 **None.** A legitimate outcome. Some aspects do not co-vary. Say so and record
 the reason.
 
+[Marker strings for the two case structures — proposed 2026-08-30, not yet
+Katherine's decision. Section 7 of `vt-bio-skill` fixes an exact string for
+Pattern break, Build a Rule, What if and Getting Started, and section 3b fixes
+`CONCEPT BANK` for the bank. It fixes nothing for these two, which means a
+script cannot find them and the slide index cannot name them. The suggestion is
+the kickers `COMPENSATORY PAIR` and `CONFLICT CASE`, matching the `CONCEPT BANK`
+pattern, with `CASE A` / `CASE B` — already named in the section 13.4 type scale
+— as a fallback for the pair, since a pair carries two cases and a conflict case
+carries one. `vt_standard_sweep.py` detects on those strings as of 2026-08-30.
+If you want different strings, change them there and here together, or the index
+will silently stop naming the slides again.]
+
 ### 2c. The what-if question — evidence, not occasion
 
 A counterfactual asks the student to hold the case, change one aspect, and
