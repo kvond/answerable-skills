@@ -59,3 +59,31 @@ Job 1, read-only, written against the actual file layout.
 each cite these documents in their headers for the rule they implement. Those
 citations were rewritten with the renames; if a document is renamed again, the
 scripts need the same pass.
+
+## Which manual is the manual — 30 August 2026
+
+There are three documents with manual-like names, and only one is real.
+
+**The manual** is `Answerable_Teaching_Manual`, doc id
+`1kUWjxAnxK1qrTNlmI72ugYYOj85EGRA2gc5M0bwhYZA`, roughly 113k characters. It is
+the one Katherine works in, and the whole folder is shared with kvond12, which
+is the account that can edit it. The answerableteaching account cannot see it.
+
+Its skills are each one paragraph with soft line breaks (\x0b), not separate
+paragraphs, so an insert has to go inside the block or it lands outside the
+monospace styling. Compute offsets inside the paragraph and add them to the
+paragraph's start index.
+
+Two decoys:
+
+- `Answerable Teaching — Teacher's Manual (draft)`, id
+  `1nI8bBqRd0QKPcGUcZwUWVynk_TpCM8s9Qg0KQKekqBE`, at the root of the kvond12
+  Drive. Created 30 August. Searching Drive by name returns this one first, and
+  it took five edits on 30 August that belonged in the real manual. Its Version
+  history has them if they ever need lifting out.
+- `Answerable_Teaching_Manual.gdoc` in `06 Answerable Biology — MASTERS (TPT)`
+  on the school Drive. The mount cannot read the pointer, so its target is
+  unconfirmed. Do not assume it is the same file as either of the above.
+
+**The rule this cost:** find a document by id, not by name search. Where only a
+name is known, check `parents` and `owners` before writing to it.
