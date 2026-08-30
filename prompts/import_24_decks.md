@@ -4,6 +4,36 @@ Paste everything below the line into Claude Code, running on Katherine's Mac.
 
 ---
 
+## READ THIS FIRST — Cycles 02, 03 and 04 must be re-imported
+
+Added 30 August, mid-run.
+
+Cycles 02, 03 and 04 were imported from a staging copy that predated two edits
+made the same day: the new revision prompt in the speaker notes, and the Day 3
+divider's checklist being replaced by links to the slides that need revising.
+Those three live decks are therefore one revision behind. Confirmed by reading
+them: Cycle 04's divider still carries the old five-checkbox block.
+
+The staging folder has since been refreshed and every file in it now matches the
+current build, so **every deck from Cycle 05 onward is correct on the first
+pass.**
+
+**Do this:** carry on from where you are. When you reach the end of the list,
+re-import Cycles 02, 03 and 04 by exactly the same procedure. Their file IDs do
+not change, so nothing that links to them breaks, and the second import replaces
+the first cleanly - import the full deck, verify the count, then delete the
+older block.
+
+Their `N_old` on the second pass is the count they have now, not the count they
+started with: Cycle 02 is 34, Cycle 03 is 33, Cycle 04 is 31.
+
+One thing worth knowing while you work: Cycle 04's live divider carried a fifth
+checkbox, "Don't forget to submit!", that is in no built file. Live decks and
+built files have drifted in places the sweep did not see, so where a slide looks
+different from what you expected, say so rather than assuming the import failed.
+
+---
+
 You are working on Katherine von Duyke's Biology curriculum. There are 24 live
 Google Slides decks that students open, and 24 finished `.pptx` files that
 should replace their contents. Your job is to get each finished file into its
