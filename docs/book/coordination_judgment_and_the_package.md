@@ -242,6 +242,16 @@ is the precondition, not the achievement:* a page that lists the terms has
 achieved co-presence and left the relating to chance. A page that asks the
 student to state how two of them connect does the work.
 
+*Which slide does that work, decided 2026-08-30.* Not the bank. The bank supplies
+co-presence and asks the student to fill in blanks, because at that point in the
+cycle she is not ready to put two ideas together about vocabulary she has only
+just finished meeting. The relating is asked for by the **conflict case**, which
+follows the bank as its own slide, and asks it on content rather than on terms.
+So the two halves of the paragraph above are done by two slides in sequence, not
+by one page — and a builder who reads the last sentence alone will put a relating
+prompt back into the bank, which is the thing this paragraph is now written to
+prevent.
+
 **The fusion table.** One row per cycle across the arc: critical aspects,
 coordination structure or none, reason for none, NGSS codes. This is what makes a
 coverage gap visible, and what a teacher needs to plan across weeks. An absence
