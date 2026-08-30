@@ -150,3 +150,56 @@ for the deck being finished.
 - A full 24-deck survey is about 13k tokens of response. Use a narrow `fields`
   selector — `slides(objectId,pageElements(objectId,shape(text(textElements(textRun(content))))))`
   — and process it in the workbench rather than inline.
+
+### 3. The CRITICAL ASPECTS block on slide 1
+
+Katherine, 30 August: "On slide 1 write Objectives (Critical aspects on each
+one)", and, choosing a placement, "Their own block, verbatim."
+
+`scripts/critical_aspects_slide1.py` does this in the `.pptx`, so any deck
+imported after 30 August carries it already. This section is the retrofit for
+a deck that was imported before that.
+
+The aspects are read off the `Critical aspect:` labels the question slides
+already carry - never written. Every deck has exactly two. Get them from the
+built file rather than composing them:
+
+    python3 -c "from pptx import Presentation; p=Presentation(F); ..."
+
+The block is a new text box at the foot of slide 1, at the geometry the
+script computed for that deck. Read `left`, `top`, `width`, `height` and the
+text out of the built `.pptx` and mirror them - do not invent coordinates,
+because the script restacks slide 1 on some decks and the live file has not
+been restacked.
+
+    createShape      TEXT_BOX, elementProperties.size + transform in EMU
+    insertText       "CRITICAL ASPECTS\n1. <a>\n2. <b>"
+    updateTextStyle  0-16    bold, 10pt Arial, grey 0.41960785
+    updateTextStyle  17-len  12pt Arial, ink 0.06666667
+
+**`endIndex` is the full string length, not one less.** Cycle 04 was written
+with 97 against a 98-character string and the final "t" rendered at default
+14pt, three times the size of its line.
+
+**Creating a shape through this API is fine.** The `NOT_RENDERED` failure that
+this skill warned about was `shadow`, which is read-only on a created shape -
+not shape creation itself. Verified on Cycle 04 on 30 August: a `createShape`
+TEXT_BOX with `insertText` and `updateTextStyle` renders correctly in the
+thumbnail. Setting geometry and text styles is safe; setting shape properties
+Google computes is not.
+
+## When an edit lands after decks are already imported
+
+This is now the standing pattern, and it happened twice in two days:
+
+1. Apply the change to the 24 built files in `~/deck_work/IMPORT_FINAL/`,
+   after copying them to a dated `_pre_<change>` folder.
+2. Copy all 24 into `My Drive/ZZ import staging (delete)/` and verify with
+   `cmp` that every file matches. Decks Claude Code has not yet reached pick
+   the change up on import with no further work.
+3. For decks already imported, either add it live through the API or add the
+   deck to the re-import list in `prompts/import_24_decks.md`. Live editing is
+   cheaper; re-import is right when the change touches many slides.
+
+On 30 August, Cycles 02, 03 and 04 were already on the re-import list, so
+they were left to the re-import and Cycles 05 through 10 were edited live.
