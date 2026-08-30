@@ -296,6 +296,10 @@ Seven declarations:
 7. **The visibility rung** — for example, "written and private, building toward
    unattributed read-aloud."
 
+Declaration 7 names a rung. The slide right after this one explains what the five
+rungs are — see §7c, "The slide that carries this". Ship the pair, or declaration 7
+reads as jargon to the one teacher who most needs it.
+
 [Why this is a slide and not a manual entry: a manual is read after compliance is
 already the frame, if it is read at all. A teacher adapting your deck in good
 faith, not knowing that three examples differ in exactly one dimension by design,
@@ -473,6 +477,41 @@ getting something from a partner's thinking, which is the precondition for rung 
 The written first answer with a rewrite is the low-visibility form of commitment.
 It gets you the student's real thinking in rooms where a vote would produce
 silence.
+
+### The slide that carries this (added 2026-08-29)
+
+The ladder above goes into the deck as **one slide, immediately after the teacher
+note.** The note declares the rung this cycle is built for; that slide says what
+the rungs are. Build it in that order and the declaration is read first and the
+slide answers it. Build it the other way round — the ladder at slide 2, in front
+of the note — and it is a glossary standing in front of a term nobody has met.
+
+It is teacher-facing and **never projected.** Put the string `do not project` in
+its kicker. That is not decoration: it is the string the linter and the grader
+both test *before* they classify anything as a diagnostic slide, so it is what
+keeps a teacher slide out of the count of slides students are scored on.
+
+**What goes on it.** All five rungs, each with what you actually do and the
+observable thing that opens the next one. Give rung 3 the most room — it is the
+rung that does the work. Then descent, and the fact that group work is a
+visibility reducer rather than a rung. Then the per-move ceilings, which is what
+tells you where cold call is safe.
+
+**One trap, and it will bite you.** The move names are also the marker strings
+the teacher prompts match on, anywhere in the deck. Write "Pattern Break" plainly
+on this slide and your deck now reports two Pattern Breaks where it has one.
+Write the names so a reader sees no difference and a matcher sees no marker:
+`Pattern-Break`, `Build-a-Rule`, `What-if`, and `Critical Aspect question` with no
+colon after "aspect". Count the marker strings before and after you add the slide;
+every count must be unchanged.
+
+**It fits on one slide, but only just.** Arial 11pt in a single full-width column.
+Measure the copy against the box before you ship it — at 12pt this text runs off
+the bottom, and the check that finds that is a measurement, not a glance.
+
+`scripts/deck_apply_changes.py` holds the copy and inserts the slide. Take it from
+there rather than retyping it; the wording is the same on every deck in the arc.
+Its absence is an advisory in `deck_lint.py`, never a hard failure.
 
 ---
 

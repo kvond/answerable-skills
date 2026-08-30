@@ -1,0 +1,392 @@
+<title>Engine Start-Up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root {
+    --ground:      #f2f5f4;
+    --panel:       #ffffff;
+    --panel-sunk:  #e7ecea;
+    --ink:         #14201f;
+    --ink-soft:    #4e605e;
+    --ink-faint:   #7d8f8d;
+    --rule:        #d3dcda;
+    --accent:      #027a86;
+    --accent-soft: #e0f0f0;
+    --flag:        #a8442a;
+    --flag-soft:   #f7e7e1;
+    --ok:          #3f7a4e;
+
+    --f-display: "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif;
+    --f-body:    "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0d1413;
+      --panel:       #151e1d;
+      --panel-sunk:  #1d2827;
+      --ink:         #e6eceb;
+      --ink-soft:    #a3b3b1;
+      --ink-faint:   #748785;
+      --rule:        #2a3735;
+      --accent:      #4ac3cc;
+      --accent-soft: #16302f;
+      --flag:        #e08a6e;
+      --flag-soft:   #2e1f19;
+      --ok:          #74b585;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:      #0d1413;
+    --panel:       #151e1d;
+    --panel-sunk:  #1d2827;
+    --ink:         #e6eceb;
+    --ink-soft:    #a3b3b1;
+    --ink-faint:   #748785;
+    --rule:        #2a3735;
+    --accent:      #4ac3cc;
+    --accent-soft: #16302f;
+    --flag:        #e08a6e;
+    --flag-soft:   #2e1f19;
+    --ok:          #74b585;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 0;
+    padding: 0 20px 80px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+
+  /* ---- masthead ---------------------------------------------------- */
+  header {
+    padding: 56px 0 28px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  h1 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(34px, 6vw, 52px);
+    letter-spacing: -0.015em;
+    line-height: 1;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .sub {
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 10px 0 0;
+  }
+  .stamp {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  /* ---- section headings -------------------------------------------- */
+  h2 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 52px 0 4px;
+  }
+  .lede {
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+    max-width: 68ch;
+  }
+
+  /* ---- the drives table -------------------------------------------- */
+  .scroller { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 640px;
+  }
+  th {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: left;
+    padding: 0 14px 8px 0;
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+  td {
+    padding: 13px 14px 13px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  td:last-child, th:last-child { padding-right: 0; }
+  .what { font-weight: 600; }
+  code, .path {
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    word-break: break-word;
+  }
+  .acct {
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+  tr.retired td { color: var(--ink-faint); }
+  tr.retired .what { font-weight: 500; }
+
+  /* ---- checklist ---------------------------------------------------- */
+  ol.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  li.check {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 18px 20px 18px 62px;
+    position: relative;
+  }
+  li.check::before {
+    content: counter(step, decimal-leading-zero);
+    counter-increment: step;
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--f-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--panel-sunk);
+    border-right: 1px solid var(--rule);
+    border-radius: 3px 0 0 3px;
+  }
+  ol.checks { counter-reset: step; }
+  .check h3 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 17px;
+    margin: 0 0 3px;
+    letter-spacing: -0.005em;
+  }
+  .check p { margin: 6px 0 0; color: var(--ink-soft); }
+  .where {
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--ink);
+    background: var(--accent-soft);
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+  .tell {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--rule);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .tell b {
+    font-family: var(--f-display);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--flag);
+    margin-right: 8px;
+  }
+
+  /* ---- misdiagnosis log --------------------------------------------- */
+  .log { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+  .log-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 28px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .looked {
+    font-weight: 600;
+    color: var(--flag);
+  }
+  .was { color: var(--ink-soft); }
+  .was::before {
+    content: "actually";
+    font-family: var(--f-display);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 2px;
+  }
+  @media (max-width: 640px) {
+    .log-row { grid-template-columns: 1fr; gap: 8px; }
+    li.check { padding: 52px 16px 16px; }
+    li.check::before {
+      width: 100%; height: 34px; bottom: auto;
+      border-right: 0; border-bottom: 1px solid var(--rule);
+      justify-content: flex-start; padding-left: 16px;
+      border-radius: 3px 3px 0 0;
+    }
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    color: var(--ink-faint);
+    font-size: 13px;
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div>
+      <h1>Engine Start-Up</h1>
+      <p class="sub">Which drive is where, which surface can reach it, and what a wrong-account problem looks like before you mistake it for a broken tool.</p>
+    </div>
+    <div class="stamp">
+      Answerable · Biology<br>
+      Built 29 Aug 2026<br>
+      Mac: katherines-macbook-air
+    </div>
+  </header>
+
+  <h2>The drives</h2>
+  <p class="lede">Five Google identities touch this work and only one of them holds the live Biology decks. When something is missing, this table is the first place to look.</p>
+  <div class="scroller">
+    <table>
+      <thead>
+        <tr>
+          <th>What</th>
+          <th>Account</th>
+          <th>Where it is on the Mac</th>
+          <th>What it holds</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="what">03 BIOLOGY (Public)</td>
+          <td class="acct">katherine.vonduyke@<br>redclay.k12.de.us</td>
+          <td class="path">~/Library/CloudStorage/GoogleDrive-katherine.vonduyke@redclay.k12.de.us/My&nbsp;Drive/</td>
+          <td>All 24 live Biology decks, one folder per cycle. The <span class="path">.gslides</span> file in each is a pointer, not the deck.</td>
+        </tr>
+        <tr>
+          <td class="what">answerable-skills</td>
+          <td class="acct">GitHub · kvond</td>
+          <td class="path">~/code/answerable-skills</td>
+          <td>Canonical for every script and SKILL.md. <span class="path">~/.claude/skills</span> is a symlink into it, so all machines read one copy.</td>
+        </tr>
+        <tr>
+          <td class="what">deck_work</td>
+          <td class="acct">local only</td>
+          <td class="path">~/deck_work</td>
+          <td>The <span class="path">.pptx</span> exports and renders. Scratch — not synced, not backed up.</td>
+        </tr>
+        <tr>
+          <td class="what">Personal Drive</td>
+          <td class="acct">kvond@udel.edu</td>
+          <td class="path">~/Library/CloudStorage/GoogleDrive-kvond@udel.edu/</td>
+          <td>Mounted, but nothing Biology lives here. Book work is headed for kvond12@gmail.com.</td>
+        </tr>
+        <tr class="retired">
+          <td class="what">Teachers Pay Teachers</td>
+          <td class="acct">kvd@<br>answerableteaching.com</td>
+          <td class="path">expiring — about a month left</td>
+          <td>The TPT teacher-facing folders and an older <span class="path">.pptx</span> archive. <b>Not</b> the working curriculum — that moved to the school account.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Start-up sequence</h2>
+  <p class="lede">In order. Each one has a single thing to look at and a single thing that means it is wrong.</p>
+  <ol class="checks">
+
+    <li class="check">
+      <h3>Which computer is this session linked to?</h3>
+      <p>A Cowork session is bound to one machine at the moment you start it, and it can only ever see the folders that machine has shared. Right now that is six: <span class="path">03 BIOLOGY (Public)</span>, <span class="path">~/code</span>, <span class="path">~/code/answerable-skills</span>, <span class="path">~/deck_work</span>, <span class="path">~/Desktop</span>, <span class="path">~/Downloads</span>.</p>
+      <div class="tell"><b>Wrong when</b> a file you can see in Finder comes back "no such file" — it is outside those six, and the fix is to share the folder, not to restart anything.</div>
+    </li>
+
+    <li class="check">
+      <h3>Is Claude Code pointed at the right place?</h3>
+      <p>Two separate settings go stale independently. The environment dropdown resets to <b>Local</b> every restart. And Claude Code only reads directories it was launched with or given since.</p>
+      <div class="where">/add-dir ~/code/answerable-skills</div>
+      <div class="tell"><b>Wrong when</b> it says it cannot read a document. That is directory scope, never Full Disk Access — and it once meant Claude Code was signed into a different Google account's Drive than the session beside it.</div>
+    </li>
+
+    <li class="check">
+      <h3>Which Google account is Chrome on?</h3>
+      <p>The live decks belong to the school account. Chrome has to be signed in as <span class="path">katherine.vonduyke@redclay.k12.de.us</span> — check the avatar at the top right, or the <span class="path">/u/0/</span> in the address bar.</p>
+      <div class="tell"><b>Wrong when</b> a deck opens <b>View only</b>. That is the wrong account, not a permissions failure, and no amount of requesting access fixes it.</div>
+    </li>
+
+    <li class="check">
+      <h3>Is the Chrome extension actually holding?</h3>
+      <p>Click the Claude icon to the right of the address bar and leave its side panel <b>open</b>. The connection drops when the panel closes, and it drops silently.</p>
+      <div class="tell"><b>Wrong when</b> one browser call works and the next says "extension is not connected." That is the panel closing, not the extension failing.</div>
+    </li>
+
+    <li class="check">
+      <h3>Are you using the right browser for the job?</h3>
+      <p>Two browsers answer to Claude and only one of them is you. <b>Chrome</b> carries your school sign-in and can edit. The desktop app's <b>built-in browser</b> is a separate profile signed into nothing — it opens the decks read-only.</p>
+      <div class="tell"><b>Wrong when</b> a deck opens View only <em>and</em> Chrome is on the right account: you are in the built-in browser, not Chrome.</div>
+    </li>
+
+  </ol>
+
+  <h2>Looked broken, wasn't</h2>
+  <p class="lede">Every one of these cost real time before the actual cause turned up. None was a tool failing.</p>
+  <div class="log">
+    <div class="log-row">
+      <div class="looked">Claude Code could not read AT_docs on the Desktop</div>
+      <div class="was">Directory scope. The Full Disk Access toggle had been on the whole time; the fix was <span class="path">/add-dir</span>.</div>
+    </div>
+    <div class="log-row">
+      <div class="looked">Claude Code insisted it was "in local"</div>
+      <div class="was">The environment dropdown resets to Local on every restart. Nothing had broken.</div>
+    </div>
+    <div class="log-row">
+      <div class="looked">Claude Code was reading the wrong Drive</div>
+      <div class="was">It was signed into a different Google account than the session running beside it.</div>
+    </div>
+    <div class="log-row">
+      <div class="looked">159 files on the Desktop were unreadable</div>
+      <div class="was">iCloud had evicted them — present in Finder, zero blocks on disk. Fixed permanently with <b>Keep Downloaded</b>.</div>
+    </div>
+    <div class="log-row">
+      <div class="looked">A file "still existed" after you deleted it</div>
+      <div class="was">A stale mount cache on Claude's side. Your shell was right and Claude was wrong; when they disagree, the shell wins.</div>
+    </div>
+    <div class="log-row">
+      <div class="looked">Git refused to commit — another process running</div>
+      <div class="was">A leftover <span class="path">.git/index.lock</span> from a call that died mid-write. Deleting the lock file is the whole fix.</div>
+    </div>
+  </div>
+
+  <footer>
+    Kept in <span class="path">answerable-skills</span>. When a surface moves or an account retires, this is the file to change.
+  </footer>
+
+</div>

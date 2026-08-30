@@ -305,6 +305,19 @@ TEACHER_NOTE_ITEMS = [
 ]
 
 # Rung language, for the deck-wide visibility check.
+# The visibility-ladder slide (added 2026-08-29). The teacher note DECLARES the
+# cycle's rung; this slide EXPLAINS all five, so the declaration means something
+# to a teacher who has never seen the ladder. Uppercase kicker on the model of
+# CONCEPT BANK and TEACHER NOTE; matched case-insensitively here, as everything
+# else in this classifier is.
+#
+# It is tested AFTER the teacher note on purpose. A teacher note whose seventh
+# declaration happens to say "the visibility ladder" in prose is still a teacher
+# note, and a deck that loses its note to this branch would fail hard for a
+# reason nobody would find. The ladder slide carries no teacher-note marker, so
+# nothing is lost by letting the note win.
+VISIBILITY_LADDER_MARKERS = ("visibility ladder",)
+
 VISIBILITY_PATTERNS = [
     r"\bvisibility\b",
     # "rung" only in the ladder-of-exposure sense. A DNA deck says "each rung
@@ -449,6 +462,10 @@ def classify_slide(text):
     # grader's order untouched.
     if any(m in low for m in TEACHER_NOTE_MARKERS):
         return "Teacher note"
+    # Before the nav markers, for the same reason the note is: this slide
+    # carries "do not project" and would otherwise be filed as navigation.
+    if any(m in low for m in VISIBILITY_LADDER_MARKERS):
+        return "Visibility ladder"
     if any(m in low for m in NON_DIAGNOSTIC):
         return "Teacher navigation"
     if "teacher reference" in low and "essential claim" in low:
@@ -808,6 +825,40 @@ def lint_deck(path):
             "teacher note does not declare %d of the seven required items: %s"
             % (len(missing_items), "; ".join(missing_items)))
 
+    # -- visibility-ladder slide (new 2026-08-29) ---------------------------
+    # ADVISORY, never hard. The slide was invented on 2026-08-29 and no shipped
+    # deck in the arc carries one yet, so a hard rule here would fail every deck
+    # in the arc on its first run — and a linter that fails every deck gets
+    # ignored inside a week. That is the whole two-tier rationale.
+    ladders = slides_of("Visibility ladder")
+    result["visibility_ladder"] = len(ladders)
+    if not ladders:
+        adv("A-VIS-LADDER",
+            "no visibility-ladder slide. The teacher note declares this cycle's "
+            "rung; nothing in the deck says what the rungs are, so the "
+            "declaration reads as jargon to a teacher who has not met the "
+            "ladder. One teacher-facing slide, marked 'do not project', "
+            "immediately after the note (scripts/deck_apply_changes.py inserts "
+            "it)")
+    else:
+        if len(ladders) > 1:
+            adv("A-VIS-LADDER",
+                "%d visibility-ladder slides; the deck needs one"
+                % len(ladders))
+        if notes and min(ladders) < min(notes):
+            adv("A-VIS-LADDER",
+                "the visibility ladder (slide %d) sits ABOVE the teacher note "
+                "(slide %d). The note declares the rung and this slide explains "
+                "it — read the other way round it is a glossary in front of a "
+                "term nobody has met yet"
+                % (min(ladders), min(notes)), min(ladders))
+        for i in ladders:
+            if "do not project" not in texts[i - 1].lower():
+                adv("A-VIS-LADDER",
+                    "the visibility ladder (slide %d) has lost its 'do not "
+                    "project' marker, so it is counted as a diagnostic slide "
+                    "and a teacher may project it (SKILL §7.1)" % i, i)
+
     # -- critical aspects, and the move-1 difference test -------------------
     aspects = []            # ordered, unique
     aspect_slides = {}
@@ -1094,6 +1145,7 @@ CSV_COLUMNS = [
     "dims", "fonts_offending", "colors_offending",
     "tier_slides", "diagnostic_slides", "markers_present",
     "teacher_prep", "concept_bank", "links_slide", "teacher_note",
+    "visibility_ladder",
     "day_dividers", "n_aspects", "critical_aspects",
     "move1_pass", "move1_verdict",
     "coordination", "coordination_candidates", "conditional_types",

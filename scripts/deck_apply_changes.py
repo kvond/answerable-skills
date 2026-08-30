@@ -5,7 +5,7 @@ The counterpart to deck_lint.py. The linter reports; this applies — but only w
 is safe to apply mechanically. Anything that is a content decision is FLAGGED for
 Katherine and the slide is left untouched.
 
-Three changes, and only three:
+Four changes, and only four:
 
   1. INSERT the teacher note slide (one slide, not speaker notes, deletable in one
      action) carrying the seven declarations from the 2026-08-29 spec. Everything
@@ -22,6 +22,14 @@ Three changes, and only three:
   3. FLAG, never rewrite, a move-1 Critical Aspect question that carries no
      difference. Rewriting it is a content decision. The verbatim text and a
      template reframing go into the report for her to accept or reject.
+
+  4. INSERT the visibility-ladder slide (added 2026-08-29), immediately AFTER
+     the teacher note. The note declares the cycle's rung; this slide explains
+     what the five rungs are, so the declaration means something to a teacher
+     who has never seen the ladder. Teacher-facing and never projected: it
+     carries "do not project" and is excluded from every diagnostic count.
+     Its copy is fixed rather than derived from the deck, so nothing on it
+     needs Katherine's judgment and it carries no placeholder.
 
 Conventions follow scripts/build_concept_banks.py: the input file is never
 touched, the result is written to a new file alongside it, and the new slide is
@@ -44,6 +52,7 @@ import sys
 import unicodedata
 
 from pptx import Presentation
+from pptx.opc.packuri import PackURI
 from pptx.util import Emu, Pt
 from pptx.dml.color import RGBColor
 
@@ -78,6 +87,43 @@ G_COL_R = (4709160, 1400000, 3886200, 5100000)
 # "Think first" footer uses (§13.3). The Concept Bank grid ends at 5669280 and
 # its links block runs to 6309360, so this is the only free band on the slide.
 G_RELATE = (548640, 6400800, 8046720, 320040)
+
+# The visibility-ladder slide (added 2026-08-29). It sits immediately after the
+# teacher note and reuses that slide's kicker, heading and subhead geometry, so
+# the two teacher-facing slides read as one pair rather than as two designs.
+# Its body is a SINGLE column: a ladder read across two columns stops being a
+# ladder, and the rungs have to run top to bottom in order.
+# The body runs to 6675120 — 0.2in above the slide edge — because this slide
+# carries no "Think first" footer, exactly as the Concept Bank carries none.
+# The subhead runs to two lines here, where the teacher note's runs to one.
+G_VL_SUBHEAD = (548640, 1042000, 8046720, 457200)
+# y and h are both §13.3 tokens: 1554480 is the Concept Bank's first row, and
+# 5120640 is its last. The body ends at 6675120, 0.2in above the slide edge.
+G_VL_BODY = (548640, 1554480, 8046720, 5120640)
+
+# 11pt, not 12. MEASURED, not guessed — against the real Arial advance widths
+# on this machine, wrapping greedily the way PowerPoint does:
+#
+#   text width  8046720 - 2 x 91440 inset  = 619.2pt
+#   text height 5120640 - 2 x 45720 inset  = 395.9pt
+#   the eight blocks below                 = 27 lines
+#   27 x 11pt x 1.2 + 7 x 3pt space-after  = 377.4pt   (18.5pt spare)
+#
+# 1.2 is the conservative line factor; Arial's own hhea metrics give 1.150,
+# which leaves 33pt spare. At 12pt the same copy is 31 lines and runs off the
+# bottom of the slide. 11pt is an existing §13.4 token (the kicker, the
+# word-bank items, the Concept Bank source links) and it is the same fallback
+# the teacher note already takes.
+SZ_VL_BODY = 11
+SZ_VL_SPACE_AFTER = 3
+
+# What _est_lines() scores the shipped copy at. It is a tripwire, not an
+# oracle: the estimator assumes an 0.5-em average character and ignores the
+# text-frame insets, so it reads 29 lines where real Arial reads 27, and its
+# own capacity number (28) is meaningless against that. What it is good for is
+# detecting an EDIT — if VL_BLOCKS grows past this, the copy changed and the
+# slide has to be measured against Arial again before it ships.
+VL_EST_LINES = 29
 
 SZ_KICKER = 11
 SZ_HEADING = 16
@@ -125,6 +171,111 @@ FORBIDDEN_ON_NOTE = ("what if?", "getting started", "finish this sentence as a r
 NOTE_SAFE_NAME = {
     "Pattern Break": "Pattern-Break",
 }
+
+# --------------------------------------------------------------------------
+# The visibility-ladder slide (added 2026-08-29)
+# --------------------------------------------------------------------------
+# The teacher note DECLARES this cycle's rung. This slide EXPLAINS the five
+# rungs, so the declaration means something to a teacher who has never seen the
+# ladder. It is teacher-facing and never projected, so its kicker carries "do
+# not project" — already in NON_DIAGNOSTIC in deck_lint.py and in
+# NON_DIAGNOSTIC_MARKERS in the grader (§7.1), both tested before the four
+# diagnostic classifiers. The slide therefore cannot inflate a diagnostic count.
+#
+# THE MARKER-STRING TRAP, AND IT IS REAL. deck_lint.py and the teacher prompts
+# match the slide-type markers as case-insensitive substrings ANYWHERE in the
+# deck. Writing "Pattern Break" in the ceilings line below would make this deck
+# count two Pattern Breaks where it has one. The exclusion tuple saves the
+# linter's own count and does not save a raw grep, which is what §11 check 3
+# actually runs. So every move name on this slide goes through NOTE_SAFE_NAME
+# or is written in a form that has no marker in it — a hyphen reads identically
+# to a person and is invisible to the matchers.
+
+VL_MARKER = "VISIBILITY LADDER"        # ASCII, uppercase, for the classifiers
+VL_KICKER = ("TEACHER REFERENCE — do not project to students   ·   "
+             + VL_MARKER)
+VL_TITLE = "The visibility ladder — what happens at each rung"
+
+VL_SUBHEAD = (
+    "Slide %d declares the rung this cycle is built for. Every gate below is "
+    "something you can see from the front of the room in one period, not a week "
+    "on a calendar. Raise visibility across the year; reset it low inside every "
+    "cycle."
+)
+VL_SUBHEAD_NO_NOTE = (
+    "The teacher note declares the rung a cycle is built for. Every gate below "
+    "is something you can see from the front of the room in one period, not a "
+    "week on a calendar. Raise visibility across the year; reset it low inside "
+    "every cycle."
+)
+
+# (bold teal label, body). Source: 10 §3 for the rungs and their gates, §3c for
+# group work, 09 §6a for the compression. Rung 3 gets the longest block on the
+# slide on purpose — it is the one that does the work and the one no PD teaches.
+VL_BLOCKS = [
+    ("Rung 1 — written, seen only by you.",
+     " You take the first answer and score it for completion; the revision is "
+     "where thinking counts. Nobody else reads it. Opens rung 2 when most "
+     "students write a first answer at all and some are wrong in interesting "
+     "ways rather than blank or copied. A blank is a refusal to commit even "
+     "privately, so rung 1 is not secure yet."),
+    ("Rung 2 — written, shown to one assigned partner.",
+     " You assign the partner. Chosen partners reproduce the social order "
+     "already in the room, and the students most at risk choose nobody. Opens "
+     "rung 3 when pairs talk about the answer rather than about something else, "
+     "and some students change or extend an answer after talking."),
+    ("Rung 3 — you read a wrong but productive answer aloud, unattributed, and "
+     "use it.",
+     " This is the rung that does the work, and the one no PD teaches. Take a "
+     "genuinely useful wrong answer off the stack — not a straw man, they can "
+     "tell immediately. Read it with no name attached. Then use it: build on "
+     "it, ask what it assumes, put it against a case. Do not correct it and "
+     "move on. Never signal whose it is, including by looking at her. Four or "
+     "five instances change what a wrong answer means in this room. Opens rung "
+     "4 when students volunteer answers you did not ask for, or one of them "
+     "says a version of “that was mine” without distress."),
+    ("Rung 4 — a student owns an answer aloud, by invitation.",
+     " Arrange it privately where you can — “your answer about X is the one I "
+     "want to start with; will you say it?” She can do it because she watched "
+     "rung 3 and knows what will be done with what she says. Opens rung 5 when "
+     "more than a few students speak, disagreement happens between students "
+     "rather than through you, and a wrong answer aloud does not end that "
+     "student’s participation for the period."),
+    ("Rung 5 — public simultaneous commitment.",
+     " The vote: pair talk, sequential hands, two students justify, re-vote. "
+     "Last, not first. It asks for commitment and exposure at once, and it "
+     "works only where everything above has already made the exposure cheap."),
+    ("Descent is normal.",
+     " A new class, a new semester, a hard week, a student humiliated somewhere "
+     "else that day — any of it resets the room. Drop a rung, and do not "
+     "announce that you have."),
+    ("Group work is a visibility reducer, not a rung.",
+     " A student speaks to three people instead of thirty and the product "
+     "carries the group’s name, so a group can carry harder content than the "
+     "room’s whole-class rung allows. But a group product says nothing about "
+     "who did the relating — a good occasion, and no evidence. That is why the "
+     "What-if is written and individual."),
+    ("Ceilings by move.",
+     " The Critical Aspect question and the Contrast Set tolerate the most — "
+     "read aloud unattributed, or a vote. Build-a-Rule: a partner. "
+     "Pattern-Break and the 3-Tier Question stay written and private — that is "
+     "where her own rule breaks. Work at or below the ceiling."),
+]
+
+# Strings that must NEVER appear on the visibility-ladder slide. The first five
+# are the unique slide-type markers of §7 — a second occurrence makes a teacher
+# prompt count this slide as a Pattern Break or a 3-Tier. The rest would make a
+# classifier type this slide as some other slide the deck is REQUIRED to carry,
+# and a deck that loses its teacher note or its Concept Bank to a misfiled
+# teacher slide fails hard for a reason nobody would find.
+FORBIDDEN_ON_LADDER = FORBIDDEN_ON_NOTE + (
+    "working on it", "mastery", "define these in your own words", "concept bank",
+    "teacher note", "design note", "note to the teacher", "teacher navigation",
+    "essential claim", "additional resources", "teacher prep",
+    "continuation question", "relates to me", "optional challenge",
+    "image credits", "activity and resource links", "case a", "case b",
+    "your first answer", "bellringer", "tank model",
+)
 
 # The word "beat" is forbidden everywhere, including in this file (spec, Vocabulary).
 
@@ -612,9 +763,7 @@ def build_teacher_note(prs, row, arc, layout, subhead_text):
     """Append the teacher note slide. Returns (slide, n_placeholders, warnings)."""
     left, right, n_ask = build_note_copy(row, arc)
 
-    slide = prs.slides.add_slide(layout)
-    for sh in list(slide.shapes):
-        sh._element.getparent().remove(sh._element)
+    slide = blank_house_slide(prs, layout)
 
     b = _textbox(slide, G_KICKER)
     _run(b.text_frame.paragraphs[0], NOTE_KICKER, SZ_KICKER, True, MUTED)
@@ -652,6 +801,118 @@ def build_teacher_note(prs, row, arc, layout, subhead_text):
     return slide, n_ask, warnings
 
 
+RE_SLIDE_PARTNAME = re.compile(r"^/ppt/slides/slide(\d+)\.xml$")
+
+
+def _fix_slide_partname(prs, slide):
+    """Give a newly added slide a partname nothing else in the package holds.
+
+    python-pptx names the new part `slide<len(sldIdLst) + 1>.xml`. A deck that
+    has had a slide dropped from the id list keeps the orphaned part in the
+    package, so that count is LOWER than the highest index in use and the new
+    part silently takes a name another part already has. The .pptx then saves
+    with two zip entries of the same name — PowerPoint reads whichever it
+    reaches first, which is the old slide, and the new one is simply gone.
+    Cycle 12b is exactly that deck: two reference slides were dropped from the
+    id list during the build and their parts stayed behind.
+
+    Returns the new partname if it renamed, otherwise None.
+    """
+    target = str(slide.part.partname)
+    used = set()
+    seen = 0
+    for part in prs.part.package.iter_parts():
+        name = str(part.partname)
+        if name == target:
+            seen += 1
+        m = RE_SLIDE_PARTNAME.match(name)
+        if m:
+            used.add(int(m.group(1)))
+    if seen < 2:
+        return None
+    n = 1
+    while n in used:
+        n += 1
+    free = PackURI("/ppt/slides/slide%d.xml" % n)
+    slide.part.partname = free
+    return str(free)
+
+
+def blank_house_slide(prs, layout):
+    """A slide on the deck's own layout with every placeholder stripped."""
+    slide = prs.slides.add_slide(layout)
+    _fix_slide_partname(prs, slide)
+    for sh in list(slide.shapes):
+        sh._element.getparent().remove(sh._element)
+    return slide
+
+
+def ladder_guard(slide):
+    """Every reason this slide must not ship, as a list of warnings."""
+    warnings = []
+    txt = norm(slide_text(slide)).lower()
+    for bad in FORBIDDEN_ON_LADDER:
+        if bad in txt:
+            warnings.append(
+                "visibility ladder carries the marker string %r — refuse" % bad)
+    for line in slide_text(slide).split("\n"):
+        if re.match(r"^\s*what[- ]if\b", norm(line), re.I):
+            warnings.append(
+                "visibility ladder has a line starting %r — refuse" % line[:40])
+    if "do not project" not in txt:
+        warnings.append(
+            "visibility ladder has lost its 'do not project' marker, so it would "
+            "be counted as a diagnostic slide — refuse")
+    return warnings
+
+
+def build_visibility_ladder(prs, layout, note_slide_number=None):
+    """Append the visibility-ladder slide. Returns (slide, warnings).
+
+    One slide, teacher-facing, never projected. It explains the five rungs the
+    teacher note's seventh declaration names. Deletable in one action, like the
+    note — a teacher who already knows the ladder does not need it twice.
+    """
+    slide = blank_house_slide(prs, layout)
+
+    b = _textbox(slide, G_KICKER)
+    _run(b.text_frame.paragraphs[0], VL_KICKER, SZ_KICKER, True, MUTED)
+
+    b = _textbox(slide, G_HEADING)
+    _run(b.text_frame.paragraphs[0], VL_TITLE, SZ_HEADING, True, BODY)
+
+    b = _textbox(slide, G_VL_SUBHEAD)
+    sub = (VL_SUBHEAD % note_slide_number if note_slide_number
+           else VL_SUBHEAD_NO_NOTE)
+    _run(b.text_frame.paragraphs[0], sub, SZ_VL_BODY, False, MUTED)
+
+    box = _textbox(slide, G_VL_BODY)
+    tf = box.text_frame
+    for i, (label, body) in enumerate(VL_BLOCKS):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        if i < len(VL_BLOCKS) - 1:
+            p.space_after = Pt(SZ_VL_SPACE_AFTER)
+        _run(p, label, SZ_VL_BODY, True, TEAL)
+        _run(p, body, SZ_VL_BODY, False, BODY)
+
+    warnings = ladder_guard(slide)
+
+    # Did somebody edit the copy? The slide is fixed, not per-deck, so it was
+    # measured against real Arial metrics once (see SZ_VL_BODY) rather than
+    # resized per deck. est_column() cannot be used here: it assumes a label on
+    # its own line, and this slide runs the bold label and the body in ONE
+    # paragraph, which is what keeps eight blocks on one slide.
+    used = sum(_est_lines(l + b_, SZ_VL_BODY, G_VL_BODY[2])
+               for l, b_ in VL_BLOCKS)
+    if used > VL_EST_LINES:
+        warnings.append(
+            "the visibility-ladder copy has grown: %d estimated lines against "
+            "the %d the measured copy scores. The slide fits at %dpt with "
+            "18.5pt to spare; measure it against Arial again before it ships"
+            % (used, VL_EST_LINES, SZ_VL_BODY))
+    return slide, warnings
+
+
 def move_slide_to(prs, index):
     """build_concept_banks.py's move: pull the appended slide into position."""
     lst = prs.slides._sldIdLst
@@ -672,6 +933,18 @@ def find_teacher_note(prs):
         if "teacher note" in t and "design of this cycle" in t:
             return i
         if NOTE_MARKER.lower() in t and PLACEHOLDER.lower() in t:
+            return i
+    return None
+
+
+def find_visibility_ladder(prs):
+    """Index of the visibility-ladder slide, or None. Idempotency for change 4."""
+    for i, s_ in enumerate(prs.slides):
+        t = norm(slide_text(s_))
+        # Both sides go through norm(): VL_TITLE carries an em-dash and norm()
+        # folds it to a hyphen, so an un-normalised comparison never matches
+        # and the insert stops being idempotent.
+        if VL_MARKER in t and norm(VL_TITLE).lower() in t.lower():
             return i
     return None
 
@@ -854,6 +1127,49 @@ def process_deck(row, exports, arc, args):
         rec["warnings"] += warns
         changed = True
 
+    # ---- change 4: the visibility-ladder slide -------------------------
+    # It goes immediately AFTER the teacher note, never at slide 2. The note
+    # declares the rung; this slide explains what a rung is. Read the other way
+    # round it is a glossary in front of a term nobody has met yet — and it
+    # would push the Teacher Prep slide off slide 2, which §2.0 fixes, and
+    # break every "slide N" cross-reference the front block already carries.
+    existing_vl = find_visibility_ladder(prs)
+    if existing_vl is not None:
+        rec["skipped"].append(
+            "visibility ladder: already present at slide %d" % (existing_vl + 1))
+    else:
+        note_idx = find_teacher_note(prs)
+        insert_at = (note_idx + 1) if note_idx is not None \
+            else teacher_front_matter_end(prs)
+        layout = list(prs.slides)[min(insert_at, len(prs.slides._sldIdLst) - 1)].slide_layout
+        for s_ in prs.slides:
+            if "teacher prep" in norm(slide_text(s_)).lower():
+                layout = s_.slide_layout
+                break
+        _slide, warns = build_visibility_ladder(
+            prs, layout, (note_idx + 1) if note_idx is not None else None)
+        if any("refuse" in w for w in warns):
+            rec["status"] = "REFUSED"
+            rec["skipped"] += warns
+            return rec
+        move_slide_to(prs, insert_at)
+        rec["applied"].append(
+            "visibility-ladder slide inserted at position %d, immediately after "
+            "the teacher note. Teacher-facing, marked 'do not project', and "
+            "excluded from every diagnostic count" % (insert_at + 1))
+        rec["warnings"] += warns
+        if note_idx is None:
+            rec["warnings"].append(
+                "visibility ladder placed in the front block with no teacher "
+                "note above it to explain — check the order by eye")
+        else:
+            rec["warnings"].append(
+                "every 'slide N' cross-reference below slide %d in this deck is "
+                "now off by one. deck_apply_changes does not renumber prose — "
+                "check the teacher note, the image credits and the speaker notes"
+                % (insert_at + 1))
+        changed = True
+
     if not changed:
         rec["status"] = "no change needed"
         return rec
@@ -909,8 +1225,9 @@ def write_report(records, audits, args, stamp):
     lines.append("")
     lines.append("## What this tool applies, flags, and refuses")
     lines.append("")
-    lines.append("APPLIES  the teacher note slide, and the relating prompt on a "
-                 "Concept Bank that only lists terms.")
+    lines.append("APPLIES  the teacher note slide, the visibility-ladder slide "
+                 "immediately after it, and the relating prompt on a Concept "
+                 "Bank that only lists terms.")
     lines.append("FLAGS    a move-1 Critical Aspect question carrying no "
                  "difference. The slide is not touched.")
     lines.append("REFUSES  a deck that fails the §13 format tokens, or whose "
@@ -1045,6 +1362,9 @@ def main(argv=None):
           ", ".join("%s=%d" % (k, counts[k]) for k in sorted(counts)))
     print("teacher notes planned/inserted: %d" %
           sum(1 for r in records if any("teacher note slide inserted" in a
+                                        for a in r["applied"])))
+    print("visibility-ladder slides planned/inserted: %d" %
+          sum(1 for r in records if any("visibility-ladder slide inserted" in a
                                         for a in r["applied"])))
     print("relating prompts planned/appended: %d" %
           sum(1 for r in records if any("relating prompt appended" in a

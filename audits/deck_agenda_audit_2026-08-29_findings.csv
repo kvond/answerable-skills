@@ -1,0 +1,186 @@
+tier,code,cycle,where,message
+ADVISORY,A-CYCLE-MULTI-DECK,Cycle 01,deck:Cycle 01,"2 distinct base decks share this cycle key, so only one could be rolled up: ▶ LIVE — Cycle 01 — Lab Safety (VT).pptx; ▶ LIVE — Cycle01_Day 1.pptx"
+ADVISORY,A-NO-LIVE-ID,Cycle 01,deck:Cycle 01,no row in decks_live_ids.csv — there is no import route for this deck ('▶ LIVE — Cycle 01 — Lab Safety (VT).pptx')
+ADVISORY,A-NOT-IN-INVENTORY,Cycle 12b,deck:Cycle 12b,'Cycle 12b — Asexual & Sexual Reproduction (VT deck).pptx' is not in deck_inventory_2026-08-29b.csv — its critical aspects could not be compared against the agenda topic
+ADVISORY,A-NO-LIVE-ID,Cycle 12b,deck:Cycle 12b,no row in decks_live_ids.csv — there is no import route for this deck ('Cycle 12b — Asexual & Sexual Reproduction (VT deck).pptx')
+HARD,H-DECK-MISSING,Cycle 01,Biology!G3:H3,scheduled meeting (1 of 2 / School Intro) 2026-08-31 — 'Schedules set up + science sheet' — has NO deck link
+HARD,H-DECK-MISSING,Cycle 01,Biology!G4:H4,scheduled meeting (2 of 2 / Class intro) 2026-09-02 — 'Look through jobs - interview form-self page' — has NO deck link
+HARD,H-LINK-EMPTY,Cycle 02,Biology!H6,student deck cell shows label text '🎞 Deck ↗' with no URL — the link looks live and goes nowhere
+ADVISORY,A-AGENDA-NO-DECK,Cycle 17,Biology!G71:H71,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-03 — 'Darwin and the Development of a Theory'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 17,Biology!G72:H72,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-05 — 'Using Fossil Evidence to Investigate Whale Evolution'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 18,Biology!G73:H73,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-10 — 'Using Fossil Evidence to Investigate Whale Evolution'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 18,Biology!G74:H74,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-12 — 'Natural Selection'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 18,Biology!G75:H75,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-14 — 'Natural Selection'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 18,Biology!G76:H76,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-17 — 'Natural Selection'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 18,Biology!G77:H77,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-19 — 'The Genetic Basis of Adaptation'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 19,Biology!G78:H78,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-24 — 'The Genetic Basis of Adaptation'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 19,Biology!G79:H79,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-26 — 'The Processes and Outcomes of Evolution'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 19,Biology!G80:H80,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-05-28 — 'The Processes and Outcomes of Evolution'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 20,Biology!G81:H81,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-06-02 — 'The Processes and Outcomes of Evolution'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 20,Biology!G82:H82,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-06-07 — 'Human Impact (Capstone)'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 20,Biology!G83:H83,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-06-09 — 'Human Impact (Capstone)'
+ADVISORY,A-AGENDA-NO-DECK,Cycle 20,Biology!G84:H84,no deck link; row is not yet a scheduled meeting (block='' phase='') 2027-06-11 — ''
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 01,BioAsList!F4,"Wk 01 'Introduction to Biology' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/open?id=1_DcK-YZWG5AFM7FLykNX71qNe8gP8EejhgnTJaXRQlA"
+ADVISORY,A-BIOLIST-VT-DRIFT,Cycle 01,BioAsList!F4/K4,Wk 01 'Introduction to Biology': visible VT link (1_DcK-YZWG5AFM7FLykNX71qNe8gP8EejhgnTJaXRQlA) and the _vtURL helper column (1HkyGoPNLN68dT8MBYTcWRBefOa1wlbCXbPfUuGxMxq4) name different decks
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 01,BioAsList!F4,"Wk 01 'Introduction to Biology' points at deck 1_DcK-YZWG5AFM7FLykNX71qNe8gP8EejhgnTJaXRQlA, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 02,BioAsList!F5,"Wk 02 'Ecosystems & Change' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/open?id=1aTfajRO2lX8DrC_oUFm6q3esbv4aABcwxYm8FT6Xh0o"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 02,BioAsList!F6,"Wk 03 'Intro to Energy' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/open?id=1aTfajRO2lX8DrC_oUFm6q3esbv4aABcwxYm8FT6Xh0o"
+ADVISORY,A-BIOLIST-VT-DRIFT,Cycle 02,BioAsList!F6/K6,Wk 03 'Intro to Energy': visible VT link (1aTfajRO2lX8DrC_oUFm6q3esbv4aABcwxYm8FT6Xh0o) and the _vtURL helper column (16_tL1KMCYRkpZb5UPargPeVRvVxE7_fU5l2sGHc7O9g) name different decks
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 03,BioAsList!F7,"Wk 04 'Energy Flow' points at deck 13RT17nQTZhNtQCiOu-cpeBeXrCDc71Zb9lKMc7_Gzjs, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 04,BioAsList!F8,"Wk 05 'Biogeochemical Cycles' points at deck 1dRdAXmX9u2L-0qKLeW-o9OwoMaaJsik74C9nhysu_GY, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 06,BioAsList!F10,"Wk 07 'Cellular Respiration' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1zhfptAZDoxYNYBHQAAWRv9nAtZgYJSeV/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 06,BioAsList!F10,"Wk 07 'Cellular Respiration' points at deck 1zhfptAZDoxYNYBHQAAWRv9nAtZgYJSeV, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 06,BioAsList!F11,"Wk 08 'Fermentation' points at deck 1EKjFh0ZgeOjEwatzXTbmNXcIXvx6UzP53KkTttmj_Yw, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 07,BioAsList!F12,"Wk 09 'Ecological Succession' points at deck 1nl_G0kH65BVa0Jnni0NKn32Y6EjgKXQkYaJA9vpugQM, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 07,BioAsList!F13,"Wk 10 'Population Ecology' points at deck 1JhfjicmaKUwJpG6_yzfPZkQ63XvgJ92Nhkm0eZV9dpU, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 08,BioAsList!F14,"Wk 11 'Intro to Cells' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1n_gDVHMbpzn2CPCG6xgP1gOZ4Drp9hVc/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 08,BioAsList!F14,"Wk 11 'Intro to Cells' points at deck 1n_gDVHMbpzn2CPCG6xgP1gOZ4Drp9hVc, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 08,BioAsList!F15,"Wk 12 'Cell Organelles' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1n_gDVHMbpzn2CPCG6xgP1gOZ4Drp9hVc/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 08,BioAsList!F15,"Wk 12 'Cell Organelles' points at deck 1n_gDVHMbpzn2CPCG6xgP1gOZ4Drp9hVc, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 09,BioAsList!F17,"Wk 14 'Cell Membrane' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1g0j8ImOZfuoEv5eeAWBPWfdn12tvmkNS/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 09,BioAsList!F17,"Wk 14 'Cell Membrane' points at deck 1g0j8ImOZfuoEv5eeAWBPWfdn12tvmkNS, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 09,BioAsList!F18,"Wk 15 'Cell Transport' points at deck 1XZ7F-K9hq1xt65xCHe8WhTxPnnUw2HMrTrT7AJmt2Eo, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 06e,BioAsList!F20,"Wk 17 'Cellular Respiration & Glycolysis' points at deck 10H4lgRBHqvSIOA_xWwXzxFA-un-UPfImGYr0IzZqEqY, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 11,BioAsList!F21,"Wk 18 'Cell Regulation & Cancer' points at deck 13yF57Wh7rYtp1jS1JJXTQUAlBVoEF6UFDRf-w72HuZk, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 11,BioAsList!F22,"Wk 19 'The Cell Cycle' points at deck 1jSojIg32NnqwkcAZAjQRNF232pqyJHszIzl27Zj7Ik0, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 12,BioAsList!F23,"Wk 20 'Asexual & Sexual Reproduction' points at deck 1rxqc_AjVRQWI3JvCJJkZybzXxU1oliBD, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 16,BioAsList!F24,"Wk 21 'Stem Cell Differentiation' points at deck 1gKBIQC0lyCG7SPhdZtg6WnAdkWjj8Eg11oGyfHHOV7s, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 13,BioAsList!F25,"Wk 22 'Introduction to Heredity' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1bAofwJw-zGbjt_7Qb8c2d6_kTMx8rzwz/view"
+ADVISORY,A-BIOLIST-VT-DRIFT,Cycle 13,BioAsList!F25/K25,Wk 22 'Introduction to Heredity': visible VT link (1bAofwJw-zGbjt_7Qb8c2d6_kTMx8rzwz) and the _vtURL helper column (1taMSu024ussGe1LwynV9D92JFFOfaaGv) name different decks
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 13,BioAsList!F25,"Wk 22 'Introduction to Heredity' points at deck 1bAofwJw-zGbjt_7Qb8c2d6_kTMx8rzwz, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 13,BioAsList!F26,"Wk 23 'Intro to Genetics & Mendel' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1taMSu024ussGe1LwynV9D92JFFOfaaGv/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 13,BioAsList!F26,"Wk 23 'Intro to Genetics & Mendel' points at deck 1taMSu024ussGe1LwynV9D92JFFOfaaGv, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 13,BioAsList!F27,"Wk 24 'Genetics Continued: Punnett Squares' points at deck 1CbRG_vbveTL9PvOUKFggJq11rXKrT81464_-Bc0V4Dk, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 13e,BioAsList!F28,"Wk 25 'Dihybrid Crosses' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1EV6VsLP0tcYX7QIRxpzU6u5tTD0qqovg/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 13e,BioAsList!F28,"Wk 25 'Dihybrid Crosses' points at deck 1EV6VsLP0tcYX7QIRxpzU6u5tTD0qqovg, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 14,BioAsList!F30,"Wk 27 'DNA Replication' points at deck 1MMFd6ETm_DZdRvKSaCyLIpf0CSe2CEAWqNK8hF2qrzg, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 12,BioAsList!F31,"Wk 28 'Meiosis and Sexual Reproduction' points at deck 1rxqc_AjVRQWI3JvCJJkZybzXxU1oliBD, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 15,BioAsList!F33,"Wk 30 'Genes and Chromosomes' points at deck 1sjUJpmMkOTl7pRpFI7pL67SZiArG5p_438hIVKHYDog, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 15,BioAsList!F34,"Wk 31 'Protein Synthesis: Transcription and Translation' points at deck 1CEzWlsOT2-5TYh7N5iPJv_OJ6GQCptUZ0H3PwTwabCo, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 16,BioAsList!F35,"Wk 32 'Cell Differentiation and Gene Expression' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/158ZrxKmAsLWB7OnAP6b5_8gKGLkGSI_d/view"
+ADVISORY,A-BIOLIST-VT-DRIFT,Cycle 16,BioAsList!F35/K35,Wk 32 'Cell Differentiation and Gene Expression': visible VT link (158ZrxKmAsLWB7OnAP6b5_8gKGLkGSI_d) and the _vtURL helper column (19AHpmEJe_gWG2gOrUrCeZk5V_lvxOK8f) name different decks
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 16,BioAsList!F35,"Wk 32 'Cell Differentiation and Gene Expression' points at deck 158ZrxKmAsLWB7OnAP6b5_8gKGLkGSI_d, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 17,BioAsList!F36,"Wk 33 'Darwin and the Development of a Theory' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/158ZrxKmAsLWB7OnAP6b5_8gKGLkGSI_d/view"
+ADVISORY,A-BIOLIST-VT-DRIFT,Cycle 17,BioAsList!F36/K36,Wk 33 'Darwin and the Development of a Theory': visible VT link (158ZrxKmAsLWB7OnAP6b5_8gKGLkGSI_d) and the _vtURL helper column (19AHpmEJe_gWG2gOrUrCeZk5V_lvxOK8f) name different decks
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 17,BioAsList!F36,"Wk 33 'Darwin and the Development of a Theory' points at deck 158ZrxKmAsLWB7OnAP6b5_8gKGLkGSI_d, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 17,BioAsList!F37,"Wk 34 'Using Fossil Evidence to Investigate Whale Evolution' points at deck 1nOmkJjqw2hPTb_4TQplvWtt8kbMPFtQvlgJ-ej0p-lI, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 18,BioAsList!F38,"Wk 35 'Natural Selection' points at deck 1dOCoNeD99kcN9U89FfNee3KKkJw-8bJsxXE9HGQkgl4, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 18,BioAsList!F39,"Wk 36 'The Genetic Basis of Adaptation' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1a17iweYkbESLbbebVQ-3hoF3eMvnj5vn/view"
+ADVISORY,A-BIOLIST-VT-DRIFT,Cycle 18,BioAsList!F39/K39,Wk 36 'The Genetic Basis of Adaptation': visible VT link (1a17iweYkbESLbbebVQ-3hoF3eMvnj5vn) and the _vtURL helper column (1RBHGbts0EJNNXoK5E_tC6a45c0bM6G8P) name different decks
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 18,BioAsList!F39,"Wk 36 'The Genetic Basis of Adaptation' points at deck 1a17iweYkbESLbbebVQ-3hoF3eMvnj5vn, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 19,BioAsList!F40,"Wk 37 'The Processes and Outcomes of Evolution' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1a17iweYkbESLbbebVQ-3hoF3eMvnj5vn/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 19,BioAsList!F40,"Wk 37 'The Processes and Outcomes of Evolution' points at deck 1a17iweYkbESLbbebVQ-3hoF3eMvnj5vn, which the dated Biology tab never uses"
+ADVISORY,A-BIOLIST-FILEFORM,Cycle 20,BioAsList!F41,"Wk 38 'Human Impact (Capstone)' VT link is a Drive file link, not presentation/d — cannot be /copy distributed: https://drive.google.com/file/d/1RBHGbts0EJNNXoK5E_tC6a45c0bM6G8P/view"
+ADVISORY,A-BIOLIST-ORPHAN,Cycle 20,BioAsList!F41,"Wk 38 'Human Impact (Capstone)' points at deck 1RBHGbts0EJNNXoK5E_tC6a45c0bM6G8P, which the dated Biology tab never uses"
+ADVISORY,A-ID-UNKNOWN,Cycle 16,Biology!G/H,deck id 11xtdivdeQ_j_JK3Cp2nHCt0wZ5veL5CNF22zxnQiJ1E is in neither decks_live_ids.csv nor any deck on disk; used on 1 row(s): r68 'Cell Differentiation and Gene Expr'
+ADVISORY,A-ID-UNKNOWN,Cycle 03,Biology!G/H,deck id 1B40j2p6MtkA-Z_sWDKOUIBpBPHuI0LolDSm9bY8XXQs is in neither decks_live_ids.csv nor any deck on disk; used on 1 row(s): r10 'Intro to Energy'
+ADVISORY,A-ID-UNKNOWN,Cycle 06e,Biology!G/H,deck id 1CzypbmFAouMpSl-XRAhQp-cdeXbzpVLOQCqMJkigeUw is in neither decks_live_ids.csv nor any deck on disk; used on 1 row(s): r36 'Semester 1 buffer (Year Grid row W'
+ADVISORY,A-ID-UNKNOWN,Cycle 17,Biology!G/H,deck id 1GG7e8GszVG4DS0yb51sHsgsnafnwoFMrT7CQcsyBaCk is in neither decks_live_ids.csv nor any deck on disk; used on 1 row(s): r69 'Cell Differentiation and Gene Expr'
+ADVISORY,A-ID-UNKNOWN,Cycle 02,Biology!G/H,deck id 1WndV0isfYQzBgk5vjC3RRJfEXB9dz16vlF4F-ru9_M4 is in neither decks_live_ids.csv nor any deck on disk; used on 1 row(s): r5 'Lab Safety + comic + train jobs'
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 02,Biology!D7,topic 'Ecosystems & Change' matches the deck TITLE but none of Cycle 02's critical aspects ('Energy flow through trophic levels | Symbiosis and species relationshi')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 04,Biology!C11,row is labelled C04 but links to Cycle 03 ('▶ LIVE — Cycle 03 — Energy Flow & Trophic Pyramids')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 05,Biology!C14,row is labelled C05 but links to Cycle 04 ('▶ LIVE — Cycle 04 — Cycles of Matter_ The Carbon Cycle')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 05,Biology!D15,"topic 'Photosynthesis' matches the deck TITLE but none of Cycle 05's critical aspects (""Light energy becomes chemical energy in glucose | A plant's material c"")"
+ADVISORY,A-CYCLE-MISMATCH,Cycle 06,Biology!C16,row is labelled C06 but links to Cycle 05 ('▶ LIVE — Cycle 05 — Photosynthesis')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 06,Biology!D16,"topic 'Photosynthesis' matches the deck TITLE but none of Cycle 05's critical aspects (""Light energy becomes chemical energy in glucose | A plant's material c"")"
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 06,Biology!D17,topic 'Cellular Respiration' matches the deck TITLE but none of Cycle 06's critical aspects ('Releasing the energy in glucose | Oxygen and how much ATP you get')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 06,Biology!D18,topic 'Cellular Respiration' matches the deck TITLE but none of Cycle 06's critical aspects ('Releasing the energy in glucose | Oxygen and how much ATP you get')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 06,Biology!D19,topic 'Fermentation' matches the deck TITLE but none of Cycle 06's critical aspects ('Releasing the energy in glucose | Oxygen and how much ATP you get')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 07,Biology!C20,row is labelled C07 but links to Cycle 06 ('▶ LIVE — Cycle 06 — Cellular Respiration & Fermentation')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 07,Biology!D20,topic 'Fermentation' matches the deck TITLE but none of Cycle 06's critical aspects ('Releasing the energy in glucose | Oxygen and how much ATP you get')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 07,Biology!D24,topic 'Population Ecology' matches the deck TITLE but none of Cycle 07a's critical aspects ('Why growth bends — J vs S | What sets carrying capacity')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 08,Biology!C25,row is labelled C08 but links to Cycle 07a ('▶ LIVE — Cycle 07a — Population Ecology')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 08,Biology!D25,topic 'Population Ecology' matches the deck TITLE but none of Cycle 07a's critical aspects ('Why growth bends — J vs S | What sets carrying capacity')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 09,Biology!C29,row is labelled C09 but links to Cycle 08 ('▶ LIVE — Cycle 08 — Cells & Organelles')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 09,Biology!D30,topic 'Cell Membrane' matches the deck TITLE but none of Cycle 09's critical aspects ('Selective permeability | Bilayer structure')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 09,Biology!D31,topic 'Cell Membrane' matches the deck TITLE but none of Cycle 09's critical aspects ('Selective permeability | Bilayer structure')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 09,Biology!D32,topic 'Cell Transport' matches the deck TITLE but none of Cycle 09's critical aspects ('Selective permeability | Bilayer structure')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 10,Biology!C33,row is labelled C10 but links to Cycle 09 ('▶ LIVE — Cycle 09 (review) — Cell Membrane & Transport')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 10,Biology!D33,topic 'Cell Transport' matches the deck TITLE but none of Cycle 09's critical aspects ('Selective permeability | Bilayer structure')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 06e,Biology!D37,topic 'Cellular Respiration & Glycolysis' matches the deck TITLE but none of Cycle 06's critical aspects ('Releasing the energy in glucose | Oxygen and how much ATP you get')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 06e,Biology!D38,topic 'Cellular Respiration & Glycolysis' matches the deck TITLE but none of Cycle 06's critical aspects ('Releasing the energy in glucose | Oxygen and how much ATP you get')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 11,Biology!C39,row is labelled C11 but links to Cycle 06 ('▶ LIVE — Cycle 06 — Cellular Respiration & Fermentation')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 11,Biology!D39,topic 'Cellular Respiration & Glycolysis' matches the deck TITLE but none of Cycle 06's critical aspects ('Releasing the energy in glucose | Oxygen and how much ATP you get')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 11,Biology!D42,topic 'The Cell Cycle' matches the deck TITLE but none of Cycle 11's critical aspects ('Checkpoints control the cycle | Cancer = regulation failure')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 12,Biology!C43,row is labelled C12 but links to Cycle 11 ('▶ LIVE — Cycle 11 — The Cell Cycle to Cancer')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 12,Biology!D43,topic 'The Cell Cycle' matches the deck TITLE but none of Cycle 11's critical aspects ('Checkpoints control the cycle | Cancer = regulation failure')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 16,Biology!C44,"row is labelled C16 but links to Cycle 12 ('▶ LIVE — Cycle 12 — The Process of Meiosis (VT deck, reb')"
+ADVISORY,A-TOPIC-DRIFT,Cycle 16,Biology!D44,"topic 'Asexual & Sexual Reproduction' shares no content word with Cycle 12 ('▶ LIVE — Cycle 12 — The Process of Meiosis (VT d') or its critical aspects ('Two divisions, two different separations | One diploid cell becomes fo')"
+ADVISORY,A-CYCLE-MISMATCH,Cycle 13,Biology!C47,row is labelled C13 but links to Cycle 16a ('▶ LIVE — Cycle 16a — Stem Cells and Differentiation')
+ADVISORY,A-TOPIC-DRIFT,Cycle 13,Biology!D48,topic 'Introduction to Heredity' shares no content word with Cycle 13 ('▶ LIVE — Cycle 13— Mendelian Genetics') or its critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-DRIFT,Cycle 13,Biology!D49,topic 'Introduction to Heredity' shares no content word with Cycle 13 ('▶ LIVE — Cycle 13— Mendelian Genetics') or its critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 13,Biology!D50,topic 'Intro to Genetics & Mendel' matches the deck TITLE but none of Cycle 13's critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 13,Biology!D51,topic 'Intro to Genetics & Mendel' matches the deck TITLE but none of Cycle 13's critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 13,Biology!D52,topic 'Genetics Continued: Punnett Squares' matches the deck TITLE but none of Cycle 13's critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 13e,Biology!D53,topic 'Genetics Continued: Punnett Squares' matches the deck TITLE but none of Cycle 13's critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-DRIFT,Cycle 13e,Biology!D54,topic 'Dihybrid Crosses' shares no content word with Cycle 13 ('▶ LIVE — Cycle 13— Mendelian Genetics') or its critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-DRIFT,Cycle 13e,Biology!D55,topic 'Dihybrid Crosses' shares no content word with Cycle 13 ('▶ LIVE — Cycle 13— Mendelian Genetics') or its critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 14,Biology!C56,row is labelled C14 but links to Cycle 13 ('▶ LIVE — Cycle 13— Mendelian Genetics')
+ADVISORY,A-TOPIC-DRIFT,Cycle 14,Biology!D56,topic 'Dihybrid Crosses' shares no content word with Cycle 13 ('▶ LIVE — Cycle 13— Mendelian Genetics') or its critical aspects ('Genotype vs. phenotype | One allele per parent (chance)')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 14,Biology!D57,topic 'DNA Structure' matches the deck TITLE but none of Cycle 14's critical aspects ('Each strand is a template | Semiconservative replication')
+ADVISORY,A-CYCLE-MISMATCH,Cycle 12,Biology!C60,row is labelled C12 but links to Cycle 14 ('▶ LIVE — Cycle 14 — DNA Structure & Replication')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 12,Biology!D61,"topic 'Meiosis and Sexual Reproduction' matches the deck TITLE but none of Cycle 12's critical aspects ('Two divisions, two different separations | One diploid cell becomes fo')"
+ADVISORY,A-CYCLE-MISMATCH,Cycle 15,Biology!C62,"row is labelled C15 but links to Cycle 12 ('▶ LIVE — Cycle 12 — The Process of Meiosis (VT deck, reb')"
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 15,Biology!D62,"topic 'Meiosis and Sexual Reproduction' matches the deck TITLE but none of Cycle 12's critical aspects ('Two divisions, two different separations | One diploid cell becomes fo')"
+ADVISORY,A-CYCLE-MISMATCH,Cycle 16,Biology!C67,row is labelled C16 but links to Cycle 15b ('▶ LIVE — Cycle 15b — Protein Synthesis')
+ADVISORY,A-TOPIC-ASPECT-DRIFT,Cycle 17,Biology!D70,topic 'Darwin and the Development of a Theory' matches the deck TITLE but none of Cycle 17's critical aspects ('Fossils record change over time | Independent lines of evidence')
+ADVISORY,A-LATER-NEW-DECK,Cycle 04,Biology!G11,"meeting 2 of 3 issues a NEW deck (14LaNgK7spPJ..., Cycle 03) — only a '1 of N' row should. 2026-09-28 — 'Energy Flow'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 04,Biology!G12,"meeting 3 of 3 issues a NEW deck (1Le0Qf8JEfer..., Cycle 04) — only a '1 of N' row should. 2026-09-30 — 'Biogeochemical Cycles'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 06,Biology!G17,"meeting 3 of 4 issues a NEW deck (1T_T_NqLy3sp..., Cycle 06) — only a '1 of N' row should. 2026-10-14 — 'Cellular Respiration'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 07,Biology!G21,"meeting 3 of 3 issues a NEW deck (1Q5rshN0etSw..., Cycle 07b) — only a '1 of N' row should. 2026-10-28 — 'Ecological Succession'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 07,Biology!G24,"meeting 3 of 3 issues a NEW deck (1OL8oNP1dbgq..., Cycle 07a) — only a '1 of N' row should. 2026-11-04 — 'Population Ecology'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 10,Biology!G34,"meeting 2 of 2 issues a NEW deck (189YlTOuF2K9..., Cycle 10) — only a '1 of N' row should. 2026-12-16 — 'Enzymes'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 06e,Biology!G36,"meeting 2 of 3 issues a NEW deck (1CzypbmFAouM..., unknown id) — only a '1 of N' row should. 2027-01-04 — 'Semester 1 buffer (Year Grid row Wk 16b)'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 06e,Biology!G37,"meeting 3 of 3 issues a NEW deck (1T_T_NqLy3sp..., Cycle 06) — only a '1 of N' row should. 2027-01-06 — 'Cellular Respiration & Glycolysis'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 11,Biology!G40,"meeting 3 of 4 issues a NEW deck (1QP67RSEujgC..., Cycle 11) — only a '1 of N' row should. 2027-01-13 — 'Cell Regulation & Cancer'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 16,Biology!G44,"meeting 3 of 4 issues a NEW deck (1Yo1TK_OiCj8..., Cycle 12) — only a '1 of N' row should. 2027-02-01 — 'Asexual & Sexual Reproduction'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 16,Biology!G45,"meeting 4 of 4 issues a NEW deck (1lAtQxV4ofC6..., Cycle 16a) — only a '1 of N' row should. 2027-02-03 — 'Stem Cell Differentiation'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 13,Biology!G48,"meeting 3 of 3 issues a NEW deck (1tCPGT4_4CPt..., Cycle 13) — only a '1 of N' row should. 2027-02-10 — 'Introduction to Heredity'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 12,Biology!G61,"meeting 3 of 3 issues a NEW deck (1Yo1TK_OiCj8..., Cycle 12) — only a '1 of N' row should. 2027-03-24 — 'Meiosis and Sexual Reproduction'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 15,Biology!G63,"meeting 2 of 4 issues a NEW deck (1axyIkBPxpsV..., Cycle 15a) — only a '1 of N' row should. 2027-04-07 — 'Genes and Chromosomes'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 15,Biology!G65,"meeting 4 of 4 issues a NEW deck (1QUnwQX2DbdV..., Cycle 15b) — only a '1 of N' row should. 2027-04-14 — 'Protein Synthesis: Transcription and Translation'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 16,Biology!G68,"meeting 3 of 3 issues a NEW deck (11xtdivdeQ_j..., unknown id) — only a '1 of N' row should. 2027-04-21 — 'Cell Differentiation and Gene Expression'"
+ADVISORY,A-LATER-NEW-DECK,Cycle 17,Biology!G70,"meeting 2 of 2 issues a NEW deck (1XbVqhaQfJuE..., Cycle 17) — only a '1 of N' row should. 2027-04-28 — 'Darwin and the Development of a Theory'"
+ADVISORY,A-DAY1-NO-DECK,Cycle 01,Biology!G3:H3,first meeting of a 2-meeting cycle (1 of 2) issues no deck: 2026-08-31 — 'Schedules set up + science sheet'
+ADVISORY,A-DUP-DAY1,Cycle 06,Biology!H38,"NEEDS ITS OWN DECK — C06e 'Cellular Respiration & Glycolysis' (2027-01-08) reuses the day-1 deck of C06 'Fermentation' (2026-10-21, canonical). Reused deck: Cycle 06 / 1T_T_NqLy3spEa..."
+ADVISORY,A-DUP-DAY1,Cycle 09,Biology!H33,"NEEDS ITS OWN DECK — C10 'Cell Transport' (2026-12-14) reuses the day-1 deck of C09 'Cell Membrane' (2026-12-02, canonical). Reused deck: Cycle 09 / 1RukmpUkUEzi2Y..."
+ADVISORY,A-DUP-DAY1,Cycle 13,Biology!H53,"NEEDS ITS OWN DECK — C13e 'Genetics Continued: Punnett Squares' (2027-03-01) reuses the day-1 deck of C13 'Introduction to Heredity' (2027-02-17, canonical). Reused deck: Cycle 13 / 1tCPGT4_4CPtHf..."
+ADVISORY,A-NO-DAY1,,Biology!G/H,deck 11xtdivdeQ_j_J... (id unknown) never appears on a '1 of N' row — it is only ever issued mid-cycle: r68 3 of 3
+ADVISORY,A-NO-DAY1,Cycle 03,Biology!G/H,deck Cycle 03 (▶ LIVE — Cycle 03 — Energy Flow & Trophic Py) never appears on a '1 of N' row — it is only ever issued mid-cycle: r11 2 of 3
+ADVISORY,A-NO-DAY1,,Biology!G/H,deck 1CzypbmFAouMpS... (id unknown) never appears on a '1 of N' row — it is only ever issued mid-cycle: r36 2 of 3
+ADVISORY,A-NO-DAY1,Cycle 07a,Biology!G/H,"deck Cycle 07a (▶ LIVE — Cycle 07a — Population Ecology) never appears on a '1 of N' row — it is only ever issued mid-cycle: r24 3 of 3, r25 option"
+ADVISORY,A-NO-DAY1,Cycle 17,Biology!G/H,deck Cycle 17 (▶ LIVE — Cycle 17 — Darwin & Evidence of Evo) never appears on a '1 of N' row — it is only ever issued mid-cycle: r70 2 of 2
+ADVISORY,A-NO-DAY1,Cycle 15a,Biology!G/H,"deck Cycle 15a (▶ LIVE — Cycle 15a — Genes & Chromosomes) never appears on a '1 of N' row — it is only ever issued mid-cycle: r63 2 of 4, r64 3 of 4"
+ADVISORY,A-DECK-NO-AGENDA,Cycle 01,deck:Cycle 01,built but never scheduled — no agenda row links to '▶ LIVE — Cycle 01 — Lab Safety (VT).pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-DECK-NO-AGENDA,Cycle 12b,deck:Cycle 12b,built but never scheduled — no agenda row links to 'Cycle 12b — Asexual & Sexual Reproduction (VT deck).pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-DECK-NO-AGENDA,Cycle 16b,deck:Cycle 16b,built but never scheduled — no agenda row links to '▶ LIVE — Cycle 16b — Genetic Mutations.pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-DECK-NO-AGENDA,Cycle 16c,deck:Cycle 16c,built but never scheduled — no agenda row links to '▶ LIVE — Cycle 16c — Mutations and Genetic Disorders.pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-DECK-NO-AGENDA,Cycle 16d,deck:Cycle 16d,built but never scheduled — no agenda row links to '▶ LIVE — Cycle 16d — Biotechnology.pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-DECK-NO-AGENDA,Cycle 18,deck:Cycle 18,built but never scheduled — no agenda row links to '▶ LIVE — Cycle 18 — Natural Selection & Adaptation.pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-DECK-NO-AGENDA,Cycle 19,deck:Cycle 19,built but never scheduled — no agenda row links to '▶ LIVE — Cycle 19 — Speciation & Biodiversity.pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-DECK-NO-AGENDA,Cycle 20,deck:Cycle 20,built but never scheduled — no agenda row links to '▶ LIVE — Cycle 20 — Human Impact Capstone.pptx' (note: 5 agenda deck id(s) could not be resolved — this deck may in fact be scheduled under an id that is missing from decks_live_ids.csv)
+ADVISORY,A-LINT-HARD,Cycle 01,deck:Cycle 01,"deck_lint says DOES NOT SHIP — 7 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-FORMAT-HEX, H-FORMAT-SCALE, H-LINKS-SLIDE, H-TEACHER-NOTE, H-TEACHER-PREP (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 02,deck:Cycle 02,"deck_lint says DOES NOT SHIP — 4 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE, H-TEACHER-PREP, H-VOCAB (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 03,deck:Cycle 03,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 04,deck:Cycle 04,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE, H-TEACHER-PREP (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 05,deck:Cycle 05,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 06,deck:Cycle 06,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 07a,deck:Cycle 07a,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 07b,deck:Cycle 07b,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 08,deck:Cycle 08,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 09,deck:Cycle 09,"deck_lint says DOES NOT SHIP — 5 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-FORMAT-HEX, H-FORMAT-SCALE, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 10,deck:Cycle 10,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 11,deck:Cycle 11,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 12,deck:Cycle 12,"deck_lint says DOES NOT SHIP — 5 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-FORMAT-SCALE, H-LINKS-SLIDE, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 13,deck:Cycle 13,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 14,deck:Cycle 14,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-FONT, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 15a,deck:Cycle 15a,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 15b,deck:Cycle 15b,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 16a,deck:Cycle 16a,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-HEX, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 16b,deck:Cycle 16b,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-HEX, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 16c,deck:Cycle 16c,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-HEX, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 16d,deck:Cycle 16d,"deck_lint says DOES NOT SHIP — 3 hard finding(s): H-CONCEPT-BANK, H-FORMAT-HEX, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 17,deck:Cycle 17,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 18,deck:Cycle 18,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 19,deck:Cycle 19,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"
+ADVISORY,A-LINT-HARD,Cycle 20,deck:Cycle 20,"deck_lint says DOES NOT SHIP — 2 hard finding(s): H-CONCEPT-BANK, H-TEACHER-NOTE (run deck_lint.py for detail; it owns these)"

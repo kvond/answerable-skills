@@ -66,6 +66,9 @@ NEW COLUMNS (2026-08-29 spec)
                               with design intent buried in speaker notes.
   teacher_note_declares       which of the seven required declarations the
                               teacher note makes (spec §Teacher note slide)
+  visibility_ladder_slide     present/absent. The one teacher-facing slide that
+                              explains the five rungs the note's seventh
+                              declaration names. Never projected
   visibility_rung_declared    yes/no, plus the declared rung text
   simultaneity_declared       synchronic / diachronic / both / none
   what_if_present             yes/no
@@ -186,7 +189,8 @@ ADV2_TWO_CASE = re.compile(
     r"|\bboth\b", re.I | re.S)
 
 ADV2_EXCLUDED_TYPES = {
-    "Teacher reference", "Teacher Prep", "Teacher note", "Links slide",
+    "Teacher reference", "Teacher Prep", "Teacher note", "Visibility ladder",
+    "Links slide",
     "Image credits", "Closing checklist", "Relates to me", "Concept Bank",
     "Day divider", "REMOVED: Then and Now", "REMOVED: Turn answer into draft",
     "REMOVED: teacher slide-type list",
@@ -231,6 +235,12 @@ ADV2_PATTERNS = OrderedDict([
 # ---------------------------------------------------------------------------
 
 RE_TEACHER_NOTE_SLIDE = re.compile(r"\bTEACHER NOTE\b", re.I)
+# The visibility-ladder slide (added 2026-08-29): one teacher-facing slide,
+# never projected, that explains the five rungs the teacher note's seventh
+# declaration names. Uppercase and case-SENSITIVE, on the model of the
+# "CONCEPT BANK" test below — the two words also occur in ordinary prose, and
+# the kicker is the only place they occur in capitals.
+RE_VISIBILITY_LADDER_SLIDE = re.compile(r"\bVISIBILITY LADDER\b")
 # Scoped deliberately. "Teacher prep" also appears as a cross-reference on the
 # links slide ("Teacher prep (Slide 2) — ..."), and "TEACHER REFERENCE" appears
 # inside the retired teacher slide-type list. Matching either loosely swallows
@@ -423,6 +433,12 @@ def type_slide(idx, text, notes, seen_aspects):
     # "TEACHER REFERENCE", so testing the generic banner first swallows it.
     if RE_TEACHER_NOTE_SLIDE.search(text) and not RE_TEACHER_PREP.search(text):
         return "Teacher note", ca
+    # After the teacher note and before Teacher Prep / Teacher reference: this
+    # slide's kicker also opens "TEACHER REFERENCE", so the generic banner test
+    # further down would swallow it, and a note that names the ladder in prose
+    # is still a note.
+    if RE_VISIBILITY_LADDER_SLIDE.search(text):
+        return "Visibility ladder", ca
     if RE_TEACHER_PREP.search(text) or title.strip().lower() == "teacher prep":
         return "Teacher Prep", ca
     if idx == 1 or "teacher reference" in first_line(text).lower():
@@ -621,6 +637,10 @@ def inventory_deck(path, folder):
             if any(re.search(p, hay, re.I) for p in pats):
                 tn_declares.append(name)
 
+    # -- NEW: visibility-ladder slide -------------------------------------
+    vl_idx = [i for i, t in enumerate(types) if t == "Visibility ladder"]
+    visibility_ladder_slide = "present" if vl_idx else "absent"
+
     # -- NEW: visibility rung ---------------------------------------------
     vm = RE_VISIBILITY.search(everything)
     visibility_declared = "yes" if vm else "no"
@@ -716,6 +736,7 @@ def inventory_deck(path, folder):
         ("teacher_note_slide", teacher_note_slide),
         ("teacher_note_declares", "; ".join(tn_declares)),
         ("teacher_note_declares_count", "%d/7" % len(tn_declares)),
+        ("visibility_ladder_slide", visibility_ladder_slide),
         ("visibility_rung_declared", visibility_declared),
         ("visibility_rung_text", visibility_text),
         ("simultaneity_declared", simultaneity),
@@ -828,12 +849,13 @@ def write_markdown(rows, path, root, csv_path):
     A("")
     A("## The 2026-08-29 columns")
     A("")
-    A("| Deck | Teacher note | Declares | Visibility rung | Simultaneity | What-if | individual+written | Concept Bank | \"beat\" | NGSS |")
-    A("|---|---|---|---|---|---|---|---|---|---|")
+    A("| Deck | Teacher note | Declares | Ladder slide | Visibility rung | Simultaneity | What-if | individual+written | Concept Bank | \"beat\" | NGSS |")
+    A("|---|---|---|---|---|---|---|---|---|---|---|")
     for r in sorted(live, key=lambda r: cycle_sort_key(r["cycle"])):
-        A("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+        A("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
             deck_label(r)[:40], r["teacher_note_slide"],
-            r["teacher_note_declares_count"], r["visibility_rung_declared"],
+            r["teacher_note_declares_count"], r["visibility_ladder_slide"],
+            r["visibility_rung_declared"],
             r["simultaneity_declared"], r["what_if_present"],
             r["what_if_individual_written"], r["concept_bank_relates"],
             r["forbidden_vocab_beat"], r["ngss_codes"] or "—"))
@@ -852,6 +874,16 @@ def write_markdown(rows, path, root, csv_path):
     have = [r for r in live if r["teacher_note_slide"] == "present"]
     A("%d of %d LIVE decks carry a one-slide teacher note. The seven declarations "
       "are checked only where one exists." % (len(have), len(live)))
+    A("")
+    A("### The visibility-ladder slide (added 2026-08-29)")
+    A("")
+    vl_have = [r for r in live if r["visibility_ladder_slide"] == "present"]
+    A("%d of %d LIVE decks carry the one teacher-facing slide that explains the "
+      "five rungs. It is never projected, it is excluded from every diagnostic "
+      "count, and its absence is an ADVISORY in deck_lint.py, never a hard "
+      "failure — the slide was invented on 2026-08-29 and a rule that fails "
+      "every deck in the arc gets ignored inside a week."
+      % (len(vl_have), len(live)))
     A("")
     A("### Visibility and simultaneity")
     A("")

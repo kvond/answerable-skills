@@ -239,6 +239,83 @@ and added to the §7.1 diagnostic-count exclusion list in both scripts in one pa
 the slide asks the student nothing and must not be counted. Not built until she
 says the token.]
 
+### 2.0b The visibility-ladder slide (added 2026-08-29)
+
+**One slide, and it sits immediately after the teacher note.** The note declares
+this cycle's rung. This slide says what the rungs are. Read the other way round it
+is a glossary standing in front of a term nobody has met yet.
+
+[Katherine asked for slide 2, and it is one line to move — move it if you want it
+there. Two things argue for the position after the note. §2.0 fixes slide 2 as
+Teacher Prep, which is the slide you open the night before to buy things, and a
+theory slide in front of it delays the only actionable slide in the front block.
+And Teacher Prep already points at "slide 3" for the rung: put the ladder at 2 and
+that reference is wrong the moment it is inserted. Placed after the note, the
+declaration is read first and this slide answers it.]
+
+**It is teacher-facing and it is never projected.** Its kicker carries the string
+`do not project`, which is in `NON_DIAGNOSTIC` in `deck_lint.py` and in
+`NON_DIAGNOSTIC_MARKERS` in the grader — §7.1. Both tuples are tested *before* the
+four diagnostic classifiers, so the slide cannot inflate a diagnostic count.
+Confirm that on every build: the diagnostic count must not move when this slide
+goes in.
+
+**What it carries.** All five rungs, each with what you actually do and the
+observable thing that opens the next one. Rung 3 gets the longest block on the
+slide, because it is the rung that does the work and the one no PD teaches. Then
+descent — drop a rung and do not announce that you have — and the fact that group
+work is a visibility *reducer* and not a rung at all, which is why the What if is
+written individually. Last, the per-move ceilings, so you know where cold call is
+safe.
+
+**The marker-string precaution, and it is not theoretical.** The slide has to name
+the moves, and two of those names are unique slide-type markers (§7). `deck_lint.py`,
+`extract_and_grade.py` and the teacher prompts match those strings anywhere in the
+deck, case-insensitively. Writing "Pattern Break" plainly makes this deck count two
+Pattern Breaks where it has one. The §7.1 exclusion tuple saves the linter's own
+count and does **not** save the raw string count that §11 check 3 runs. So every
+move name on this slide is written in a form with no marker in it —
+`Pattern-Break`, `Build-a-Rule`, `What-if`, `3-Tier Question`, and
+`Critical Aspect question` with no colon after "aspect". A hyphen reads identically
+to a person and is invisible to the matchers. Count the markers before and after
+you add the slide. Every count must be unchanged.
+
+**Building it.** `scripts/deck_apply_changes.py` holds the copy in `VL_BLOCKS` and
+builds it in `build_visibility_ladder()`. Import that; do not retype the wording
+into a deck build script. Two copies of the same paragraph that have to stay in
+sync is the failure §7.1a is about, one level down. The insert is idempotent and
+will not double-insert.
+
+**Format.** Arial, 11pt body, one column at x 548640, y 1554480, w 8046720,
+h 5120640 — both y and h are §13.3 tokens. Bold teal `028090` labels running into
+body black `111111` in the same paragraph, 3pt after each block. 11pt and not 12:
+the copy is 27 lines of Arial 11 in that box, which is 377.4pt of the 396.0pt the
+box holds. At 12pt it is 31 lines and runs off the bottom of the slide. Measure it
+against the box. Do not guess, and do not trust the crude estimator in
+`deck_apply_changes.py` — it reads two lines high and is there to catch an edit,
+not to certify a fit.
+
+**Renumbering.** Inserting a slide in the front block moves every slide below it by
+one, and the decks in this arc carry slide numbers in prose: the teacher note points
+at its own coordination structure, the image credits point at the slides that need
+images, and a speaker note points at the What if. `build_12b.py` renumbers all of
+them in the same pass. `deck_apply_changes.py` does not — it emits a warning
+instead, because rewriting a teacher's prose mechanically is how you destroy a
+sentence nobody read. Fix them by hand, then check them against the render.
+
+**Its absence is an ADVISORY, never a hard failure.** `deck_lint.py` reports
+`A-VIS-LADDER`. The slide was invented on 2026-08-29 and no shipped deck in the arc
+carries one, so a hard rule here would fail every deck on its first run — which is
+the whole reason the linter has two tiers.
+
+[One thing that is Katherine's call and is not settled here: whether a teacher who
+already knows the ladder should get the slide at all. It is deletable in one action
+like the note, and the speaker note says so. The argument for shipping it to
+everyone is the same as the argument for the note — the person who needs it is the
+person who does not know she needs it.]
+
+---
+
 ### 2.1 The block for each critical aspect
 
 1. Critical Aspect question
@@ -899,6 +976,13 @@ Katherine, and do not delete anything — both folders are marked "do not delete
 **Matching is case-insensitive substring matching.** An entry must be lowercase,
 and it must be a string that actually appears on the slide.
 
+**Two slides now ride on the `do not project` entry** (2026-08-29): the teacher
+note, §2.0a, and the visibility-ladder slide, §2.0b. Neither is scored and neither
+may be counted. That entry is the only thing keeping them out of the diagnostic
+count, so a build that drops the kicker, or paraphrases it to "not for projection",
+silently adds two diagnostic slides to the deck. `deck_lint.py` checks for that on
+the ladder slide and reports `A-VIS-LADDER` if the string has gone.
+
 **The Concept Bank goes on that list.** Add the entry `"concept bank"` — lowercase,
 no colon. One entry covers both slides where a deck carries two, because the kicker
 is the same on each. The two existing entries carry a colon because those slide titles are
@@ -1268,6 +1352,16 @@ customer.
 - **The teacher note slide is present** and carries all seven declarations, §2.0a.
   Six is a fail. The two that go missing most often are which simultaneity the
   cycle works on and the visibility rung.
+- **The visibility-ladder slide is present**, sits immediately after the teacher
+  note, and still carries `do not project` (§2.0b). Then confirm the two numbers
+  that the slide must not move: the diagnostic count, and every slide-type marker
+  count from check 3. Both must read exactly what they read before the slide went
+  in. A marker count that rose by one means a move name was written plainly
+  somewhere on the slide.
+- **Every "slide N" reference in the deck still points where it says.** Inserting
+  anything in the front block moves the rest of the deck down by one. Grep the
+  slide text AND the speaker notes for `[Ss]lide \d+` and check each hit against
+  the render.
 - **The What if is individual and written.** Not group work, whatever the
   coordination structure above it did, and its question names what changes and
   what is held.
@@ -1375,6 +1469,8 @@ and last tier labels carry a color.
 | Concept Bank term, column 2 | 4663440 | row y | 1554480 | 292500 | 12pt bold `028090` |
 | Concept Bank cell, column 2 | 6309360 | row y | 2286000 | 548640 | fill `F2F6F9` |
 | Concept Bank links block | 548640 | 5852160 | 8046720 | 457200 | 11pt |
+| Visibility ladder, subhead | 548640 | 1042000 | 8046720 | 457200 | 11pt, gray |
+| Visibility ladder, body | 548640 | 1554480 | 8046720 | 5120640 | 11pt, one column |
 
 The seven Concept Bank row y values are **1554480, 2148840, 2743200, 3337560,
 3931920, 4526280, 5120640**. The row pitch is 594360 and the row height is 548640.
