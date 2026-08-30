@@ -473,6 +473,26 @@ exactly one.
 student sees before the rewrite slide, and it is the slide the student reads on
 revision day before rewriting anything.
 
+**What it asks, decided by Katherine 2026-08-30.** Fill in the blanks. Nothing
+more. "We're not asking students to put those two ideas together for any of that
+vocabulary. They're not ready for that at that step." The bank supplies
+co-presence; it does not ask the student to relate two terms, and a builder who
+adds a relating prompt to it is working against the sequence rather than for it.
+
+**What follows it, same decision.** The conflict case is the next slide. The
+relating the bank deliberately does not ask for is what that slide asks for, on
+content rather than on vocabulary, once the terms are in front of the student.
+
+[Two things this changes and one it strains. It supersedes the sentence above
+that the Concept Bank is the last slide above the divider - the conflict case now
+sits between them. It retires `A-BANK-NO-RELATE` in `deck_lint.py`, which is
+recorded there. And it strains
+`coordination_judgment_and_the_package.md` section 7, which says in as many words
+that a page which only lists "has left the relating to chance". That document and
+this section now say different things about the same slide; the version that
+survives should be written down, because the next person to read section 7 as a
+spec will put the relating prompt back.]
+
 **What it is.** A grid of the terms the cycle depends on. The terms are printed on
 the slide. Each definition cell beside a term is an empty writing box. The student
 fills the cells across Day 1 and Day 2, as each term is met.

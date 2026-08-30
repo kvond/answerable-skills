@@ -1033,14 +1033,23 @@ def lint_deck(path):
             r"two of (?:the|these) terms",
         ], bank_text)
         result["bank_relates"] = relates
-        if not relates:
-            adv("A-BANK-NO-RELATE",
-                "the Concept Bank lists the terms but never asks the student to state "
-                "how two of them connect. Co-presence is the precondition, not the "
-                "achievement — a page that only lists has left the relating to chance "
-                "(slide%s %s)"
-                % ("" if len(banks) == 1 else "s", ", ".join(str(b) for b in banks)),
-                banks[0])
+        # A-BANK-NO-RELATE retired 2026-08-30 by Katherine. The Concept Bank is a
+        # fill-in-the-blank at the point in the cycle where it sits: "We're not
+        # asking students to put those two ideas together for any of that
+        # vocabulary. They're not ready for that at that step. They need to just
+        # fill in the blanks." The relating is the conflict case, which follows
+        # the bank as its own slide, and is a different ask of a different kind.
+        #
+        # [This contradicts coordination_judgment_and_the_package section 7, which
+        # says a page that only lists "has achieved co-presence and left the
+        # relating to chance" and that a page asking how two terms connect "does
+        # the work". Both cannot stand as written. The reading that reconciles
+        # them: the document is arguing about where diachronic simultaneity gets
+        # engineered, and Katherine's answer is that it is engineered by the slide
+        # after the bank rather than inside it - the bank supplies co-presence,
+        # the conflict case does the relating. If that is right, the document
+        # needs a sentence saying so, or this check comes back the next time
+        # someone reads section 7 and treats it as a spec.]
     else:
         result["bank_relates"] = False
 

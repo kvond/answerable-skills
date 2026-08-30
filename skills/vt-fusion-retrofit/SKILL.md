@@ -79,7 +79,15 @@ The error is not a knowledge gap — it is discerning one aspect and stopping.
 Different combinations give the same output.
 
 **Conflict case.** One case in which one aspect points toward one answer and a
-second points toward another, so both must be coordinated to resolve it. Use
+second points toward another, so both must be coordinated to resolve it.
+
+*Where it goes, decided by Katherine 2026-08-30:* **immediately after the Concept
+Bank**, between the bank and the Day 3 divider. The bank puts the vocabulary in
+front of the student without asking her to relate any of it - she is not ready
+for that at that step. The conflict case is the next thing she meets, and it is
+where the relating is asked for, on content rather than on vocabulary. This
+supersedes section 3b's "the Concept Bank is the last slide above the divider"
+in `vt-bio-skill`, which is annotated there. Use
 where no arithmetic relationship exists — most of Biology, nearly all of
 Forensics.
 
