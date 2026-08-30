@@ -42,6 +42,38 @@ digits. An imported deck's slides look like `g3f8adb8b078_3_146`.
 Slide count matching `new_slides` in the CSV is corroboration, not proof — a deck
 can have the right count and the wrong content.
 
+### A deck can be half-imported, and that is the dangerous state
+
+The import is two steps in the live file — append the whole finished deck, then
+delete the old block. Between them the file holds **both** decks: roughly double
+the slide count, two Day 3 dividers, two sets of response slides.
+
+Checking only for imported-style object IDs says "imported" during that window,
+and the first checklist a scan finds belongs to the *old* deck, the one about to
+be deleted. On 30 August this skill edited a slide in exactly that state. It was
+harmless only because Claude Code deleted that slide moments later.
+
+**A deck is ready when both hold:**
+
+    n_slides == new_slides            from docs/decks_live_ids.csv
+    no slide objectId matches ^p\d+$   nothing original left
+
+The count alone is not enough and the ID pattern alone is not enough. A
+half-imported deck fails both, which is what makes the pair reliable. Report such
+a deck as **in progress** and leave it entirely alone.
+
+### Decks imported after 30 August need no divider work
+
+The staging folder was refreshed on 30 August, so every deck imported after that
+carries the links already — built into the `.pptx` and converted on import.
+Verified on Cycle 07a: all three divider links resolve to the right slides, and
+read back teal rather than the theme hyperlink blue.
+
+So the divider job is a repair for the decks staged before that refresh — 03, 04
+and 05 — and nothing else. A later deck should show no checklist and working
+links, and drop straight out of the list. If one does not, the staging folder has
+gone stale again; check it before editing any live file.
+
 ## The work, per ready deck
 
 ### 1. The Day 3 divider
