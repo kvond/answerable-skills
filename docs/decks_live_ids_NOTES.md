@@ -26,3 +26,18 @@ anything: Slides API edits in place, or an append-only import of just the new
 slides followed by `updateSlidesPosition`.
 
 Put the date in the cell, so it is clear when the work went in.
+
+## `conflict_case` — added 30 August 2026
+
+`yes` means the deck carries a conflict case slide between its Concept Bank and
+its Day 3 divider, and `new_slides` has been raised by one to match. `none`
+means the diagnosis found no genuine conflict in that cycle's content — see
+`audits/conflict_cases_2026-08-30_v2.docx` for the reason, which belongs on
+that deck's teacher note slide rather than in this file.
+
+The thirteen decks marked `yes` need one more import, because a slide cannot be
+added faithfully through the Slides API: element size is fixed at creation and
+there is no resize request, so a duplicated shape can be moved but not made
+taller. Recreating it loses the shadow the writing boxes carry. Re-importing
+costs nothing today because no deck yet holds native Google work; once one
+does, this stops being true and that deck's `google_native` cell says so.
