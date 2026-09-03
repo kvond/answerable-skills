@@ -58,6 +58,12 @@ delivery checks that follow, and marked which of them are advisory rather than
 hard (§11). The word forbidden by §1 was removed from §1 itself, which had been
 the last place in this file it appeared.
 
+Revised 2026-09-03, by Katherine's direction. §0 and §11 now name the repository as the
+only place a script is fetched from, and the Drive IDs are retired. Cause: a Cycle 01
+check that morning ran the stale Drive `deck_lint.py` and under-reported by nine hard
+failures. Also recorded in §7.1a: the exclusion-list sync rule is now a repository edit,
+not a four-copy edit.
+
 This skill stands for every cycle until Katherine changes it.
 
 Reference build: **`Cycle 02 — Ecosystems & Feeding Relationships (VT deck)`**,
@@ -94,14 +100,14 @@ Reference build: **`Cycle 02 — Ecosystems & Feeding Relationships (VT deck)`**
     from Slides so every cycle ends with a `.pptx` source of truth.
 - **Build a new deck from the reference build. Do not restyle the old deck.**
   See section 14. The old deck is a content source only.
-- Get the specifications and the scripts from Drive at run time. Do not write them
-  again from memory.
-  [Superseded 2026-08-29 by Katherine's decision: the scripts are canonical in the
-  GitHub repo `kvond/answerable-skills`, folder `scripts/`. Pull that at run time.
-  Drive still holds copies and they are no longer authoritative. Her reasons: she
-  reorganises Drive for readability, which breaks every path and ID recorded in this
-  file, and a clone needs no Drive account signed in on the machine doing the work.
-  See the correction block in §7.1a.]
+- Get the scripts from the repository at run time: `kvond/answerable-skills`, folder
+  `scripts/`, read on every machine through the `~/.claude/skills` symlink. That is the
+  only copy. Do not fetch a script from Drive: the two Drive folders named
+  `scripts (Do NOT Delete)` hold stale copies (their `deck_lint.py` is the 7 KB
+  pre-2026-08-29 version; the repository holds the 57 KB two-tier rewrite), and a run
+  that picked one up on 2026-09-03 reported one hard failure where the current linter
+  reports ten. Do not write a script again from memory. (Decided 2026-08-29; the
+  Drive IDs that this file carried before that date are stale and are being removed.)
 - Check the deck before and after every pass. Compare the slide count, the slide
   order, the slide size, and the text of each shape. You must be able to name the
   reason for each difference.
@@ -937,6 +943,8 @@ The tuple names differ across the two files in both cases:
 
 ### 7.1a Each script exists twice in Drive (found 2026-08-18)
 
+[Superseded 2026-09-03: the four Drive copies are stale and no longer edited. The exclusion list is edited once, in `scripts/extract_and_grade.py` and `scripts/deck_lint.py` in the repository. The paragraphs below are kept as history.]
+
 [Correction, 2026-08-29. Every claim in this section was tested against Drive today
 and most of it no longer holds. What is actually there:
 
@@ -1353,19 +1361,16 @@ customer.
 6. Compare the slide count to the page count of the render. The two must be equal.
 7. Run `validate.py out.pptx --original src.pptx`.
 8. Run `deck_link_check.py out.pptx`.
-9. Run `deck_lint.py`. It is in Drive at `1-TenYZr2BDsASCKu7hXC_0dID3VZqu6Z`.
-   [Corrected 2026-08-29: that ID does not resolve, and neither does the
-   `1PR5_74XiG4…` ID given below for `deck_link_check.py`. Both scripts now live in
-   `kvond/answerable-skills` at `scripts/deck_lint.py` and `scripts/deck_link_check.py`.
-   Run them from a clone. `deck_lint.py` needs no network; `deck_link_check.py` does.]
-   (The 2026-08-17 note here called the older `1eh8cG3J…` ID dead. It is not dead:
-   it is a byte-identical duplicate in a second `scripts (Do NOT Delete)` folder.
-   See §7.1a, corrected 2026-08-18.) `deck_link_check.py`
-   is at `1PR5_74XiG4vrrPUQFYhdt9IUjOtCE_7O`. This is the last gate. If Composio is
-   not available, say so and stop. Never write the linter again.
-   Known ignorable warning: lint expects "Working On It" in `#EFDF85`, but §13.2
-   correctly specifies body black `111111` — the reference build agrees. That
-   warning fires on every deck including Cycle 02 and is not a defect.
+9. Run `scripts/deck_lint.py` from the repository clone. It is the last gate: zero HARD
+   findings or the deck does not ship; read the ADVISORY block and the `markers present:`
+   line either way (§3c). `deck_link_check.py` is beside it at `scripts/deck_link_check.py`
+   and needs network access; `deck_lint.py` does not. Never write the linter again.
+   (Rewritten 2026-09-03. The Drive IDs formerly listed here — `1-TenYZr2…`,
+   `1eh8cG3J…`, `1PR5_74Xi…` — do resolve from the answerableteaching Drive, which is
+   why a stale copy was run that morning; they are not to be used. The old note about
+   an ignorable `#EFDF85` warning described the pre-2026-08-29 linter, which reported
+   it as a warning; the current linter reports it as ADVISORY A-TIER-COLOR and accepts
+   `111111` or `EFDF85`.)
 
 **Checks added 2026-08-29.**
 
