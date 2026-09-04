@@ -101,6 +101,12 @@ def plan(prs, cyc):
         first = next((texts(sh).split("\n")[0] for sh in s.shapes
                       if texts(sh).strip()), "")
 
+        # Teacher reference slides (slides 1-3) carry filled panels in the
+        # writing-box colour - ESSENTIAL CLAIM, STANDARDS, OBJECTIVES. They
+        # are not student boxes; counting them added two NOTES to every deck.
+        if "TEACHER REFERENCE" in joined.upper():
+            continue
+
         # A slide can name its aspect without carrying the label - Cycle 06's
         # worksheet slide says "CA2 worksheet" and sits before the first
         # Critical aspect line, so without this it inherits BELLRINGER.
@@ -199,8 +205,16 @@ def strip_markers(prs):
     twice."""
     n = 0
     for s in prs.slides:
-        for sh in s.shapes:
+        for sh in list(s.shapes):
             if not sh.has_text_frame:
+                continue
+            t = sh.text_frame.text
+            # The inventory shape goes as a whole. Stripping only the bracket
+            # left " NOTES=15 DRAFT=3 ..." behind, and the next run added a
+            # second inventory box beside it (seen on Cycle 01a and 01b).
+            if "MARKER-INVENTORY" in t or ("NOTES=" in t and "DRAFT=" in t and "_IDS=" in t):
+                n += 1
+                sh._element.getparent().remove(sh._element)
                 continue
             for para in sh.text_frame.paragraphs:
                 for run in list(para.runs):
@@ -258,8 +272,12 @@ def main():
         files = [f for f in files if args.deck in f]
 
     for f in files:
-        key = os.path.basename(f)[9:-11]
-        cyc = "C" + key.replace("Cycle ", "").replace(" ", "")
+        m = re.search(r"Cycle\s*0?(\d+)\s*([A-Za-z])?", os.path.basename(f))
+        if not m:
+            print("skip (no cycle number in name):", f)
+            continue
+        key = "Cycle %02d%s" % (int(m.group(1)), (m.group(2) or "").lower())
+        cyc = "C%02d%s" % (int(m.group(1)), (m.group(2) or "").upper())
         prs = Presentation(f)
         existing = sum(len(MARKER_RE.findall(texts(sh)))
                        for s in prs.slides for sh in s.shapes)
